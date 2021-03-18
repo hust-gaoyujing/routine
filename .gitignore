@@ -1,0 +1,8 @@
+public
+*.zip
+python*
+*.pl
+works
+
+/__py*
+/test
