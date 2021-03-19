@@ -27,24 +27,25 @@ R2
 R3
 n@_opt1
 R4
+R0
 vbaudrate_generator
-Z5 !s110 1616039203
+Z5 !s110 1616122131
 !i10b 1
 !s100 RD=@DRDUD;Cm4dCjK^jb`0
-I47HRPKh8h1Hbc2N_LU7@z2
+IRo:il>dD8BdEIL3A>Rz3b3
 Z6 VDg1SIo80bB@j0V0VzS_@n1
-Z7 dD:/prj/routine/daily/UART/work
-w1616037807
-8D:/prj/routine/daily/UART/rtl/baudrate_generator.v
-FD:/prj/routine/daily/UART/rtl/baudrate_generator.v
+Z7 dD:/prj/routine/works/uart
+Z8 w1616040954
+8D:/gitlab/uart/rtl/baudrate_generator.v
+FD:/gitlab/uart/rtl/baudrate_generator.v
 L0 4
-Z8 OL;L;10.7;67
+Z9 OL;L;10.7;67
 r1
 !s85 0
 31
-Z9 !s108 1616039203.000000
-!s107 D:\prj\routine\daily\UART\rtl\uart_define.v|D:/prj/routine/daily/UART/rtl/baudrate_generator.v|
-!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/UART/rtl/baudrate_generator.v|
+!s108 1616122130.000000
+!s107 D:\gitlab\uart\rtl\uart_define.v|D:/gitlab/uart/rtl/baudrate_generator.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/gitlab/uart/rtl/baudrate_generator.v|
 !i113 0
 Z10 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 R3
@@ -52,20 +53,20 @@ vgjy_uart_top
 R5
 !i10b 1
 !s100 UeD?EmVcM?Gd;c;ZOUM?O3
-Ikg44=KNaMbh5`;:;KgA_H3
+I]:h3JeD_n;C7SI1:FmkAH2
 R6
 R7
-w1616037717
-8D:/prj/routine/daily/UART/rtl/gyj_uart_top.v
-FD:/prj/routine/daily/UART/rtl/gyj_uart_top.v
-L0 5
 R8
+8D:/gitlab/uart/rtl/gyj_uart_top.v
+FD:/gitlab/uart/rtl/gyj_uart_top.v
+L0 5
+R9
 r1
 !s85 0
 31
-R9
-!s107 D:\prj\routine\daily\UART\rtl\uart_define.v|D:/prj/routine/daily/UART/rtl/gyj_uart_top.v|
-!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/UART/rtl/gyj_uart_top.v|
+Z11 !s108 1616122131.000000
+!s107 D:\gitlab\uart\rtl\uart_define.v|D:/gitlab/uart/rtl/gyj_uart_top.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/gitlab/uart/rtl/gyj_uart_top.v|
 !i113 0
 R10
 R3
@@ -73,20 +74,20 @@ vuart_rx
 R5
 !i10b 1
 !s100 5LiZbZIXibjB7l>Y1chV^2
-I0m7HbB<9PWibaB2LQWfAJ3
+Ibn:l`mbaEB=:;hM6GkjaF0
 R6
 R7
-w1615533679
-8D:/prj/routine/daily/UART/rtl/gyj_uart_rx.v
-FD:/prj/routine/daily/UART/rtl/gyj_uart_rx.v
-L0 4
 R8
+8D:/gitlab/uart/rtl/gyj_uart_rx.v
+FD:/gitlab/uart/rtl/gyj_uart_rx.v
+L0 4
+R9
 r1
 !s85 0
 31
-R9
-!s107 D:\prj\routine\daily\UART\rtl\uart_define.v|D:/prj/routine/daily/UART/rtl/gyj_uart_rx.v|
-!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/UART/rtl/gyj_uart_rx.v|
+R11
+!s107 D:\gitlab\uart\rtl\uart_define.v|D:/gitlab/uart/rtl/gyj_uart_rx.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/gitlab/uart/rtl/gyj_uart_rx.v|
 !i113 0
 R10
 R3
@@ -94,20 +95,20 @@ vuart_tb
 R5
 !i10b 1
 !s100 C>3e`OG?Z9A;fQZWjZ7bY3
-Il2jnQY_VU6TXO4XPEd8kJ3
+IdCGzoU><N1K:j@k?SoTIH3
 R6
 R7
-w1616039195
-8D:/prj/routine/daily/UART/rtl/gyj_uart_tb.v
-FD:/prj/routine/daily/UART/rtl/gyj_uart_tb.v
-L0 5
 R8
+8D:/gitlab/uart/rtl/gyj_uart_tb.v
+FD:/gitlab/uart/rtl/gyj_uart_tb.v
+L0 5
+R9
 r1
 !s85 0
 31
-R9
-!s107 D:\prj\routine\daily\UART\rtl\uart_define.v|D:/prj/routine/daily/UART/rtl/gyj_uart_tb.v|
-!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/UART/rtl/gyj_uart_tb.v|
+R11
+!s107 D:\gitlab\uart\rtl\uart_define.v|D:/gitlab/uart/rtl/gyj_uart_tb.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/gitlab/uart/rtl/gyj_uart_tb.v|
 !i113 0
 R10
 R3
@@ -115,20 +116,20 @@ vuart_tx
 R5
 !i10b 1
 !s100 0kCV8Nn>S[H?TC>kK67_^0
-ImA5m:AQCP5;^>TP0CZ85Q1
+IA89l^5j[POFOJDzi]N`7:1
 R6
 R7
-w1615454473
-8D:/prj/routine/daily/UART/rtl/gyj_uart_tx.v
-FD:/prj/routine/daily/UART/rtl/gyj_uart_tx.v
-L0 4
 R8
+8D:/gitlab/uart/rtl/gyj_uart_tx.v
+FD:/gitlab/uart/rtl/gyj_uart_tx.v
+L0 4
+R9
 r1
 !s85 0
 31
-R9
-!s107 D:\prj\routine\daily\UART\rtl\uart_define.v|D:/prj/routine/daily/UART/rtl/gyj_uart_tx.v|
-!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/UART/rtl/gyj_uart_tx.v|
+R11
+!s107 D:\gitlab\uart\rtl\uart_define.v|D:/gitlab/uart/rtl/gyj_uart_tx.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/gitlab/uart/rtl/gyj_uart_tx.v|
 !i113 0
 R10
 R3
