@@ -199,25 +199,19 @@ module uart_tb();
 			//setting the UART_CSR and UART_CTRL 
 			#10000;
 			force port_rxd = port_txd;
-			//write_register(`UART_CSR_ADDR,32'h8_0201,0);  		//16Mhz	
-			write_register(`UART_CSR_ADDR,32'h4d_0001,0);			//144Mhz
+			write_register(`UART_CSR_ADDR,32'h8_0201,0);  		//16Mhz	
+			//write_register(`UART_CSR_ADDR,32'h4d_0001,0);			//144Mhz
 			write_register(`UART_CTRL_ADDR,32'h10111,0);
 			#10000;
 			for(i = 0;i < 256;i = i +1) begin 
 				write_register(`DATA_REG_ADDR,data_in[i],1);
 				
 				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b0) begin
+				while(rsp_rdata[4] == 1'b1) begin
 					read_register(`UART_CSR_ADDR,1);
 				end
 				read_register(`DATA_REG_ADDR,1);
 				data_out[i] = rsp_rdata;
-				
-				//ensure the tx_ok is low
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b1) begin
-					read_register(`UART_CSR_ADDR,1);
-				end			
 			end
 			
 			$display("%t ns\n TX OF 115200BPS: \nEVEN_PARITY",$time);
@@ -230,60 +224,60 @@ module uart_tb();
 			end 
 			j =0;
 			
-			//check TX of 115200bps，odd_parity
-			//setting the UART_CSR and UART_CTRL 
-			write_register(`UART_CTRL_ADDR,32'h00111,0);
-			#10;
-			for(i = 0;i < 256;i = i +1) begin 
-				write_register(`DATA_REG_ADDR,data_in[i],1);
-				
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b0) begin
-					read_register(`UART_CSR_ADDR,1);
-				end
-				read_register(`DATA_REG_ADDR,1);
-				data_out[i] = rsp_rdata;
-				
-				//ensure the tx_ok is low
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b1) begin
-					read_register(`UART_CSR_ADDR,1);
-				end			
-			end
-
-			$display("%t ns\n TX OF 115200BPS: \nODD_PARITY",$time);
-			monitor;
-			#10000;
-			
-			//initial the data_out 
-			for(i = 0;i < 256;i = i +1) begin 
-				data_out[i] = 8'hff;
-			end 
-			j = 0;
-			
-			//check TX of 115200bps，no_parity
-			//setting the UART_CSR and UART_CTRL 
-			write_register(`UART_CTRL_ADDR,32'h01111,0);
-			#10;
-			for(i = 0;i < 256;i = i +1) begin 
-				write_register(`DATA_REG_ADDR,data_in[i],1);
-				
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b0) begin
-					read_register(`UART_CSR_ADDR,1);
-				end
-				read_register(`DATA_REG_ADDR,1);
-				data_out[i] = rsp_rdata;
-				
-				//ensure the tx_ok is low
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b1) begin
-					read_register(`UART_CSR_ADDR,1);
-				end			
-			end		
-			
-			$display("%t ns\n TX OF 115200BPS: \nNO_PARITY",$time);
-			monitor;		
+			////check TX of 115200bps，odd_parity
+			////setting the UART_CSR and UART_CTRL 
+			//write_register(`UART_CTRL_ADDR,32'h00111,0);
+			//#10;
+			//for(i = 0;i < 256;i = i +1) begin 
+			//	write_register(`DATA_REG_ADDR,data_in[i],1);
+			//	
+			//	read_register(`UART_CSR_ADDR,1);
+			//	while(rsp_rdata[4] == 1'b0) begin
+			//		read_register(`UART_CSR_ADDR,1);
+			//	end
+			//	read_register(`DATA_REG_ADDR,1);
+			//	data_out[i] = rsp_rdata;
+			//	
+			//	//ensure the tx_ok is low
+			//	read_register(`UART_CSR_ADDR,1);
+			//	while(rsp_rdata[4] == 1'b1) begin
+			//		read_register(`UART_CSR_ADDR,1);
+			//	end			
+			//end
+			//
+			//$display("%t ns\n TX OF 115200BPS: \nODD_PARITY",$time);
+			//monitor;
+			//#10000;
+			//
+			////initial the data_out 
+			//for(i = 0;i < 256;i = i +1) begin 
+			//	data_out[i] = 8'hff;
+			//end 
+			//j = 0;
+			//
+			////check TX of 115200bps，no_parity
+			////setting the UART_CSR and UART_CTRL 
+			//write_register(`UART_CTRL_ADDR,32'h01111,0);
+			//#10;
+			//for(i = 0;i < 256;i = i +1) begin 
+			//	write_register(`DATA_REG_ADDR,data_in[i],1);
+			//	
+			//	read_register(`UART_CSR_ADDR,1);
+			//	while(rsp_rdata[4] == 1'b0) begin
+			//		read_register(`UART_CSR_ADDR,1);
+			//	end
+			//	read_register(`DATA_REG_ADDR,1);
+			//	data_out[i] = rsp_rdata;
+			//	
+			//	//ensure the tx_ok is low
+			//	read_register(`UART_CSR_ADDR,1);
+			//	while(rsp_rdata[4] == 1'b1) begin
+			//		read_register(`UART_CSR_ADDR,1);
+			//	end			
+			//end		
+			//
+			//$display("%t ns\n TX OF 115200BPS: \nNO_PARITY",$time);
+			//monitor;		
 			
 			#10000;
 			$finish;

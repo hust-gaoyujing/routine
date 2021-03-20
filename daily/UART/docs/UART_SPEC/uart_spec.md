@@ -122,9 +122,13 @@
 
 - bit8	 	   rx_en			 R/W		  为高时标志rx模块可以工作；
 
-- bit12          n_parity         R/W          为高时传输不含校验位；
+- bit12          no_parity      R/W          为高时传输不含校验位；
 
-- bit16          ev_parity       R/W          为高是表示采用偶校验，为低时表示采用奇校验（仅在  n_parity为低时有效）                                    
+- bit16          ev_parity       R/W          为高是表示采用偶校验，为低时表示采用奇校验（仅在  n_parity为低时有效）
+
+- bit20          parity_error   R/W          为高时表示传输过程出现校验错误；                          
+
+
 
 
 

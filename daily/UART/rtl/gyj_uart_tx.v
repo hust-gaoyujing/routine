@@ -6,7 +6,7 @@ module uart_tx(
 	input 			baud_clk,
 	input			rst_n,
 	input 			tx_en,
-	input 			n_parity,
+	input 			no_parity,
 	input			ev_parity,
 	input 			tx_start,
 	input [7:0]		txd_in,	
@@ -15,23 +15,26 @@ module uart_tx(
 	output			txd
 );
 	
-	//FSM define
+	//=========================  FSM STATE DEFINE  ===============================//
 	`define TX_IDLE		1'b0
 	`define TX_DATA		1'b1
 	
-	reg [3:0] 	tx_cnt; 	//counter for start_bit,8_bit_data,parity,stop_bit
-	reg [7:0]	txd_in_r; 	//store data of txd_in temporarily
-	reg [9:0]	txd_out_r;	//store byte and function bit to tx out
-	reg [1:0]	tx_state;
-	
-	reg 		baud_clk_rev;
-	wire 		baud_clk_pos;
+	//=========================  REGISTER FOR TX  ================================//
+	reg [3:0] 	tx_cnt; 		//counter for start_bit,8_bit_data,parity,stop_bit
+	reg [9:0]	txd_out_r;		//store byte and function bit to tx out
+	reg 		tx_state;
 	
 	
-	
+	//================================ PARITY ===================================//
 	wire even_parity;
 	wire odd_parity;
+	wire has_even_parity;
+	wire has_odd_parity;
+	wire has_no_parity;
 	
+	assign has_even_parity = (!no_parity) & ev_parity;
+	assign has_odd_parity = (!no_parity) & (!ev_parity);
+	assign has_no_parity = no_parity;
 	
 	//calculate for even_parity
 	assign even_parity = txd_in[7] ^ txd_in[6] ^ txd_in[5] ^ txd_in[4]
@@ -39,69 +42,71 @@ module uart_tx(
 	assign odd_parity = ~even_parity;
 	
 	
+	//=======================  GETTING POS OF BAUD_CLK  ==========================//
+	reg 		baud_clk_rev;
+	wire 		baud_clk_pos;
+	wire 		tx_pos;				//uart can tx data only when tx_pos is high 
 	
-	//to get the posedge of baud_clk
+	assign tx_pos =	tx_en & baud_clk_pos;
 	assign baud_clk_pos = baud_clk & baud_clk_rev;
 	
-	always(posedge clk or negedge rst_n) 
+	always @(posedge clk or negedge rst_n) 
 		if(!rst_n)
 			baud_clk_rev <= 1'b0;
 		else 
-			baud_clk_rev <= baud_clk;
+			baud_clk_rev <= ~baud_clk;
 	
 	
 			
-	
+	//====================== SQUENTIAL CIRCUIT CONTROL ===========================//
 	//FSM 		
-	assign tx_ok = ((tx_cnt == 4'b1001 && n_parity == 1'b0) || (tx_cnt == 4'b1000 && n_parity == 1'b1) && (tx_state == `TX_DATA)) ? 1'b1 : 1'b0;
+	assign tx_ok = ((tx_cnt == 4'b1001 && (!no_parity)) || ((tx_cnt == 4'b1000) && no_parity) && (tx_state == `TX_DATA)) ? 1'b1 : 1'b0;
 	assign txd = txd_out_r[0];	
 	
 	always @(posedge clk or negedge rst_n)
 		if(!rst_n) begin 
  			tx_state <= `TX_IDLE;
 			tx_cnt <= 4'b0;
-			txd_in_r <= 8'hff;
 			txd_out_r <= 10'h3ff;
 		end 
-		else 
-			if((tx_en == 1'b1) && (baud_clk_pos == 1'b1)) begin  
-				case(tx_state)
-					`TX_IDLE: begin
-						if(tx_start) begin												//in software ,writing data_reg should follow tx_ok's negedge 
-							if((n_parity == 1'b0) && (ev_parity == 1'b1)) begin 					
-								txd_out_r <= {1'b1,even_parity,txd_in[7:0],1'b0}; 		//stop_bit,even_parity,data,start_bit
-							end 
-							else if((n_parity == 1'b0) && (ev_parity == 1'b0)) begin 
-								txd_out_r <= {1'b1,odd_parity,txd_in[7:0],1'b0}; 		//stop_bit,even_parity,data,start_bit
-							end
-							else begin 
-								txd_out_r <= {1'b1,txd_in[7:0],1'b0}; 					//stop_bit,data,start_bit
-							end 
-							tx_state <= `TX_DATA;					
-						end
-						else begin 
-							tx_state <= `TX_IDLE;
-						end 
+		else if(tx_pos) begin  
+			case(tx_state)
+				`TX_IDLE: begin
+					if(tx_start) begin												//in software ,writing data_reg should follow tx_ok's negedge 
+						tx_state <= `TX_DATA;	
+						if(has_even_parity)  					
+							txd_out_r <= {1'b1,even_parity,txd_in[7:0],1'b0}; 		//stop_bit,even_parity,data,start_bit
+						else if(has_odd_parity) 
+							txd_out_r <= {1'b1,odd_parity,txd_in[7:0],1'b0}; 		//stop_bit,even_parity,data,start_bit
+						else if(has_no_parity) 
+							txd_out_r <= {1'b1,txd_in[7:0],1'b0}; 					//stop_bit,data,start_bit
+						else   
+							txd_out_r <= 10'h3ff;
+					end
+					else  
+						tx_state <= `TX_IDLE;
+				end 
+				`TX_DATA: begin 
+					if((tx_cnt == 4'b1011 && (!has_no_parity)) || (tx_cnt == 4'b1010 && has_no_parity))  begin 
+						tx_state <= `TX_IDLE;
+						tx_cnt <= 4'b0;
+					end
+					else begin
+						tx_cnt <= tx_cnt + 1;
+						txd_out_r <= {1'b1,txd_out_r[9:1]};
 					end 
-					`TX_DATA: begin 
-						if((tx_cnt == 4'b1011 && n_parity == 1'b0) || (tx_cnt == 4'b1010 && n_parity == 1'b1))  begin 
-							tx_state <= `TX_IDLE;
-							tx_cnt <= 4'b0;
-						end
-						else begin
-							tx_cnt <= tx_cnt + 1;
-							txd_out_r <= {1'b1,txd_out_r[9:1]};
-						end 
-					end 
-				endcase
-			end 
-			else if(tx_en != 1'b1) begin 
-				tx_state <= `TX_IDLE;
-				txd_out <= 1'b1;
-				tx_cnt <= 4'b0;
-				txd_in_r <= 8'b0;
-				txd_out_r <= 10'b0;				
-			end 
-			
-			
+				end 
+			endcase
+		end 
+		else if(!tx_en) begin 
+			tx_state <= `TX_IDLE;
+			tx_cnt <= 4'b0;
+			txd_out_r <= 10'b0;				
+		end 
+		else begin 
+			tx_state <= tx_state;
+			tx_cnt <= tx_cnt;
+			txd_out_r <= txd_out_r;	
+		end 
+		
 endmodule
