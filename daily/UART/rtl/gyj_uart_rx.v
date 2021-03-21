@@ -26,7 +26,7 @@ module uart_rx(
 	reg [3:0]	sample_cnt;			//counter for sample clock 
 	reg [7:0]	rxd_out_r; 			//store data of rxd_out temporarily
 	reg 		parity_error_r;
-	reg	[1:0]	rx_state;
+	reg	[2:0]	rx_state;
 	
 	//get true data by majority voting
 	reg 		tmp_a;	
@@ -40,11 +40,9 @@ module uart_rx(
 	wire odd_parity;
 	wire has_even_parity;
 	wire has_odd_parity;
-	wire has_no_parity;
 	
 	assign has_even_parity = (!no_parity) & ev_parity;
 	assign has_odd_parity = (!no_parity) & (!ev_parity);
-	assign has_no_parity = no_parity;
 
 	//calculate for even_parity
 	assign even_parity = rxd_out_r[7] ^ rxd_out_r[6] ^ rxd_out_r[5] ^ rxd_out_r[4]
@@ -68,8 +66,8 @@ module uart_rx(
 			
 	
 	//====================== SQUENTIAL CIRCUIT CONTROL ===========================//
-	//assign rx_ok = ((sample_cnt == 4'd12) && (rx_state == `RX_STOP)) ? 1'b1 : 1'b0;
-	assign rx_ok = 1'b0;
+	assign rx_ok = ((sample_cnt == 4'd12) && (rx_state == `RX_STOP)) ? 1'b1 : 1'b0;
+	//assign rx_ok = 1'b0;
 	assign rxd_out = rd_data_flag ? rxd_out_r : 8'hff;
 	assign parity_error = parity_error_r;
 	
@@ -128,11 +126,11 @@ module uart_rx(
 						sample_cnt <= sample_cnt + 1;
 				end 
 				`RX_DATA: begin 
-					if((rx_cnt == 3'd7) && (sample_cnt == 4'd15) && has_no_parity) begin 
+					if((rx_cnt == 3'd7) && (sample_cnt == 4'd15) && no_parity) begin 
 						sample_cnt <= 4'b0;
 						rx_state <= `RX_STOP;
 					end 
-					else if((rx_cnt == 3'd7) && (sample_cnt == 4'd15) && (!has_no_parity)) begin 
+					else if((rx_cnt == 3'd7) && (sample_cnt == 4'd15) && (!no_parity)) begin 
 						sample_cnt <= 4'b0;
 						rx_state <= `RX_PARITY;
 					end 
@@ -169,7 +167,7 @@ module uart_rx(
 					if(!rxd)begin  
 						sample_cnt <= 1'b0;
 					end 
-					else if(sample_cnt == 4'd13) begin 
+					else if(sample_cnt == 4'd12) begin 
 						sample_cnt <= 4'd0;
 						rx_state <= `RX_IDLE;
 					end

@@ -18,6 +18,7 @@ module uart_ctrl(
 
 	input 							tx_ok,
 	input 							rx_ok,
+	input							parity_error,
 	output 	[7:0]					data_reg_rd,
 	output 	[7:0]					data_reg_wr,
 	output	[31:0]					uart_csr_o,
@@ -86,9 +87,9 @@ module uart_ctrl(
 		if(!rst_n) begin 
 			rsp_valid <= 1'b0;
 		end 
-		else if(cmd_read)  
+		else if(cmd_ready)  
 			rsp_valid <= 1'b1;
-		else if(cmd_ready == 1'b0) 
+		else if(!cmd_ready) 
 			rsp_valid <= 1'b0;
 
 	//read registers of uart
@@ -99,7 +100,7 @@ module uart_ctrl(
 		else if(cmd_handshake_rd) begin 
 			case(cmd_addr) 
 				`DATA_REG_ADDR	: rsp_rdata <= data_reg_rd;
-				`UART_CSR_ADDR 	: rsp_rdata <= {uart_csr[31:8],3'b0,rx_ok,3'b0,tx_ok};
+				`UART_CSR_ADDR 	: rsp_rdata <= {parity_error,uart_csr[19:8],3'b0,rx_ok,3'b0,tx_ok};
 				`UART_CTRL_ADDR : rsp_rdata <= uart_ctrl;
 				default			: rsp_rdata <= 32'h0;
 			endcase
@@ -130,27 +131,6 @@ module uart_ctrl(
 			uart_ctrl <= uart_ctrl;
 		end
 
-	
-	////=======================  FLAG SIGNALS SEQUENCE CONTROL  =======================//
- 	////assginment for rd_data_flag signals
-	//always @(posedge clk or negedge rst_n) 
-	//	if(!rst_n) begin 
-	//		rd_dat_flag <= 1'b0;
-	//	end 
-	//	else if(cmd_handshake_rd && (cmd_addr == `DATA_REG_ADDR))
-	//		rd_data_flag <= 1'b1;
-	//	else 
-	//		rd_data_flag <= 1'b0;
-	//
-	////assginment for rd_data_flag signals
-	//always @(posedge clk or negedge rst_n) 
-	//	if(!rst_n) begin 
-	//		wr_data_flag <= 1'b0;
-	//	end 
-	//	else if(cmd_handshake_wr && (cmd_addr == `DATA_REG_ADDR))
-	//		wr_data_flag <= 1'b1;
-	//	else 
-	//		wr_data_flag <= 1'b0;
 
 endmodule			
 			

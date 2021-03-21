@@ -30,8 +30,8 @@ module gjy_uart_top(
 	wire [7:0] 		data_reg_rd;
 		
 	//signals of uart_csr register	
-	wire 			tx_ok = uart_csr[0];			//uart_csr[0] but just for R 
-	wire 			rx_ok = uart_ctrl[4];			//uart_csr[4] but just for R
+	wire 			tx_ok;			//uart_csr[0] but just for R 
+	wire 			rx_ok;			//uart_csr[4] but just for R
 	wire [15:0]		divisor = uart_csr[31:16];
 	
 	//signals of uart_ctrl register	
@@ -40,7 +40,7 @@ module gjy_uart_top(
 	wire 			rx_en = uart_ctrl[8];			//enable signal for uart_rx 
 	wire 			no_parity = uart_ctrl[12];  	//1 for no parity,0 for having parity 
 	wire 			ev_parity = uart_ctrl[16];  	//1 for even parity,0 for odd parity 
-	wire 			parity_error = uart_ctrl[20];   //1 for even parity,0 for odd parity 
+	wire 			parity_error;	   				//parity_error just for R
 	
 	//========================= FLAG SIGNALS OF TX/RX ===============================//
 	//signal for start of TX  	
@@ -71,6 +71,7 @@ module gjy_uart_top(
 							 					
 		.tx_ok				(tx_ok				),
 		.rx_ok	            (rx_ok				),
+		.parity_error		(parity_error		),
 		.data_reg_rd        (data_reg_rd        ),
 		.data_reg_wr		(data_reg_wr		),
 		.uart_csr_o			(uart_csr			),

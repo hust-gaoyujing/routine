@@ -23,6 +23,7 @@ module uart_tx(
 	reg [3:0] 	tx_cnt; 		//counter for start_bit,8_bit_data,parity,stop_bit
 	reg [9:0]	txd_out_r;		//store byte and function bit to tx out
 	reg 		tx_state;
+	reg 		tx_on_flag;		//be high when tx is doing  
 	
 	
 	//================================ PARITY ===================================//
@@ -30,11 +31,9 @@ module uart_tx(
 	wire odd_parity;
 	wire has_even_parity;
 	wire has_odd_parity;
-	wire has_no_parity;
 	
 	assign has_even_parity = (!no_parity) & ev_parity;
 	assign has_odd_parity = (!no_parity) & (!ev_parity);
-	assign has_no_parity = no_parity;
 	
 	//calculate for even_parity
 	assign even_parity = txd_in[7] ^ txd_in[6] ^ txd_in[5] ^ txd_in[4]
@@ -60,8 +59,19 @@ module uart_tx(
 			
 	//====================== SQUENTIAL CIRCUIT CONTROL ===========================//
 	//FSM 		
-	assign tx_ok = ((tx_cnt == 4'b1001 && (!no_parity)) || ((tx_cnt == 4'b1000) && no_parity) && (tx_state == `TX_DATA)) ? 1'b1 : 1'b0;
+	assign tx_ok = ((tx_cnt == 4'b1010 && (!no_parity)) || ((tx_cnt == 4'b1001) && no_parity) && (tx_state == `TX_DATA)) ? 1'b1 : 1'b0;
 	assign txd = txd_out_r[0];	
+	
+	//assignment for tx_on_flag
+	always @(posedge clk or negedge rst_n)
+		if(!rst_n) 
+			tx_on_flag <= 1'b0;
+		else if(tx_start)
+			tx_on_flag <= 1'b1;
+		else if(tx_ok)
+			tx_on_flag <= 1'b0;
+		else 
+			tx_on_flag <= tx_on_flag;
 	
 	always @(posedge clk or negedge rst_n)
 		if(!rst_n) begin 
@@ -72,13 +82,13 @@ module uart_tx(
 		else if(tx_pos) begin  
 			case(tx_state)
 				`TX_IDLE: begin
-					if(tx_start) begin												//in software ,writing data_reg should follow tx_ok's negedge 
+					if(tx_on_flag) begin												//in software ,writing data_reg should follow tx_ok's negedge 
 						tx_state <= `TX_DATA;	
 						if(has_even_parity)  					
 							txd_out_r <= {1'b1,even_parity,txd_in[7:0],1'b0}; 		//stop_bit,even_parity,data,start_bit
 						else if(has_odd_parity) 
 							txd_out_r <= {1'b1,odd_parity,txd_in[7:0],1'b0}; 		//stop_bit,even_parity,data,start_bit
-						else if(has_no_parity) 
+						else if(no_parity) 
 							txd_out_r <= {1'b1,txd_in[7:0],1'b0}; 					//stop_bit,data,start_bit
 						else   
 							txd_out_r <= 10'h3ff;
@@ -87,7 +97,7 @@ module uart_tx(
 						tx_state <= `TX_IDLE;
 				end 
 				`TX_DATA: begin 
-					if((tx_cnt == 4'b1011 && (!has_no_parity)) || (tx_cnt == 4'b1010 && has_no_parity))  begin 
+					if((tx_cnt == 4'b1010 && (!no_parity)) || (tx_cnt == 4'b1001 && no_parity))  begin 
 						tx_state <= `TX_IDLE;
 						tx_cnt <= 4'b0;
 					end
