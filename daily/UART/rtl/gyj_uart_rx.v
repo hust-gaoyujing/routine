@@ -44,7 +44,7 @@ module uart_rx(
 	assign has_even_parity = (!no_parity) & ev_parity;
 	assign has_odd_parity = (!no_parity) & (!ev_parity);
 
-	//calculate for even_parity
+	//calculate for even_parity  ？？？？？
 	assign even_parity = rxd_out_r[7] ^ rxd_out_r[6] ^ rxd_out_r[5] ^ rxd_out_r[4]
 						^rxd_out_r[3] ^ rxd_out_r[2] ^ rxd_out_r[1] ^ rxd_out_r[0];	
 	assign odd_parity = ~even_parity;
@@ -66,8 +66,7 @@ module uart_rx(
 			
 	
 	//====================== SQUENTIAL CIRCUIT CONTROL ===========================//
-	assign rx_ok = ((sample_cnt == 4'd12) && (rx_state == `RX_STOP)) ? 1'b1 : 1'b0;
-	//assign rx_ok = 1'b0;
+	assign rx_ok = ((sample_cnt == 4'd12) && (rx_state[2])) ? 1'b1 : 1'b0;
 	assign rxd_out = rd_data_flag ? rxd_out_r : 8'hff;
 	assign parity_error = parity_error_r;
 	

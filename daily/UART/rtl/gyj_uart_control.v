@@ -31,9 +31,9 @@ module uart_ctrl(
 	
 	//============================  REGISTERS OF UART  =================================//
 	//registers of uart
-	reg [31:0] 	uart_csr;		//csr register of uart
-	reg [31:0] 	uart_ctrl;		//ctrl register of uart
-	reg [7:0] 	data_reg;		//data register for uart 
+	reg [31:0] 	uart_csr;			//csr register of uart
+	reg [31:0] 	uart_ctrl;			//ctrl register of uart
+	reg [7:0] 	data_reg;			//data register for uart 
  
 	//============================  ICB_BUS OF UART  ==================================//
 	//signals for interfaces simplify

@@ -59,9 +59,9 @@ module uart_tx(
 			
 	//====================== SQUENTIAL CIRCUIT CONTROL ===========================//
 	//FSM 		
-	assign tx_ok = ((tx_cnt == 4'b1010 && (!no_parity)) || ((tx_cnt == 4'b1001) && no_parity) && (tx_state == `TX_DATA)) ? 1'b1 : 1'b0;
+	assign tx_ok = (((tx_cnt == 4'b1010 && (!no_parity)) || ((tx_cnt == 4'b1001) && no_parity)) && tx_state) ? 1'b1 : 1'b0;
 	assign txd = txd_out_r[0];	
-	
+	                                                               
 	//assignment for tx_on_flag
 	always @(posedge clk or negedge rst_n)
 		if(!rst_n) 
