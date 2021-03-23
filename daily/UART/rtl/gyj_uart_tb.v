@@ -24,7 +24,7 @@ module uart_tb();
 	reg	[7:0]	data_out[0:255];
 	reg [7:0]	error_num[0:255];
 	reg [7:0]	error_data[0:255];
-	reg	[7:0]	data_tmp;
+	reg [7:0]	data_tmp;
 	integer i = 0;
 	integer j = 0;
 	integer k = 0;
@@ -33,6 +33,15 @@ module uart_tb();
 	reg even_parity;
 	reg odd_parity;
 	
+	//VARIABLE
+	reg [8*300:1] 	FREQUENCE;
+	reg [8*300:1] 	BAUDRATE;
+	reg [8*300:1] 	TEST_TYPE;
+	reg [3:0] 		BAUD_EN;
+	reg [3:0] 		TX_EN;
+	reg [3:0] 		RX_EN;
+	reg [3:0] 		NO_PARITY;
+	reg [3:0] 		EV_PARITY;
 	
 	gjy_uart_top	uart_1(
 	.clk					(clk				),
@@ -62,8 +71,41 @@ module uart_tb();
 	end
 
 	initial begin 
-		forever #31.25 clk <= ~clk;		//for 16Mhz
-		//forever #3.47 clk <= ~clk;		//for 144Mhz
+		if($value$plusargs("FREQUENCE=%s",FREQUENCE))
+			$display("FREQUENCE=%0s",FREQUENCE);
+		
+		
+		if($value$plusargs("BAUDRATE=%0s",BAUDRATE))
+			$display("BAUDRATE=%0s",BAUDRATE);
+		
+		if($value$plusargs("TEST_TYPE=%0s",TEST_TYPE))
+			$display("TEST_TYPE=%0s",TEST_TYPE);
+		
+		if($value$plusargs("BAUD_EN=%h",BAUD_EN))
+			$display("BAUD_EN=%4h",BAUD_EN);
+		
+		
+		if($value$plusargs("TX_EN=%h",TX_EN))
+			$display("TX_EN=%h",TX_EN);
+				
+		
+		if($value$plusargs("RX_EN=%h",RX_EN))
+			$display("RX_EN=%h",RX_EN);
+				
+		
+		if($value$plusargs("NO_PARITY=%h",NO_PARITY))
+			$display("NO_PARITY=%h",NO_PARITY);
+			
+		
+		if($value$plusargs("EV_PARITY=%h",EV_PARITY))
+			$display("EV_PARITY=%h",EV_PARITY);
+			
+		
+		if(FREQUENCE == "16M")  
+			forever #31.25 clk <= ~clk;		//for 16Mhz
+		else if(FREQUENCE == "144M")  
+			forever #3.47 clk <= ~clk;		//for 144Mhz
+		
 	end 
 	
 	//initial interface
@@ -95,12 +137,16 @@ module uart_tb();
 	
 	//VERIFICATION MAIN	
 	initial begin
+		reg_setting;
+		if(TEST_TYPE == "TX") begin 
+			force port_rxd = port_txd;
+			data_tx;
+		end 
+		else if(TEST_TYPE == "RX")
+			data_rx;
 
-		case_1;
-		//case_2;
-		//case_3;
-		//case_4;
-		
+		#10000;
+		$finish;
 	end 
 	
 	task monitor;
@@ -193,415 +239,94 @@ module uart_tb();
 		end 
 	endtask
 
-	task case_1;		//TX of 115200bps
+	task reg_setting;
 		begin 
 			//check TX of 115200bps,even_parity
 			//setting the UART_CSR and UART_CTRL 
 			#10000;
-			force port_rxd = port_txd;
-			//write_register(`UART_CSR_ADDR,32'h8_0201,0);  		//16Mhz	
-			write_register(`UART_CSR_ADDR,32'h4d_0001,0);			//144Mhz
-			write_register(`UART_CTRL_ADDR,32'h10111,0);
-			#10000;
-			for(i = 0;i < 256;i = i +1) begin 
-				write_register(`DATA_REG_ADDR,data_in[i],1);
-				
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b0) begin
-					read_register(`UART_CSR_ADDR,1);
+			//16Mhz	
+			if(FREQUENCE == "16M") begin 
+				if(BAUDRATE == "115200bps") begin 
+					write_register(`UART_CSR_ADDR,32'h8_0000,1);  		
+				end 
+				else if(BAUDRATE == "9600bps") begin 
+					write_register(`UART_CSR_ADDR,32'h67_0000,1);  		
+				end                                                     
+				else if(BAUDRATE == "4800bps") begin                    
+					write_register(`UART_CSR_ADDR,32'hcf_0000,1);  		
 				end
-				read_register(`DATA_REG_ADDR,1);
-				data_out[i] = rsp_rdata;
-				
-				//ensure the tx_ok is low
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b1) begin
-					read_register(`UART_CSR_ADDR,1);
-				end			
 			end
-			
-			$display("%t ns\n TX OF 115200BPS: \nEVEN_PARITY",$time);
-			monitor;
-			#10000;
-		
-			//initial the data_out 
-			for(i = 0;i < 256;i = i +1) begin 
-				data_out[i] = 8'hff;
-			end 
-			j =0;
-			
-			//check TX of 115200bps，odd_parity
-			//setting the UART_CSR and UART_CTRL 
-			write_register(`UART_CTRL_ADDR,32'h00111,0);
-			#10;
-			for(i = 0;i < 256;i = i +1) begin 
-				write_register(`DATA_REG_ADDR,data_in[i],1);
-				
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b0) begin
-					read_register(`UART_CSR_ADDR,1);
+			//144Mhz
+			else if(FREQUENCE == "144M") begin 
+				if(BAUDRATE == "115200bps") begin 
+					write_register(`UART_CSR_ADDR,32'h4d_0000,1);  		
+				end 
+				else if(BAUDRATE == "9600bps") begin 
+					write_register(`UART_CSR_ADDR,32'h3a9_0000,1);  		
+				end                                                     
+				else if(BAUDRATE == "4800bps") begin                    
+					write_register(`UART_CSR_ADDR,32'h752_0000,1);  		
 				end
-				read_register(`DATA_REG_ADDR,1);
-				data_out[i] = rsp_rdata;
-				
-				//ensure the tx_ok is low
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b1) begin
-					read_register(`UART_CSR_ADDR,1);
-				end			
-			end
-
-			$display("%t ns\n TX OF 115200BPS: \nODD_PARITY",$time);
-			monitor;
+			end			
+			//UART_CTRL	
+			write_register(`UART_CTRL_ADDR,{EV_PARITY,NO_PARITY,RX_EN,TX_EN,BAUD_EN},1);
 			#10000;
-			
-			//initial the data_out 
-			for(i = 0;i < 256;i = i +1) begin 
-				data_out[i] = 8'hff;
-			end 
-			j = 0;
-			
-			//check TX of 115200bps，no_parity
-			//setting the UART_CSR and UART_CTRL 
-			write_register(`UART_CTRL_ADDR,32'h01111,0);
-			#10;
-			for(i = 0;i < 256;i = i +1) begin 
-				write_register(`DATA_REG_ADDR,data_in[i],1);
-				
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b0) begin
-					read_register(`UART_CSR_ADDR,1);
-				end
-				read_register(`DATA_REG_ADDR,1);
-				data_out[i] = rsp_rdata;
-				
-				//ensure the tx_ok is low
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b1) begin
-					read_register(`UART_CSR_ADDR,1);
-				end			
-			end		
-			
-			$display("%t ns\n TX OF 115200BPS: \nNO_PARITY",$time);
-			monitor;		
-			
-			#10000;
-			$finish;
-
-		
-
 		end 
 	endtask
+	
+	task data_tx;
+		begin 
+			for(i = 0;i < 256;i = i +1) begin 
+				write_register(`DATA_REG_ADDR,data_in[i],1);
+				
+				read_register(`UART_CSR_ADDR,1);
+				while(rsp_rdata[0] == 1'b0) begin
+					read_register(`UART_CSR_ADDR,1);
+				end
 
-task case_2;
-	begin 
-			//check TX of 9600bps,even_parity
-			//setting the UART_CSR and UART_CTRL 
-			#10000;
-			force port_rxd = port_txd;
-			//write_register(`UART_CSR_ADDR,32'h67_0101,0);			//16Mhz
-			write_register(`UART_CSR_ADDR,32'h3a9_0001,0);			//144Mhz
-			write_register(`UART_CTRL_ADDR,32'h10111,0);
-			#10000;
-			for(i = 0;i < 256;i = i +1) begin 
-				write_register(`DATA_REG_ADDR,data_in[i],1);
-				
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b0) begin
-					read_register(`UART_CSR_ADDR,1);
-				end
-				read_register(`DATA_REG_ADDR,1);
-				data_out[i] = rsp_rdata;
-				
 				//ensure the tx_ok is low
 				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b1) begin
+				while(rsp_rdata[0] == 1'b1) begin
 					read_register(`UART_CSR_ADDR,1);
-				end			
-			end
-			
-			$display("%t ns\n TX OF 9600BPS: \nEVEN_PARITY",$time);
-			monitor;
-			#10000;
-		
-			//initial the data_out 
-			for(i = 0;i < 256;i = i +1) begin 
-				data_out[i] = 8'hff;
-			end 
-			j =0;
-			
-			//check TX of 9600bps，odd_parity
-			//setting the UART_CSR and UART_CTRL 
-			write_register(`UART_CTRL_ADDR,32'h00111,0);
-			#10;
-			for(i = 0;i < 256;i = i +1) begin 
-				write_register(`DATA_REG_ADDR,data_in[i],1);
-				
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b0) begin
-					read_register(`UART_CSR_ADDR,1);
-				end
+				end	
 				read_register(`DATA_REG_ADDR,1);
 				data_out[i] = rsp_rdata;
-				
-				//ensure the tx_ok is low
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b1) begin
-					read_register(`UART_CSR_ADDR,1);
-				end			
-			end
-
-			$display("%t ns\n TX OF 9600BPS: \nODD_PARITY",$time);
-			monitor;
-			#10000;
-			
-			//initial the data_out 
-			for(i = 0;i < 256;i = i +1) begin 
-				data_out[i] = 8'hff;
-			end 
-			j = 0;
-			
-			//check TX of 9600bps，no_parity
-			//setting the UART_CSR and UART_CTRL 
-			write_register(`UART_CTRL_ADDR,32'h01111,0);
-			#10;
-			for(i = 0;i < 256;i = i +1) begin 
-				write_register(`DATA_REG_ADDR,data_in[i],1);
-				
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b0) begin
-					read_register(`UART_CSR_ADDR,1);
-				end
-				read_register(`DATA_REG_ADDR,1);
-				data_out[i] = rsp_rdata;
-				
-				//ensure the tx_ok is low
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b1) begin
-					read_register(`UART_CSR_ADDR,1);
-				end			
 			end		
-			
-			$display("%t ns\n TX OF 9600BPS: \nNO_PARITY",$time);
-			monitor;		
-			
-			#10000;
-			$finish;
-	end 
-endtask 
-
-task case_3;
-	begin 
-			//check TX of 4800bps,even_parity
-			//setting the UART_CSR and UART_CTRL 
-			#10000;
-			force port_rxd = port_txd;
-			//write_register(`UART_CSR_ADDR,32'hcf_0101,0);				//16Mhz
-			write_register(`UART_CSR_ADDR,32'h752_0001,0);				//144Mhz
-			write_register(`UART_CTRL_ADDR,32'h10111,0);
-			#10000;
-			for(i = 0;i < 256;i = i +1) begin 
-				write_register(`DATA_REG_ADDR,data_in[i],1);
+			monitor;
+			#10000;		
+		end 
+	endtask
+	
+	task data_rx;
+		begin 
+			for(i = 0;i < 256;i = i + 1)begin 
+				port_rxd <= 1'b0; 						//start_bit
+				data_tmp = data_in[i];
+				even_parity <= data_tmp[7] ^ data_tmp[6] ^ data_tmp[5] ^ data_tmp[4]
+							^data_tmp[3] ^ data_tmp[2] ^ data_tmp[1] ^ data_tmp[0];	
+				//$display("data_in[%d] = %x",j,data_in[j]);
+				for(j = 0;j < 8;j = j + 1)begin 
+					#8681	port_rxd = data_tmp[j];		//data
+				end 
 				
+				#8681 	port_rxd <= even_parity;			//parity_bit
+				
+				#8681 	port_rxd <= 1'b1;				//stop_bit
 				read_register(`UART_CSR_ADDR,1);
 				while(rsp_rdata[4] == 1'b0) begin
 					read_register(`UART_CSR_ADDR,1);
 				end
-				read_register(`DATA_REG_ADDR,1);
-				data_out[i] = rsp_rdata;
-				
 				//ensure the tx_ok is low
 				read_register(`UART_CSR_ADDR,1);
 				while(rsp_rdata[4] == 1'b1) begin
 					read_register(`UART_CSR_ADDR,1);
-				end			
+				end	
+				read_register(`DATA_REG_ADDR,1);
+				data_out[i] = rsp_rdata;
 			end
-			
-			$display("%t ns\n TX OF 4800BPS: \nEVEN_PARITY",$time);
 			monitor;
 			#10000;
-		
-			//initial the data_out 
-			for(i = 0;i < 256;i = i +1) begin 
-				data_out[i] = 8'hff;
-			end 
-			j =0;
-			
-			//check TX of 4800bps，odd_parity
-			//setting the UART_CSR and UART_CTRL 
-			write_register(`UART_CTRL_ADDR,32'h00111,0);
-			#10;
-			for(i = 0;i < 256;i = i +1) begin 
-				write_register(`DATA_REG_ADDR,data_in[i],1);
-				
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b0) begin
-					read_register(`UART_CSR_ADDR,1);
-				end
-				read_register(`DATA_REG_ADDR,1);
-				data_out[i] = rsp_rdata;
-				
-				//ensure the tx_ok is low
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b1) begin
-					read_register(`UART_CSR_ADDR,1);
-				end			
-			end
-
-			$display("%t ns\n TX OF 4800BPS: \nODD_PARITY",$time);
-			monitor;
-			#100000;
-			
-			//initial the data_out 
-			for(i = 0;i < 256;i = i +1) begin 
-				data_out[i] = 8'hff;
-			end 
-			j = 0;
-			
-			//check TX of 4800bps，no_parity
-			//setting the UART_CSR and UART_CTRL 
-			write_register(`UART_CTRL_ADDR,32'h01111,0);
-			#10;
-			for(i = 0;i < 256;i = i +1) begin 
-				write_register(`DATA_REG_ADDR,data_in[i],1);
-				
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b0) begin
-					read_register(`UART_CSR_ADDR,1);
-				end
-				read_register(`DATA_REG_ADDR,1);
-				data_out[i] = rsp_rdata;
-				
-				//ensure the tx_ok is low
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b1) begin
-					read_register(`UART_CSR_ADDR,1);
-				end			
-			end		
-			
-			$display("%t ns\n TX OF 4800BPS: \nNO_PARITY",$time);
-			monitor;		
-			
-			#100000;
-			$finish;
-	end 
-endtask 
-
-task case_4;
-	begin 
-		////check RX of 115200bps  even_parity
-		//accurate baudrate to check RX
-		#10000;
-		write_register(`UART_CSR_ADDR,32'h8_0001,0);  		//16Mhz	
-		//write_register(`UART_CSR_ADDR,32'h4d_0201,0);			//144Mhz
-		write_register(`UART_CTRL_ADDR,32'h10111,0);
-		#10000;
-		for(i = 0;i < 256;i = i + 1)begin 
-			port_rxd <= 1'b0; 						//start_bit
-			data_tmp = data_in[i];
-			even_parity <= data_tmp[7] ^ data_tmp[6] ^ data_tmp[5] ^ data_tmp[4]
-						^data_tmp[3] ^ data_tmp[2] ^ data_tmp[1] ^ data_tmp[0];	
-			//$display("data_in[%d] = %x",j,data_in[j]);
-			for(j = 0;j < 8;j = j + 1)begin 
-				#8681	port_rxd = data_tmp[j];		//data
-			end 
-			#8681 	port_rxd <= even_parity;			//parity_bit
-			#8681 	port_rxd <= 1'b1;				//stop_bit
-			read_register(`UART_CSR_ADDR,1);
-			while(rsp_rdata[4] == 1'b0) begin
-				read_register(`UART_CSR_ADDR,1);
-			end
-			read_register(`DATA_REG_ADDR,1);
-			data_out[i] = rsp_rdata;
-			
-			//ensure the tx_ok is low
-			read_register(`UART_CSR_ADDR,1);
-			while(rsp_rdata[4] == 1'b1) begin
-				read_register(`UART_CSR_ADDR,1);
-			end			
-		end
-		
-		$display("RX OF 115200BPS: ");
-		monitor;
-		#10000;
-	
-		//initial the data_out 
-		for(i = 0;i < 256;i = i +1) begin 
-			data_out[i] = 8'hff;
 		end 
-		j =0;	
-	
-		////check RX of 115200bps  odd_parity
-		//accurate baudrate to check RX
-		write_register(`UART_CTRL_ADDR,32'h0111,0);
-		#10;
-		for(i = 0;i < 256;i = i + 1)begin 
-			port_rxd <= 1'b0; 						//start_bit
-			data_tmp = data_in[i];
-			odd_parity <= ~(data_tmp[7] ^ data_tmp[6] ^ data_tmp[5] ^ data_tmp[4]
-						^data_tmp[3] ^ data_tmp[2] ^ data_tmp[1] ^ data_tmp[0]);	
-			//$display("data_in[%d] = %x",j,data_in[j]);
-			for(j = 0;j < 8;j = j + 1)begin 
-				#8681	port_rxd = data_tmp[j];		//data
-			end 
-			#8681 	port_rxd <= odd_parity;			//parity_bit
-			#8681 	port_rxd <= 1'b1;				//stop_bit
-			read_register(`UART_CSR_ADDR,1);
-			while(rsp_rdata[4] == 1'b0) begin
-				read_register(`UART_CSR_ADDR,1);
-			end
-			read_register(`DATA_REG_ADDR,1);
-			data_out[i] = rsp_rdata;
-			
-			//ensure the tx_ok is low
-			read_register(`UART_CSR_ADDR,1);
-			while(rsp_rdata[4] == 1'b1) begin
-				read_register(`UART_CSR_ADDR,1);
-			end			
-		end
-		
-		$display("RX OF 115200BPS: ");
-		monitor;
-		#100000;
-	
-		//initial the data_out 
-		for(i = 0;i < 256;i = i +1) begin 
-			data_out[i] = 8'hff;
-		end 
-		j =0;	
-	
-		////check RX of 115200bps  no_parity
-		//accurate baudrate to check RX
-		write_register(`UART_CTRL_ADDR,32'h1111,0);
-		#10;
-		for(i = 0;i < 256;i = i + 1)begin 
-			port_rxd <= 1'b0; 						//start_bit
-			data_tmp = data_in[i];
-			for(j = 0;j < 8;j = j + 1)begin 
-				#8681	port_rxd = data_tmp[j];		//data
-			end 
-			#8681 	port_rxd <= 1'b1;				//stop_bit
-			read_register(`UART_CSR_ADDR,1);
-			while(rsp_rdata[4] == 1'b0) begin
-				read_register(`UART_CSR_ADDR,1);
-			end
-			read_register(`DATA_REG_ADDR,1);
-			data_out[i] = rsp_rdata;
-			
-			//ensure the tx_ok is low
-			read_register(`UART_CSR_ADDR,1);
-			while(rsp_rdata[4] == 1'b1) begin
-				read_register(`UART_CSR_ADDR,1);
-			end			
-		end
-		
-		$display("RX OF 115200BPS: ");
-		monitor;
-	
-		#100000;
-		$finish;
-	end 
-endtask
-
+	endtask
 
 endmodule

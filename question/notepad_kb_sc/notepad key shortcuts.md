@@ -32,3 +32,8 @@ ctrl+tab  上一个文档
 
 ctrl+shift+tab  下一个文档
 
+
+
+ctrl_shift+u 小写改大写
+
+ctrl+u 大写改小写
