@@ -5,8 +5,8 @@
 
 `define TX_OK_DEF		1'b0
 `define RX_OK_DEF		1'b0
-`define UART_CSR_DFT	32'h9_0000
-`define UART_CTRL_DFT	32'h111
+`define UART_CSR_DFT	32'h8_0000
+`define UART_CTRL_DFT	32'h10311
 `define DATA_REG_DFT		32'hFF	
 
 `define SAMPLE			4'h7

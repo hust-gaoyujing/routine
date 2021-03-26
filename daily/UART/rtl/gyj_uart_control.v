@@ -19,7 +19,7 @@ module uart_ctrl(
 	input 							tx_ok,
 	input 							rx_ok,
 	input							parity_error,
-	output 	[7:0]					data_reg_rd,
+	input 	[7:0]					data_reg_rd,
 	output 	[7:0]					data_reg_wr,
 	output	[31:0]					uart_csr_o,
 	output	[31:0]					uart_ctrl_o,
@@ -31,9 +31,9 @@ module uart_ctrl(
 	
 	//============================  REGISTERS OF UART  =================================//
 	//registers of uart
-	reg [31:0] 	uart_csr;			//csr register of uart
-	reg [31:0] 	uart_ctrl;			//ctrl register of uart
-	reg [7:0] 	data_reg;			//data register for uart 
+	reg [31:0] 	uart_csr;		//csr register of uart
+	reg [31:0] 	uart_ctrl;		//ctrl register of uart
+	reg [7:0] 	data_reg;		//data register for uart 
  
 	//============================  ICB_BUS OF UART  ==================================//
 	//signals for interfaces simplify
@@ -105,8 +105,8 @@ module uart_ctrl(
 				default			: rsp_rdata <= 32'h0;
 			endcase
 		end 
-		else if(cmd_read == 1'b0)
-				rsp_rdata <= 32'b0;
+		else 
+			rsp_rdata <= 32'b0;
 	
 	//write register of uart 
 	always @(posedge clk or negedge rst_n) 
