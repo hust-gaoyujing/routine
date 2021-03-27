@@ -39,7 +39,8 @@ module uart_tb();
 	reg [8*300:1] 	TEST_TYPE;
 	reg [3:0] 		BAUD_EN;
 	reg [3:0] 		TX_EN;
-	reg [3:0] 		RX_EN;
+	reg [0:0] 		RX_EN;
+	reg [2:0] 		UART_EN;
 	reg [3:0] 		NO_PARITY;
 	reg [3:0] 		EV_PARITY;
 	
@@ -91,6 +92,9 @@ module uart_tb();
 		
 		if($value$plusargs("RX_EN=%h",RX_EN))
 			$display("RX_EN=%h",RX_EN);
+				
+		if($value$plusargs("UART_EN=%h",UART_EN))
+			$display("UART_EN=%h",UART_EN);
 				
 		
 		if($value$plusargs("NO_PARITY=%h",NO_PARITY))
@@ -269,7 +273,7 @@ module uart_tb();
 				end
 			end			
 			//UART_CTRL	
-			write_register(`UART_CTRL_ADDR,{EV_PARITY,NO_PARITY,RX_EN,TX_EN,BAUD_EN},1);
+			write_register(`UART_CTRL_ADDR,{EV_PARITY,NO_PARITY,UART_EN,RX_EN,TX_EN,BAUD_EN},1);
 			#10000;
 		end 
 	endtask
@@ -308,9 +312,9 @@ module uart_tb();
 				for(j = 0;j < 8;j = j + 1)begin 
 					#8681	port_rxd = data_tmp[j];		//data
 				end 
-				
-				#8681 	port_rxd <= even_parity;			//parity_bit
-				
+				if(NO_PARITY != 1) begin
+					#8681 	port_rxd <= even_parity;			//parity_bit
+				end 
 				#8681 	port_rxd <= 1'b1;				//stop_bit
 				read_register(`UART_CSR_ADDR,1);
 				while(rsp_rdata[4] == 1'b0) begin

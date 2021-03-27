@@ -21,7 +21,7 @@ module gjy_uart_top(
 	input   						io_port_rxd
 );
 	
-	//============================  SIGNAL OF UART REG =================================//
+	//============================  SIGNAL OF UART REG ===============================//
 	wire [31:0]		uart_csr; 
 	wire [31:0]		uart_ctrl; 
 	
@@ -38,6 +38,7 @@ module gjy_uart_top(
 	wire 			baud_en = uart_ctrl[0];			//enable signal for baudrate_generator
 	wire 			tx_en = uart_ctrl[4];			//enable signal for uart_tx
 	wire 			rx_en = uart_ctrl[8];			//enable signal for uart_rx 
+	wire 			uart_clk_en = uart_ctrl[9];		//enable signal for uart
 	wire 			no_parity = uart_ctrl[12];  	//1 for no parity,0 for having parity 
 	wire 			ev_parity = uart_ctrl[16];  	//1 for even parity,0 for odd parity 
 	wire 			parity_error;	   				//parity_error just for R
@@ -50,11 +51,20 @@ module gjy_uart_top(
 	
 	//========================= BAUD AND SAMPLE CLOCK ===============================//
 	//baudrate clock signals
-	wire 			baud_clk;
-	wire 			sample_clk;
+	wire 			tx_data_sample;
+	wire 			rx_data_sample;
 	
+	//=============================== CLOCK   =======================================//
+    wire uart_gate_clk;
 	
 	//========================= CONNECTION OF MODULE ================================//	
+	uart_clk 			uart_clk(
+	.clk            		(clk				),
+    .rst_n          		(rst_n				),
+    .uart_clk_en    		(uart_clk_en		),
+    .uart_gate_clk  		(uart_gate_clk		)
+	);
+
 	uart_ctrl			ctrl(
 		.clk				(clk				),		
 		.rst_n              (rst_n              ),
@@ -83,18 +93,18 @@ module gjy_uart_top(
 	);	
 	
 	baudrate_generator baud_gen( 
-		.clk				(clk				),		
+		.clk				(uart_gate_clk		),		
 		.rst_n              (rst_n				),	
 		.baud_en            (baud_en			),		
 		.divisor            (divisor			),		
 		
-		.baud_clk           (baud_clk			),		
-		.sample_clk         (sample_clk			)		
+		.tx_data_sample     (tx_data_sample		),		
+		.rx_data_sample     (rx_data_sample		)		
 	);		
 	
 	uart_tx txd(
-		.clk				(clk				),
-		.baud_clk			(baud_clk			),
+		.clk				(uart_gate_clk		),
+		.tx_data_sample		(tx_data_sample		),
 		.rst_n              (rst_n              ),
 		.tx_en              (tx_en              ),
 		.no_parity			(no_parity			),
@@ -107,8 +117,8 @@ module gjy_uart_top(
 	);
 	
 	uart_rx rxd(
-		.clk				(clk				),
-		.sample_clk			(sample_clk		    ),
+		.clk				(uart_gate_clk		),
+		.rx_data_sample		(rx_data_sample	    ),
 	    .rst_n              (rst_n              ),
 		.rx_en              (rx_en              ),
 		.no_parity			(no_parity			),

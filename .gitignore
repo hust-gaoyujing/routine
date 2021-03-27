@@ -2,7 +2,6 @@ public
 *.zip
 python*
 *.pl
-works/xu607_cct
 works/uart/wlf*
 
 /__py*

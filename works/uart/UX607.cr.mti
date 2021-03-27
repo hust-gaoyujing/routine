@@ -36,15 +36,43 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	uart_rx
 
+<<<<<<< HEAD
+} {} {}} D:/gitlab/uart/rtl/gyj_uart_tb.v {2 {vlog -work work -vopt -stats=none D:/gitlab/uart/rtl/gyj_uart_tb.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module uart_tb
+** Warning: D:/gitlab/uart/rtl/gyj_uart_tb.v(75): (vlog-2597) '4294967295' is being treated as 32-bit signed integer and will overflow.
+=======
 } {} {}} D:/prj/routine/daily/UART/rtl/gyj_uart_tb.v {2 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/gyj_uart_tb.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module uart_tb
 ** Warning: D:/prj/routine/daily/UART/rtl/gyj_uart_tb.v(75): (vlog-2597) '4294967295' is being treated as 32-bit signed integer and will overflow.
+>>>>>>> 340f31a20871c457a3c9b20e960d2a3a3e2dfa7e
 
 Top level modules:
 	uart_tb
 
+<<<<<<< HEAD
+} {} {}} D:/gitlab/uart/rtl/uart_define.v {1 {vlog -work work -vopt -stats=none D:/gitlab/uart/rtl/uart_define.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+
+} {} {}} D:/gitlab/uart/rtl/gyj_uart_rx.v {1 {vlog -work work -vopt -stats=none D:/gitlab/uart/rtl/gyj_uart_rx.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module uart_rx
+
+Top level modules:
+	uart_rx
+
+} {} {}} D:/gitlab/uart/rtl/baudrate_generator.v {1 {vlog -work work -vopt -stats=none D:/gitlab/uart/rtl/baudrate_generator.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module baudrate_generator
+
+Top level modules:
+	baudrate_generator
+
+} {} {}} D:/gitlab/uart/rtl/gyj_uart_top.v {1 {vlog -work work -vopt -stats=none D:/gitlab/uart/rtl/gyj_uart_top.v
+=======
 } {} {}} D:/prj/routine/daily/UART/rtl/gyj_uart_top.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/gyj_uart_top.v
+>>>>>>> 340f31a20871c457a3c9b20e960d2a3a3e2dfa7e
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module gjy_uart_top
 
@@ -58,7 +86,11 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	uart_tx
 
+<<<<<<< HEAD
+} {} {}} D:/gitlab/uart/rtl/gyj_uart_tx.v {1 {vlog -work work -vopt -stats=none D:/gitlab/uart/rtl/gyj_uart_tx.v
+=======
 } {} {}} D:/prj/routine/daily/UART/rtl/gyj_uart_tx.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/gyj_uart_tx.v
+>>>>>>> 340f31a20871c457a3c9b20e960d2a3a3e2dfa7e
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module uart_tx
 
