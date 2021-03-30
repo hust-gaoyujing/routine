@@ -16,33 +16,31 @@ module uart_tx(
 );
 	
 	//=========================  FSM STATE DEFINE  ===============================//
-	parameter TX_IDLE	= 4'b0000;
-	parameter TX_START	= 4'b0001;
-	parameter TX_DATA	= 4'b0010;
-	parameter TX_PARITY	= 4'b0100;
-	parameter TX_STOP	= 4'b1000;
+	parameter TX_IDLE	= 3'b000;
+	parameter TX_START	= 3'b001;
+	parameter TX_DATA	= 3'b010;
+	parameter TX_STOP	= 3'b100;
 	
 	//=========================  REGISTER FOR TX  ================================//
-	reg [2:0] 	tx_cnt; 		//counter for start_bit,8_bit_data,parity,stop_bit
+	reg [3:0] 	tx_cnt; 		//counter for start_bit,8_bit_data,parity,stop_bit
 	reg [7:0]	txd_data;		//store byte to tx out
 	reg			txd_out_r;
-	reg [3:0]	tx_state;
+	reg [3:0]	tx_current_state;
+	reg [3:0]	tx_next_state;
 	reg 		tx_on_flag;		//be high when tx is doing  
 	
 	
 	//================================ PARITY ===================================//
-	wire even_parity;
-	wire odd_parity;
-	wire has_even_parity;
-	wire has_odd_parity;
+	reg 		even_parity;
+	wire 		has_even_parity;
+	wire 		has_odd_parity;
 	
 	assign has_even_parity = (!no_parity) & ev_parity;
 	assign has_odd_parity = (!no_parity) & (!ev_parity);
 	
 	//calculate for even_parity
-	assign even_parity = txd_in[7] ^ txd_in[6] ^ txd_in[5] ^ txd_in[4]
-						^txd_in[3] ^ txd_in[2] ^ txd_in[1] ^ txd_in[0];	
-	assign odd_parity = ~even_parity;
+	//assign even_parity = txd_in[7] ^ txd_in[6] ^ txd_in[5] ^ txd_in[4]
+	//					^txd_in[3] ^ txd_in[2] ^ txd_in[1] ^ txd_in[0];	
 	
 	
 	//=======================  GETTING POS OF BAUD_CLK  ==========================//
@@ -53,7 +51,7 @@ module uart_tx(
 	//====================== SQUENTIAL CIRCUIT CONTROL ===========================//
 	//FSM 		
 	//when tx_state is TX_STOP,tx_ok will be high
-	assign tx_ok = tx_state[3];
+	assign tx_ok = tx_current_state[2];
 	assign txd = txd_out_r;	
 	
 	//assignment for tx_on_flag
@@ -67,75 +65,100 @@ module uart_tx(
 		else 
 			tx_on_flag <= tx_on_flag;
 	
-	//FSM
+	//FSM	three step to describle the fsm
+	//first:assign tx_current_state with tx_next_state
 	always @(posedge clk or negedge rst_n)
-		if(!rst_n) begin 
- 			tx_state <= TX_IDLE;
-			tx_cnt <= 3'b0;
-			txd_data <= 8'hff;
-			txd_out_r <= 1'h1;
-		end 
-		else if(tx_pos) begin  
-			case(tx_state)
+		if(!rst_n) 
+			tx_current_state <= TX_IDLE;
+		else
+			tx_current_state <= tx_next_state;
+	
+	//second:fsm state transition 	
+	always @(*)
+		if(!rst_n)
+			tx_next_state <= TX_IDLE;
+		else if(tx_pos)   
+			case(tx_current_state) 
 				TX_IDLE: begin
-					if(tx_on_flag) begin										 	//in software ,writing data_reg should follow tx_ok's negedge 
-						tx_state <= TX_START;	
-						txd_data <= txd_in; 										//store data_in
-						txd_out_r <= 1'b0;											//start_bit
-						tx_cnt <= 3'b0;
-					end
-					else  
-						tx_state <= TX_IDLE;
+					if(tx_on_flag)
+						tx_next_state <= TX_START;
 				end 
-				TX_START: begin
-						tx_state <= TX_DATA;
-						txd_out_r <= txd_data[0];
-						tx_cnt <= tx_cnt + 1'b1;
+				TX_START: begin 
+					tx_next_state <= TX_DATA;
 				end 
 				TX_DATA: begin 
-					if(tx_cnt == 3'b111 && has_even_parity) begin  								
-						tx_state <= TX_PARITY;
-						txd_out_r <= even_parity;									//even_parity
-					end 
-					else if(tx_cnt == 3'b111 && has_odd_parity) begin  								
-						tx_state <= TX_PARITY;
-						txd_out_r <= odd_parity;									//odd_parity
-					end 
-					else if(tx_cnt == 3'b111 && no_parity) begin 
-						tx_state <= TX_STOP;
-						txd_out_r <= 1'b1;											//stop_bit
-					end 
-					else 	
-						tx_cnt <= tx_cnt + 1'b1;
-					txd_out_r <= txd_data[tx_cnt];
+					if((tx_cnt == 4'b1000 && no_parity) || tx_cnt == 4'b1001)  		//transmit 1 byte or 1 byte and parity
+						tx_next_state <= TX_STOP;
 				end 
-				TX_PARITY: begin  
-					tx_state <= TX_STOP;
-					txd_out_r <= 1'b1;												//stop_bit
-				end
+				TX_STOP: begin 
+					tx_next_state <= TX_IDLE;
+				end 
+				default: begin 
+					tx_next_state <= TX_IDLE;
+				end 
+			endcase 
+		else if(!tx_en)
+			tx_next_state <= TX_IDLE;
+	
+	//third:fsm output
+	always @(posedge clk or negedge rst_n)
+		if(!rst_n) begin 
+			txd_out_r <= 1'h1;
+			tx_cnt <= 4'b0;
+			txd_data <= 8'hff;
+			even_parity <= 1'b0;
+		end 
+		else if(tx_pos) begin 
+			case(tx_next_state)
+				TX_IDLE: begin
+					txd_out_r <= 1'b1;											
+					tx_cnt <= 4'b0;
+					even_parity <= 1'b0;
+				end 
+				TX_START: begin														//state go to TX_DATA
+					txd_out_r <= 1'b0;
+					txd_data <= txd_in;
+				end 
+				TX_DATA: begin 
+					if((tx_cnt == 4'b1000 && no_parity) || tx_cnt == 4'b1001) begin 						//state go to TX_STOP
+						txd_out_r <= 1'b1;											//stop_bit
+					end  
+					else if(tx_cnt == 4'b1000 && has_even_parity) begin  								
+						txd_out_r <= even_parity;									//even_parity
+						tx_cnt <= tx_cnt + 1'b1;
+					end 
+					else if(tx_cnt == 4'b1000 && has_odd_parity) begin  								
+						txd_out_r <= ~ev_parity;									//odd_parity
+						tx_cnt <= tx_cnt + 1'b1;
+					end 
+					else begin
+						txd_out_r <= txd_data[0];						
+						tx_cnt <= tx_cnt + 1'b1;
+						txd_data <= txd_data >> 1;
+						even_parity <= even_parity ^ txd_data[0];
+					end 
+				end 
 				TX_STOP: begin
-					tx_state <= TX_IDLE;
-					txd_out_r <= 1'b1;												//default_bit
+					txd_out_r <= 1'b1;												//stop_bit
 				end				
 				default: begin 
-					tx_state <= TX_IDLE;
-					tx_cnt <= 3'b0;
+					tx_cnt <= 4'b0;
 					txd_data <= 8'hff;
 					txd_out_r <= 1'b1;
 				end 
 			endcase
 		end 
 		else if(!tx_en) begin 
-			tx_state <= TX_IDLE;
+			txd_out_r <= 1'b1;	
 			tx_cnt <= 4'b0;
 			txd_data <= 8'hff;
-			txd_out_r <= 1'b1;				
+			even_parity <= 1'b0;			
 		end 
 		else begin 
-			tx_state <= tx_state;
+			txd_out_r <= txd_out_r;	
 			tx_cnt <= tx_cnt;
 			txd_data <= txd_data;
-			txd_out_r <= txd_out_r;	
+			even_parity <= even_parity;
 		end 
 		
 endmodule
