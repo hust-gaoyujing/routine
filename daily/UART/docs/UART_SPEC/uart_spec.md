@@ -250,7 +250,7 @@ module UART_TX(
 
 ​		**发送器状态机设计：**
 
-<img src="uart_spec.assets/tx状态机.jpg" style="zoom:80%;" />
+<img src="uart_spec.assets/tx状态机.png" style="zoom:100%;" />
 
 
 
