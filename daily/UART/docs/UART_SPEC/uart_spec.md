@@ -382,24 +382,17 @@ xor_r <= shift_data_reg[0] xor tx;
 
 - bit8	 	   rx_en			 R/W		  为高时标志rx模块使能打开，为低时标志rx模块使能关闭；
 
-<<<<<<< HEAD
 - bit9            uart_en          R/W         当uart_en为低时，整个模块时钟关闭；
 
 - bit12          no_parity      R/W          为高时传输不含校验位；
 =======
 - bit9            uart_clk_en   R/W          为高时整个UART模块的时钟信号有效，拉低时整个UART除                               
->>>>>>> 709b7e6dda361a487dacc965a4c998d38013ac09
 
   ​                                                            ctrl模块外其他模块均无时钟输入；
 
-<<<<<<< HEAD
-- bit20          parity_error   R/W          为高时表示传输过程出现校验错误；  
+- bit20          parity_error   R/W          为高时表示传输过程出现校验错误；          
 
-  ​                        
-=======
 - bit12          n_parity         R/W          为高时传输不含校验位，为低时传输含校验位；
->>>>>>> 709b7e6dda361a487dacc965a4c998d38013ac09
-
 - bit16          ev_parity       R/W          为高是表示采用偶校验，为低时表示采用奇校验（仅在 
 
   ​                                                           n_parity为低时有效）                                    
