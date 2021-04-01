@@ -98,7 +98,7 @@ module uart_rx(
 						rx_next_state = RX_DATA;
 				end 
 				RX_DATA: begin 
-					if((sample_cnt == 4'd15) && (((rx_cnt == 4'd8) && no_parity) || rx_cnt == 4'd9))						//if having parity check,then TX_DATA needs 9 rx_cnt period；else 8;
+					if((sample_cnt == 4'd15) && (((rx_cnt == 4'd7) && no_parity) || rx_cnt == 4'd8))						//if having parity check,then TX_DATA needs 9 rx_cnt period；else 8;
 						rx_next_state = RX_STOP;
 				end 
 				RX_STOP: begin 
@@ -118,7 +118,7 @@ module uart_rx(
 			sample_cnt <= 4'd0;
 		end 
 		else if(rx_pos)
-			case(rx_next_state)
+			case(rx_current_state)
 				RX_IDLE: begin 
 					if(rxd) begin 
 						sample_cnt <= 4'd0;
@@ -162,9 +162,9 @@ module uart_rx(
 		if(!rst_n) 
 			rxd_out_r <= `DATA_REG_DFT;
 		else if(rx_pos) 
-			case(rx_next_state)
+			case(rx_current_state)
 				RX_DATA: begin 
-					if((rx_cnt <= 4'd8) && (sample_cnt == 4'd15)) 
+					if((rx_cnt <= 4'd7) && (sample_cnt == 4'd15)) 
 						rxd_out_r <= {tmp_vote,rxd_out_r[7:1]};
 					else 
 						rxd_out_r <= rxd_out_r;
@@ -183,7 +183,7 @@ module uart_rx(
 		if(!rst_n) 
 			parity_result <= 1'b0;
 		else if(rx_pos) 
-			case(rx_next_state)
+			case(rx_current_state)
 				RX_IDLE: begin 
 					parity_result <= 1'b0;
 				end 
