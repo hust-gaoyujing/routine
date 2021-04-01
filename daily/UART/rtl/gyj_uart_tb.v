@@ -28,6 +28,7 @@ module uart_tb();
 	integer i = 0;
 	integer j = 0;
 	integer k = 0;
+	integer t = 0;
 
 	//parity check
 	reg even_parity;
@@ -303,31 +304,40 @@ module uart_tb();
 	
 	task data_rx;
 		begin 
-			for(i = 0;i < 256;i = i + 1)begin 
-				port_rxd <= 1'b0; 						//start_bit
-				data_tmp = data_in[i];
-				even_parity <= data_tmp[7] ^ data_tmp[6] ^ data_tmp[5] ^ data_tmp[4]
-							^data_tmp[3] ^ data_tmp[2] ^ data_tmp[1] ^ data_tmp[0];	
-				//$display("data_in[%d] = %x",j,data_in[j]);
-				for(j = 0;j < 8;j = j + 1)begin 
-					#8681	port_rxd = data_tmp[j];		//data
+			fork
+				begin 
+					for(i = 0;i < 256;i = i + 1)begin 
+						port_rxd <= 1'b0; 						//start_bit
+						data_tmp = data_in[i];
+						even_parity <= data_tmp[7] ^ data_tmp[6] ^ data_tmp[5] ^ data_tmp[4]
+									^data_tmp[3] ^ data_tmp[2] ^ data_tmp[1] ^ data_tmp[0];	
+						//$display("data_in[%d] = %x",j,data_in[j]);
+						for(j = 0;j < 8;j = j + 1)begin 
+							#8681	port_rxd = data_tmp[j];		//data
+						end 
+						if(NO_PARITY != 1) begin
+							#8681 	port_rxd <= even_parity;			//parity_bit
+						end 
+						#8681 	port_rxd <= 1'b1;				//stop_bit
+						#8681;
+					end
 				end 
-				if(NO_PARITY != 1) begin
-					#8681 	port_rxd <= even_parity;			//parity_bit
+				begin 
+					for(t = 0;t < 256;t = t + 1)begin
+						read_register(`UART_CSR_ADDR,1);
+						while(rsp_rdata[4] == 1'b0) begin
+							read_register(`UART_CSR_ADDR,1);
+						end
+						//ensure the tx_ok is low
+						read_register(`UART_CSR_ADDR,1);
+						while(rsp_rdata[4] == 1'b1) begin
+							read_register(`UART_CSR_ADDR,1);
+						end	
+						read_register(`DATA_REG_ADDR,1);
+						data_out[t] = rsp_rdata;
+					end 
 				end 
-				#8681 	port_rxd <= 1'b1;				//stop_bit
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b0) begin
-					read_register(`UART_CSR_ADDR,1);
-				end
-				//ensure the tx_ok is low
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[4] == 1'b1) begin
-					read_register(`UART_CSR_ADDR,1);
-				end	
-				read_register(`DATA_REG_ADDR,1);
-				data_out[i] = rsp_rdata;
-			end
+			join
 			monitor;
 			#10000;
 		end 

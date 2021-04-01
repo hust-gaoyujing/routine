@@ -24,7 +24,6 @@ module uart_rx(
 	reg [3:0] 	rx_cnt; 			//counter for 8_bit_data and parity_bit
 	reg [3:0]	sample_cnt;			//counter for sample clock 
 	reg [7:0]	rxd_out_r; 			//store data of rxd_out temporarily
-	reg 		parity_error_r;
 	reg	[1:0]	rx_current_state;
 	reg	[1:0]	rx_next_state;
 	
@@ -42,21 +41,16 @@ module uart_rx(
 	assign has_even_parity = (!no_parity) & ev_parity;
 	assign has_odd_parity = (!no_parity) & (!ev_parity);
 
-	//calculate for even_parity
-	assign even_parity = rxd_out_r[7] ^ rxd_out_r[6] ^ rxd_out_r[5] ^ rxd_out_r[4]
-						^rxd_out_r[3] ^ rxd_out_r[2] ^ rxd_out_r[1] ^ rxd_out_r[0];	
-	
-	
 	//=======================  GETTING POS OF sample_CLK  =======================//
-	wire 		rx_pos;						//uart can tx data only when tx_pos is high 
+	wire 		rx_pos;						//uart can rx data only when rx_pos is high 
 	
 	assign rx_pos =	rx_en & rx_data_sample;
 	
 	//====================== SQUENTIAL CIRCUIT CONTROL =========================//
 	//sample_cnt == 12 and rx_state == RX_STOP
-	assign rx_ok = rx_state[2];
+	assign rx_ok = rx_current_state[1];
 	assign rxd_out = rd_data_flag ? rxd_out_r : 8'hff;
-	assign parity_error = tx_state[2] & ((has_even_parity & parity_result) | (has_odd_parity & !parity_result));		//if set even_parity,then parity_result must be 0;if odd_parity, parity_result must be 1;
+	assign parity_error = rx_current_state[1] & ((has_even_parity & parity_result) | (has_odd_parity & !parity_result));		//if set even_parity,then parity_result must be 0;if odd_parity, parity_result must be 1;
 	
 	//sample rxd with tmp_data 
 	always @(posedge clk or negedge rst_n)
@@ -85,114 +79,130 @@ module uart_rx(
 	//first:assign rx_current_state with rx_next_state
 	always @(posedge clk or negedge rst_n)
 		if(!rst_n) 
-			rx_current_state <= TX_IDLE;
-		else
+			rx_current_state <= RX_IDLE;
+		else if(rx_pos)
 			rx_current_state <= rx_next_state;
-	
+		else 
+			rx_current_state <= rx_current_state;
+		
 	//second:fsm state transition 	
 	always @(*)
 		if(!rst_n)
 			rx_next_state <= RX_IDLE;
-		else if(rx_pos)   
+		else if(!rx_en)
+			rx_next_state = RX_IDLE;
+		else   
 			case(rx_current_state) 
-				TX_IDLE: begin
+				RX_IDLE: begin
 					if(sample_cnt == 4'd15)
-						rx_next_state <= RX_DATA;
+						rx_next_state = RX_DATA;
 				end 
-				TX_DATA: begin 
-					if(((rx_cnt == 4'd7) && (sample_cnt == 4'd15) && no_parity ) || rx_cnt[3])
-						rx_next_state <= TX_STOP;
+				RX_DATA: begin 
+					if((sample_cnt == 4'd15) && (((rx_cnt == 4'd8) && no_parity) || rx_cnt == 4'd9))						//if having parity check,then TX_DATA needs 9 rx_cnt period；else 8;
+						rx_next_state = RX_STOP;
 				end 
-				TX_STOP: begin 
-					rx_next_state <= RX_IDLE;
+				RX_STOP: begin 
+					if(sample_cnt == 8'd8)
+						rx_next_state = RX_IDLE;
 				end 
 				default: begin 
-					rx_next_state <= RX_IDLE;
+					rx_next_state = RX_IDLE;
 				end 
 			endcase 
-		else if(!rx_en)
-			rx_next_state <= RX_IDLE;
 	
 	//third:fsm output	
+	//rx_cnt and sample_cnt 
 	always @(posedge clk or negedge rst_n)
 		if(!rst_n) begin 
-			rxd_out_r <= `DATA_REG_DFT;
 			rx_cnt <= 4'd0;
 			sample_cnt <= 4'd0;
 		end 
-		else if(rx_pos) begin 
+		else if(rx_pos)
 			case(rx_next_state)
 				RX_IDLE: begin 
-					if(sample_cnt == 4'd15)
-						sample_cnt <= 4'd0;
-					else if(rxd)
-						sample_cnt <= 4'd0;
-					else 
-						sample_cnt <= sample_cnt + 1;
-				end 
-				RX_DATA: begin 
-					if((rx_cnt == 3'd8) && (sample_cnt == 4'd15)) begin 
-						sample_cnt <= 4'd0;
-						rx_cnt <= 4'd0;	
-					end 
-					else if((rx_cnt == 3'd7) && (sample_cnt == 4'd15) && no_parity) begin 
+					if(rxd) begin 
 						sample_cnt <= 4'd0;
 						rx_cnt <= 4'd0;
-						rxd_out_r <= {tmp_vote,rxd_out_r[7:1]};
 					end
-					else if(sample_cnt == 4'd15) begin 
+					else begin
+						sample_cnt <= sample_cnt + 1;
+						rx_cnt <= rx_cnt;
+					end
+				end 
+				RX_DATA: begin 
+					if(sample_cnt == 4'd15) begin 
 						sample_cnt <= 4'd0;
 						rx_cnt <= rx_cnt + 1;
-						rxd_out_r <= {tmp_vote,rxd_out_r[7:1]};
-					end 
-					else 
-						sample_cnt <= sample_cnt + 1;
-				end 
-				RX_PARITY: begin 
-					if(sample_cnt == 4'd15) begin  
-						if((tmp_vote == even_parity && has_even_parity) || (tmp_vote == odd_parity && has_odd_parity)) begin   //parity judgement
-							sample_cnt <= 4'd0;
-						end 
-						else begin 
-							sample_cnt <= 4'd0;
-						end 
 					end 
 					else 
 						sample_cnt <= sample_cnt + 1;
 				end 
 				RX_STOP: begin 
-					//sample_cnt == 12
-					if(sample_cnt[3] && sample_cnt[2]) begin 
+					if(!rxd) 
 						sample_cnt <= 4'd0;
-					end
-					else if(!rxd)begin  
-						sample_cnt <= 4'd0;
-					end 
 					else 
 						sample_cnt <= sample_cnt + 1;
 				end
-				default begin 
-					rx_state <= RX_IDLE;
+				default: begin 
 					rx_cnt <= 4'd0;
 					sample_cnt <= 4'd0;
-					rxd_out_r <= `DATA_REG_DFT;
 				end 
 			endcase 	
-		end 
 		else if(!rx_en) begin
-			rx_state <= RX_IDLE;
-			rx_cnt <= 4'b0;
-			sample_cnt <= 4'b0;
-			rxd_out_r <= `DATA_REG_DFT;
-			parity_error_r <= 1'b0;
+			rx_cnt <= 4'd0;
+			sample_cnt <= 4'd0;
 		end 
 		else begin
-			rx_state <= rx_state;
 			rx_cnt <= rx_cnt;
 			sample_cnt <= sample_cnt;
-			rxd_out_r <= rxd_out_r;
-			parity_error_r <= parity_error_r;
 		end 
+	
+	//collect the rxd to rxd_out_r
+	always @(posedge clk or negedge rst_n)
+		if(!rst_n) 
+			rxd_out_r <= `DATA_REG_DFT;
+		else if(rx_pos) 
+			case(rx_next_state)
+				RX_DATA: begin 
+					if((rx_cnt <= 4'd8) && (sample_cnt == 4'd15)) 
+						rxd_out_r <= {tmp_vote,rxd_out_r[7:1]};
+					else 
+						rxd_out_r <= rxd_out_r;
+				end 
+				default: begin 
+					rxd_out_r <= rxd_out_r;
+				end 
+			endcase
+		else if(!rx_en)
+			rxd_out_r <= `DATA_REG_DFT;
+		else 
+			rxd_out_r <= rxd_out_r;	
+	
+	//calculate parity_result for parity check
+	always @(posedge clk or negedge rst_n)
+		if(!rst_n) 
+			parity_result <= 1'b0;
+		else if(rx_pos) 
+			case(rx_next_state)
+				RX_IDLE: begin 
+					parity_result <= 1'b0;
+				end 
+				RX_DATA: begin 
+					if((sample_cnt == 4'd15) && !no_parity) 
+						parity_result <= parity_result ^ tmp_vote;
+					else 
+						parity_result <= parity_result;
+				end 
+				default: begin 
+					parity_result <= parity_result;
+				end 
+			endcase
+		else if(!rx_en)
+			parity_result <= 1'b0;
+		else 
+			parity_result <= parity_result;
+			
+			
 endmodule
 
 

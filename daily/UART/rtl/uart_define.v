@@ -9,6 +9,4 @@
 `define UART_CTRL_DFT	32'h10311
 `define DATA_REG_DFT		32'hFF	
 
-`define SAMPLE			4'h7
-
 `define UX607_PA_SIZE	32	

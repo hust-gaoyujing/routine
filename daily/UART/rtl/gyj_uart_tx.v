@@ -70,35 +70,37 @@ module uart_tx(
 	always @(posedge clk or negedge rst_n)
 		if(!rst_n) 
 			tx_current_state <= TX_IDLE;
-		else
+		else if(tx_pos)
 			tx_current_state <= tx_next_state;
-	
+		else 
+			tx_current_state <= tx_current_state;
+		
 	//second:fsm state transition 	
 	always @(*)
 		if(!rst_n)
-			tx_next_state <= TX_IDLE;
-		else if(tx_pos)   
+			tx_next_state = TX_IDLE;
+		else if(!tx_en)
+			tx_next_state = TX_IDLE;
+		else  
 			case(tx_current_state) 
 				TX_IDLE: begin
 					if(tx_on_flag)
-						tx_next_state <= TX_START;
+						tx_next_state = TX_START;
 				end 
 				TX_START: begin 
-					tx_next_state <= TX_DATA;
+					tx_next_state = TX_DATA;
 				end 
 				TX_DATA: begin 
 					if((tx_cnt == 4'b1000 && no_parity) || tx_cnt == 4'b1001)  		//transmit 1 byte or 1 byte and parity
-						tx_next_state <= TX_STOP;
+						tx_next_state = TX_STOP;
 				end 
 				TX_STOP: begin 
-					tx_next_state <= TX_IDLE;
+					tx_next_state = TX_IDLE;
 				end 
 				default: begin 
-					tx_next_state <= TX_IDLE;
+					tx_next_state = TX_IDLE;
 				end 
 			endcase 
-		else if(!tx_en)
-			tx_next_state <= TX_IDLE;
 	
 	//third:fsm output
 	always @(posedge clk or negedge rst_n)
