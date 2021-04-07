@@ -42,7 +42,8 @@ typedef struct
   * @{
   */ 
   
-#define USART_Parity_No                      ((uint32_t)0x1000)
+#define USART_No_Parity                      ((uint32_t)0x1000)
+#define USART_Has_Parity                     ((uint32_t)0x0000)
 /**
   * @}
   */ 
