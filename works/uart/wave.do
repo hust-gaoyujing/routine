@@ -62,17 +62,12 @@ add wave -noupdate -group baud_gen /uart_tb/uart_1/baud_gen/clk
 add wave -noupdate -group baud_gen /uart_tb/uart_1/baud_gen/baud_en
 add wave -noupdate -group baud_gen /uart_tb/uart_1/baud_gen/rst_n
 add wave -noupdate -group baud_gen /uart_tb/uart_1/baud_gen/divisor
-add wave -noupdate -group baud_gen /uart_tb/uart_1/baud_gen/baud_clk
-add wave -noupdate -group baud_gen /uart_tb/uart_1/baud_gen/sample_clk
 add wave -noupdate -group baud_gen /uart_tb/uart_1/baud_gen/sample_cnt
 add wave -noupdate -group baud_gen /uart_tb/uart_1/baud_gen/baud_cnt
 add wave -noupdate -group baud_gen /uart_tb/uart_1/baud_gen/baud_clk_r
 add wave -noupdate -group baud_gen /uart_tb/uart_1/baud_gen/sample_clk_r
-add wave -noupdate -group baud_gen /uart_tb/uart_1/baud_gen/sample_clk_rev
-add wave -noupdate -group baud_gen /uart_tb/uart_1/baud_gen/sample_clk_pos
-add wave -noupdate -group baud_gen /uart_tb/uart_1/baud_gen/baud_pos
 add wave -noupdate -group txd /uart_tb/uart_1/txd/clk
-add wave -noupdate -group txd /uart_tb/uart_1/txd/baud_clk
+add wave -noupdate -group txd /uart_tb/uart_1/txd/tx_data_sample
 add wave -noupdate -group txd /uart_tb/uart_1/txd/rst_n
 add wave -noupdate -group txd /uart_tb/uart_1/txd/tx_en
 add wave -noupdate -group txd /uart_tb/uart_1/txd/no_parity
@@ -82,18 +77,17 @@ add wave -noupdate -group txd /uart_tb/uart_1/txd/txd_in
 add wave -noupdate -group txd /uart_tb/uart_1/txd/tx_ok
 add wave -noupdate -group txd /uart_tb/uart_1/txd/txd
 add wave -noupdate -group txd /uart_tb/uart_1/txd/tx_cnt
+add wave -noupdate -group txd /uart_tb/uart_1/txd/txd_data
 add wave -noupdate -group txd /uart_tb/uart_1/txd/txd_out_r
-add wave -noupdate -group txd /uart_tb/uart_1/txd/tx_state
+add wave -noupdate -group txd /uart_tb/uart_1/txd/tx_current_state
+add wave -noupdate -group txd /uart_tb/uart_1/txd/tx_next_state
+add wave -noupdate -group txd /uart_tb/uart_1/txd/tx_on_flag
 add wave -noupdate -group txd /uart_tb/uart_1/txd/even_parity
-add wave -noupdate -group txd /uart_tb/uart_1/txd/odd_parity
 add wave -noupdate -group txd /uart_tb/uart_1/txd/has_even_parity
 add wave -noupdate -group txd /uart_tb/uart_1/txd/has_odd_parity
-add wave -noupdate -group txd /uart_tb/uart_1/txd/baud_clk_rev
-add wave -noupdate -group txd /uart_tb/uart_1/txd/baud_clk_pos
 add wave -noupdate -group txd /uart_tb/uart_1/txd/tx_pos
-add wave -noupdate -group txd /uart_tb/uart_1/txd/tx_on_flag
 add wave -noupdate -group rxd /uart_tb/uart_1/rxd/clk
-add wave -noupdate -group rxd /uart_tb/uart_1/rxd/sample_clk
+add wave -noupdate -group rxd /uart_tb/uart_1/rxd/rx_data_sample
 add wave -noupdate -group rxd /uart_tb/uart_1/rxd/rst_n
 add wave -noupdate -group rxd /uart_tb/uart_1/rxd/rx_en
 add wave -noupdate -group rxd /uart_tb/uart_1/rxd/no_parity
@@ -106,18 +100,15 @@ add wave -noupdate -group rxd /uart_tb/uart_1/rxd/parity_error
 add wave -noupdate -group rxd /uart_tb/uart_1/rxd/rx_cnt
 add wave -noupdate -group rxd /uart_tb/uart_1/rxd/sample_cnt
 add wave -noupdate -group rxd /uart_tb/uart_1/rxd/rxd_out_r
-add wave -noupdate -group rxd /uart_tb/uart_1/rxd/parity_error_r
-add wave -noupdate -group rxd /uart_tb/uart_1/rxd/rx_state
+add wave -noupdate -group rxd /uart_tb/uart_1/rxd/rx_current_state
+add wave -noupdate -group rxd /uart_tb/uart_1/rxd/rx_next_state
 add wave -noupdate -group rxd /uart_tb/uart_1/rxd/tmp_a
 add wave -noupdate -group rxd /uart_tb/uart_1/rxd/tmp_b
 add wave -noupdate -group rxd /uart_tb/uart_1/rxd/tmp_c
 add wave -noupdate -group rxd /uart_tb/uart_1/rxd/tmp_vote
-add wave -noupdate -group rxd /uart_tb/uart_1/rxd/even_parity
-add wave -noupdate -group rxd /uart_tb/uart_1/rxd/odd_parity
+add wave -noupdate -group rxd /uart_tb/uart_1/rxd/parity_result
 add wave -noupdate -group rxd /uart_tb/uart_1/rxd/has_even_parity
 add wave -noupdate -group rxd /uart_tb/uart_1/rxd/has_odd_parity
-add wave -noupdate -group rxd /uart_tb/uart_1/rxd/sample_clk_rev
-add wave -noupdate -group rxd /uart_tb/uart_1/rxd/sample_clk_pos
 add wave -noupdate -group rxd /uart_tb/uart_1/rxd/rx_pos
 add wave -noupdate -group top /uart_tb/uart_1/clk
 add wave -noupdate -group top /uart_tb/uart_1/rst_n
@@ -147,10 +138,8 @@ add wave -noupdate -group top /uart_tb/uart_1/ev_parity
 add wave -noupdate -group top /uart_tb/uart_1/parity_error
 add wave -noupdate -group top /uart_tb/uart_1/wr_data_flag
 add wave -noupdate -group top /uart_tb/uart_1/rd_data_flag
-add wave -noupdate -group top /uart_tb/uart_1/baud_clk
-add wave -noupdate -group top /uart_tb/uart_1/sample_clk
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {12669063 ps} 0}
+WaveRestoreCursors {{Cursor 1} {19673033 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 226
 configure wave -valuecolwidth 100
@@ -166,4 +155,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {54199601 ps}
+WaveRestoreZoom {0 ps} {111410291 ps}
