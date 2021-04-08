@@ -5,6 +5,16 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	uart_ctrl
 
+} {} {}} D:/prj/routine/daily/UART/rtl/uart_clk.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/uart_clk.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module uart_clk
+
+Top level modules:
+	uart_clk
+
+} {} {}} D:/prj/routine/daily/UART/rtl/uart_define.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/uart_define.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+
 } {} {}} D:/prj/routine/daily/UART/rtl/baudrate_generator.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/baudrate_generator.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module baudrate_generator
@@ -12,20 +22,10 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	baudrate_generator
 
-} {} {}} D:/prj/routine/daily/UART/rtl/uart_define.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/uart_define.v
-Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
-
-} {} {}} D:/prj/routine/daily/UART/rtl/gyj_uart_rx.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/gyj_uart_rx.v
-Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
--- Compiling module uart_rx
-
-Top level modules:
-	uart_rx
-
 } {} {}} D:/prj/routine/daily/UART/rtl/gyj_uart_tb.v {2 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/gyj_uart_tb.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module uart_tb
-** Warning: D:/prj/routine/daily/UART/rtl/gyj_uart_tb.v(117): (vlog-2597) '4294967295' is being treated as 32-bit signed integer and will overflow.
+** Warning: D:/prj/routine/daily/UART/rtl/gyj_uart_tb.v(122): (vlog-2597) '4294967295' is being treated as 32-bit signed integer and will overflow.
 
 Top level modules:
 	uart_tb
@@ -36,5 +36,12 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 
 Top level modules:
 	gjy_uart_top
+
+} {} {}} D:/prj/routine/daily/UART/rtl/gyj_uart_tx.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/gyj_uart_tx.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module uart_tx
+
+Top level modules:
+	uart_tx
 
 } {} {}}
