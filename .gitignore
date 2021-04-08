@@ -3,6 +3,8 @@ public
 python*
 *.pl
 works/uart/wlf*
+tools/*
+
 
 /__py*
 /test

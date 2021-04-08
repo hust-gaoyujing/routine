@@ -34,5 +34,8 @@ clone项目：
 
 
 
+git 利用http和ssh来clone的克隆地址区别：
 
+ssh:git@github.com:hust-gaoyujing/1213.git
 
+http：https://github.com/hust-gaoyujing/1213.git
