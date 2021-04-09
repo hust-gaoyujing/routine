@@ -16,8 +16,7 @@ module tb_top();
   `RANDOM_PIN(gpio_31_pin)
 
 //Set random seed
-	//longint seed;  TODO
-	integer seed;
+longint seed;
   initial begin
     if($value$plusargs("SEED=%d", seed)) begin
       $display("SEED = %d", seed);

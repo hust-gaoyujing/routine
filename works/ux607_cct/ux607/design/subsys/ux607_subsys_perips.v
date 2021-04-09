@@ -2647,27 +2647,7 @@ ux607_gpio_top u_ux607_gpio_top(
 );
 
   
-//ux607_uart_top u_ux607_uart0_top (
-//    .clk           (clk  ),
-//    .rst_n         (rst_n),
-//
-//    .i_icb_cmd_valid (uart0_icb_cmd_valid),
-//    .i_icb_cmd_ready (uart0_icb_cmd_ready),
-//    .i_icb_cmd_addr  (uart0_icb_cmd_addr ),
-//    .i_icb_cmd_read  (uart0_icb_cmd_read ),
-//    .i_icb_cmd_wdata (uart0_icb_cmd_wdata),
-//    
-//    .i_icb_rsp_valid (uart0_icb_rsp_valid),
-//    .i_icb_rsp_ready (uart0_icb_rsp_ready),
-//    .i_icb_rsp_rdata (uart0_icb_rsp_rdata),
-//
-//    .io_interrupts_0_0 (uart0_irq),                
-//    .io_port_txd       (uart0_txd),
-//    .io_port_rxd       (uart0_rxd)
-//);
-
-
-gyj_uart_top u_ux607_uart0_top (
+ux607_uart_top u_ux607_uart0_top (
     .clk           (clk  ),
     .rst_n         (rst_n),
 
@@ -2681,13 +2661,13 @@ gyj_uart_top u_ux607_uart0_top (
     .i_icb_rsp_ready (uart0_icb_rsp_ready),
     .i_icb_rsp_rdata (uart0_icb_rsp_rdata),
 
-    .io_interrupts_0_0 (uart0_irq),         
+    .io_interrupts_0_0 (uart0_irq),                
     .io_port_txd       (uart0_txd),
     .io_port_rxd       (uart0_rxd)
-); 
+);
 
 
- 
+  
 ux607_flash_qspi_top u_ux607_qspi0_top(
     .clk           (clk  ),
     .rst_n         (rst_n),

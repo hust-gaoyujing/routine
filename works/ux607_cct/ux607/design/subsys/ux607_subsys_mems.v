@@ -2278,7 +2278,7 @@ ux607_tmr_top u_ux607_tmr_top(
 
 
 `ifdef UX607_MLEN_IS_32
-  `ifdef UX607_PLEN_IS_32			
+  `ifdef UX607_PLEN_IS_32
   assign qspi0_ro_icb_cmd_valid = qspi0_ro_icb_cmd_valid_m;
   assign qspi0_ro_icb_cmd_ready_m = qspi0_ro_icb_cmd_ready;
   assign qspi0_ro_icb_cmd_addr  = qspi0_ro_icb_cmd_addr_m;
@@ -2342,7 +2342,7 @@ ux607_tmr_top u_ux607_tmr_top(
   );
   `endif
 `else
-  `ifdef UX607_PLEN_IS_32			//YES
+  `ifdef UX607_PLEN_IS_32
   ux607_gnrl_icb_w2n # (
     .AW (`UX607_PA_SIZE),
     .USR_W (1),
@@ -2477,7 +2477,7 @@ ux607_tmr_top u_ux607_tmr_top(
   );
   `endif
 `else
-  `ifdef UX607_PLEN_IS_32			//YES
+  `ifdef UX607_PLEN_IS_32
   ux607_gnrl_icb_w2n # (
     .AW (`UX607_PA_SIZE),
     .USR_W (1),

@@ -2,7 +2,8 @@
 
 
 
-`include "ux607_defines.v"
+
+
 
 
 

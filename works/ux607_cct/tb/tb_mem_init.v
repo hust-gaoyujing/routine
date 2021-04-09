@@ -32,8 +32,7 @@ module tb_mem_init(
       end
 
 
-    $readmemh({testcase, ".verilog"}, ilm_mem); //TODO
-	//$readmemh("rv64ui-p-add.verilog", ilm_mem);
+    $readmemh({testcase, ".verilog"}, ilm_mem);
 `ifdef UX607_ILM_DATA_WIDTH_IS_32
     for (i=0;i<(ILM_RAM_DP);i=i+1) begin
         `ILM_MEM[i][00+7:00] = ilm_mem[i*4+0];

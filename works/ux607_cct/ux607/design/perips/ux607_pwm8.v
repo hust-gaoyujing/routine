@@ -1,4 +1,3 @@
-`include "ux607_defines.v"
 
 module ux607_pwm8(
   input   clock,
