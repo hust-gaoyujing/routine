@@ -13,21 +13,18 @@ typedef struct
 													- IntegerDivider = ((PCLKx) / (16 * (UART_InitStruct->UART_BaudRate)))
 													- FractionalDivider = ((IntegerDivider - ((u32) IntegerDivider)) * 16) + 0.5 */
 
-	uint32_t UART_No_Parity;              	/*!< Specifies the parity mode.
+	uint32_t UART_Parity;              	/*!< Specifies the parity mode.
 												This parameter can be a value of @ref UART_No_Parity
 												@note When no_parity is enabled, the computed parity is not inserted
 														at the MSB position of the transmitted data (9th bit when
 														the word length is set to 9 data bits; 8th bit when the
 														word length is set to 8 data bits). */
- 
-	uint32_t UART_Parity_Type;              /*!< Specifies the parity type.
-												This parameter can be a value of @ref UART_Parity_Type
-												@note When parity_type is enabled ,the even parity is inserted 
-													else the odd parite is inserted*/
 	
-	uint32_t UART_Enable;                	/*!< Specifies wether the UART_Enable is enabled or disabled.
+	uint32_t UART_Status;                	/*!< Specifies wether the UART_Enable is enabled or disabled.
 												This parameter can be a value of @ref UART_Enable */
 	
+	uint32_t UART_Br_Gen; 	               	/*!< Specifies wether the UART_BR_Gen is enabled or disabled.
+												This parameter can be a value of @ref UART_Enable */	
 	
 	uint32_t UART_Mode;                		/*!< Specifies wether the Receive or Transmit mode is enabled or disabled.
 												This parameter can be a value of @ref UART_Mode */
@@ -38,32 +35,33 @@ typedef struct
   * @}
   */ 
 
-/** @defgroup UART_No_Parity 
+/** @defgroup UART_Parity 
   * @{
   */ 
   
 #define UART_No_Parity                      ((uint32_t)0x1000)
-#define UART_Has_Parity                     ((uint32_t)0x0000)
+#define UART_Odd_Parity                     ((uint32_t)0x00000) 
+#define UART_Even_Parity                   	((uint32_t)0x10000)
 /**
   * @}
   */ 
 
-/** @defgroup UART_Parity_Type 
-  * @{
-  */ 
-  
-#define UART_Parity_Odd                     ((uint32_t)0x00000) 
-#define UART_Parity_Even                    ((uint32_t)0x10000)
-/**
-  * @}
-  */ 
-
-/** @defgroup UART_Enable 
+/** @defgroup UART_Status 
   * @{
   */ 
   
 #define UART_Enable   	                    ((uint32_t)0x0200)
 #define UART_Disable   	                 	((uint32_t)0x0000)
+/**
+  * @}
+  */ 
+
+/** @defgroup UART_BR_Gen
+  * @{
+  */ 
+  
+#define UART_Br_Enable   	                    ((uint32_t)0x0001)
+#define UART_Br_Disable   	                 	((uint32_t)0x0000)
 /**
   * @}
   */ 
@@ -96,6 +94,6 @@ typedef struct
 void UART_Init(UART_TypeDef* UARTx, UART_InitTypeDef* UART_InitStruct);
 void UART_StructInit(UART_InitTypeDef* UART_InitStruct);
 void UART_Cmd(UART_TypeDef* UARTx, FunctionalState NewState);
-FlagStatus UART_GetFlagStatus(UART_TypeDef* UARTx, uint16_t UART_FLAG);
-void UART_SendData(UART_TypeDef* UARTx, uint16_t Data);
-void UART_ReceiverWakeUpCmd(UART_TypeDef* UARTx, FunctionalState NewState);
+FlagStatus UART_GetFlagStatus(UART_TypeDef* UARTx, uint32_t UART_FLAG);
+void UART_SendData(UART_TypeDef* UARTx, uint8_t Data);
+uint8_t USART_ReceiveData(UART_TypeDef* UARTx);
