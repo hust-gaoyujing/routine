@@ -30,7 +30,7 @@ typedef struct
 #define PERIPH_BASE           	((uint32_t)0x10000000) 	/*!< Peripheral base address in the alias region **/
 
 /** UART **/
-#define UART_BASE				(PERIPH_BASE + 0x16000)
+#define UART_BASE				(PERIPH_BASE + 0x13000)
 
 
 /**

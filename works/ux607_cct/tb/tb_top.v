@@ -16,7 +16,7 @@ module tb_top();
   `RANDOM_PIN(gpio_31_pin)
 
 //Set random seed
-longint seed;
+integer seed;
   initial begin
     if($value$plusargs("SEED=%d", seed)) begin
       $display("SEED = %d", seed);
@@ -53,7 +53,8 @@ longint seed;
   end
 
   initial begin
-    #200000000
+    //#200000000
+    #200000
     $display("Time Out !!!");
     $finish;
   end
@@ -63,6 +64,13 @@ longint seed;
   tb_mem_init u_tb_mem_init(sys_clk);
   tb_monitor u_tb_monitor(sys_clk);
   tb_irq_gen u_tb_irq_gen(sys_clk);
+  
+  //****************************************************************************************************
+  // Here we include the TB of periphs
+	`ifdef UART_TEST
+		tb_uart u_tb_uart(sys_clk);
+	`endif
+  
   //****************************************************************************************************
   // Here we instantiated the Demo SoC
   ux607_soc_top u_ux607_soc_top(

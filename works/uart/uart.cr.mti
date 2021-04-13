@@ -1,37 +1,4 @@
-D:/prj/routine/daily/UART/rtl/uart_clk.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/uart_clk.v
-Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
--- Compiling module uart_clk
-
-Top level modules:
-	uart_clk
-
-} {} {}} D:/prj/routine/daily/UART/rtl/gyj_uart_control.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/gyj_uart_control.v
-Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
--- Compiling module uart_ctrl
-
-Top level modules:
-	uart_ctrl
-
-<<<<<<< HEAD
-} {} {}} D:/prj/routine/daily/UART/rtl/gyj_uart_rx.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/gyj_uart_rx.v
-Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
--- Compiling module uart_rx
-
-Top level modules:
-	uart_rx
-=======
-} {} {}} D:/prj/routine/daily/UART/rtl/uart_clk.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/uart_clk.v
-Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
--- Compiling module uart_clk
-
-Top level modules:
-	uart_clk
->>>>>>> d2a0c2a44229f6d7246e19f97e44ae1eef357122
-
-} {} {}} D:/prj/routine/daily/UART/rtl/uart_define.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/uart_define.v
-Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
-
-} {} {}} D:/prj/routine/daily/UART/rtl/baudrate_generator.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/baudrate_generator.v
+D:/prj/routine/daily/UART/rtl/baudrate_generator.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/baudrate_generator.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module baudrate_generator
 
@@ -45,13 +12,6 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 
 Top level modules:
 	uart_tb
-
-} {} {}} D:/prj/routine/daily/UART/rtl/gyj_uart_top.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/gyj_uart_top.v
-Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
--- Compiling module gjy_uart_top
-
-Top level modules:
-	gjy_uart_top
 
 } {} {}} D:/prj/routine/daily/UART/rtl/gyj_uart_tx.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/gyj_uart_tx.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017

@@ -982,14 +982,16 @@ module ux607_subsys_main(
      
      .axi_rready       (os_axi_rready),
      .axi_rvalid       (os_axi_rvalid),
-     .axi_rid          (`UX607_BUSID_W'h0),
+     //.axi_rid          (`UX607_BUSID_W'h0),
+     .axi_rid          (			),		//TODO
      .axi_rdata        (os_axi_rdata),
      .axi_rresp        (os_axi_rresp),
      .axi_rlast        (os_axi_rlast),
      
      .axi_bready       (os_axi_bready),
      .axi_bvalid       (os_axi_bvalid),
-     .axi_bid          (`UX607_BUSID_W'h0),
+     //.axi_bid          (`UX607_BUSID_W'h0),
+     .axi_bid          (			),		//TODO
      .axi_bresp        (os_axi_bresp),
 
      .clk              (sys_clk),
@@ -1047,14 +1049,16 @@ module ux607_subsys_main(
   
      .i_axi_rready    (o0_axi_rready),
      .i_axi_rvalid    (o0_axi_rvalid),
-     .i_axi_rid       (`UX607_BUSID_W'h0),
+     //.i_axi_rid       (`UX607_BUSID_W'h0),
+     .i_axi_rid       (				),		//TODO
      .i_axi_rdata     (o0_axi_rdata),
      .i_axi_rresp     (o0_axi_rresp),
      .i_axi_rlast     (o0_axi_rlast),
   
      .i_axi_bready    (o0_axi_bready),
      .i_axi_bvalid    (o0_axi_bvalid),
-     .i_axi_bid       (`UX607_BUSID_W'h0),
+     //.i_axi_bid       (`UX607_BUSID_W'h0),
+     .i_axi_bid       (				),	//TODO
      .i_axi_bresp     (o0_axi_bresp),
 
   `ifdef DDR_CONTROLLER

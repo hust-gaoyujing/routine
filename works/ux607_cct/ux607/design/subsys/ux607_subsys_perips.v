@@ -2647,7 +2647,8 @@ ux607_gpio_top u_ux607_gpio_top(
 );
 
   
-ux607_uart_top u_ux607_uart0_top (
+//ux607_uart_top u_ux607_uart0_top (
+ux607_uart0_top u_ux607_uart0_top (
     .clk           (clk  ),
     .rst_n         (rst_n),
 

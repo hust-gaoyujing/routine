@@ -20,6 +20,9 @@
   `define EXCP  `CMT.u_ux607_exu_excp
   `define DBG   `CPU_CORE_TOP.u_ux607_dbg_top
   `define DBG_CSR `CPU_CORE_TOP.u_ux607_dbg_top.u_ux607_dbg_csr
+	`define PERIPS_TOP `CPU_SOC_TOP.u_ux607_subsys_top.u_ux607_subsys_main.u_ux607_subsys_perips
+	`define UART0_TOP `PERIPS_TOP.u_ux607_uart0_top
+	
 `ifndef UX607_HAS_DEBUG_NEW//{
   `define DBG_DM `CPU_CORE_TOP.u_ux607_dbg_top.u_ux607_debug_subsystem.ux607_dm
 `endif//UX607_HAS_DEBUG_NEW}

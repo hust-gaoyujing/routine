@@ -3,6 +3,7 @@ public
 python*
 *.pl
 works/uart/wlf*
+works/ux607_cct/works/wlf*
 tools/*
 
 
