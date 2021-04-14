@@ -54,7 +54,7 @@ integer seed;
 
   initial begin
     //#200000000
-    #200000
+    #20000000
     $display("Time Out !!!");
     $finish;
   end
@@ -67,9 +67,9 @@ integer seed;
   
   //****************************************************************************************************
   // Here we include the TB of periphs
-	`ifdef UART_TEST
-		tb_uart u_tb_uart(sys_clk);
-	`endif
+	//`ifdef UART_TEST
+	//	tb_uart u_tb_uart(sys_clk);
+	//`endif
   
   //****************************************************************************************************
   // Here we instantiated the Demo SoC
