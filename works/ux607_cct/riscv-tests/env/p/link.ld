@@ -16,7 +16,7 @@ SECTIONS
     PROVIDE( __global_pointer$ = . + 0x800 );
   }
   .bss : { *(.bss) }
-  .stack 0x80000000 + (1 << 16) - __stack_size :
+  .stack 0x80000000 + (1 << 12) - __stack_size :
   {
     PROVIDE( _heap_end = . );
     PROVIDE( _sp = 2K);

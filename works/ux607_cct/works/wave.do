@@ -1170,11 +1170,33 @@ add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_to
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ppi_ahbl_hready
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ppi_ahbl_clk_en
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ilm_cs
-add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ilm_addr
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ilm_byte_we
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ilm_wdata
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ilm_rdata
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_cause
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/clk_ilm_ram
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ilm_addr
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_iaddr
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_ivalid
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_iexception
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_interrupt
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_tval
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_instr
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_priv
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_bjp_taken
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_dmode
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/dlm0_cs
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/dlm0_addr
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/dlm0_byte_we
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/dlm0_wdata
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/dlm0_rdata
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/clk_dlm0_ram
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/dlm1_cs
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/dlm1_addr
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/dlm1_byte_we
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/dlm1_wdata
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/y0jaju01t8mqh2ycz05limpxfu
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/dlm1_rdata
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/jtag_TCK
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/jtag_TMS
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/jtag_TDI
@@ -1184,16 +1206,6 @@ add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_to
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/i_dbg_stop
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/override_dm_sleep
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/sysrstreq
-add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_ivalid
-add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_iexception
-add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_interrupt
-add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_cause
-add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_tval
-add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_iaddr
-add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_instr
-add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_priv
-add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_bjp_taken
-add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_dmode
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/core_clk_aon
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/core_clk
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/core_reset_n
@@ -3345,7 +3357,11 @@ add wave -noupdate -group uart1_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u
 add wave -noupdate -group uart1_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart1_top/io_in_0_e_valid
 add wave -noupdate -group uart1_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart1_top/io_in_0_e_bits_sink
 TreeUpdate [SetDefaultTree]
+<<<<<<< HEAD
 WaveRestoreCursors {{Cursor 1} {16585 ns} 0}
+=======
+WaveRestoreCursors {{Cursor 1} {16461 ns} 0}
+>>>>>>> 0b2b4c72452b5fb4b9a94796e1c111537e36942c
 quietly wave cursor active 1
 configure wave -namecolwidth 585
 configure wave -valuecolwidth 144
@@ -3361,4 +3377,8 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
+<<<<<<< HEAD
 WaveRestoreZoom {16278 ns} {16833 ns}
+=======
+WaveRestoreZoom {16317 ns} {18846 ns}
+>>>>>>> 0b2b4c72452b5fb4b9a94796e1c111537e36942c

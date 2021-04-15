@@ -1,8 +1,23 @@
 
 #include "ux607_uart.h"
+//export void UART_Init(UART_TypeDef* UARTx, UART_InitTypeDef* UART_InitStruct);
+//export void UART_StructInit(UART_InitTypeDef* UART_InitStruct);
 
-
-
+/**
+  * @brief  Fills each UART_InitStruct member with its default value.
+  * @param  UART_InitStruct: pointer to a UART_InitTypeDef structure
+  *         which will be initialized.
+  * @retval None
+  **/
+void UART_StructInit(UART_InitTypeDef* UART_InitStruct)
+{
+	/** UART_InitStruct members default value **/
+	UART_InitStruct->UART_BaudRate		= 115200;
+	UART_InitStruct->UART_Parity		= UART_Even_Parity;
+	UART_InitStruct->UART_Status		= UART_Enable;
+	UART_InitStruct->UART_Br_Gen		= UART_Br_Enable;
+	UART_InitStruct->UART_Mode			= UART_Mode_Rx | UART_Mode_Tx;
+}
 
 
 /**
@@ -38,22 +53,6 @@ void UART_Init(UART_TypeDef* UARTx, UART_InitTypeDef* UART_InitStruct)
 	UARTx->CSR = (uint32_t)integerdivider << 16;
 }
 
-
-/**
-  * @brief  Fills each UART_InitStruct member with its default value.
-  * @param  UART_InitStruct: pointer to a UART_InitTypeDef structure
-  *         which will be initialized.
-  * @retval None
-  **/
-void UART_StructInit(UART_InitTypeDef* UART_InitStruct)
-{
-	/** UART_InitStruct members default value **/
-	UART_InitStruct->UART_BaudRate		= 115200;
-	UART_InitStruct->UART_Parity		= UART_Even_Parity;
-	UART_InitStruct->UART_Status		= UART_Enable;
-	UART_InitStruct->UART_Br_Gen		= UART_Br_Enable;
-	UART_InitStruct->UART_Mode			= UART_Mode_Rx | UART_Mode_Tx;
-}
 
 
 /**

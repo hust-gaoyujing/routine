@@ -90,9 +90,8 @@ typedef struct
 /** @defgroup UART_Exported_Functions
   * @{
   */
-
-void UART_Init(UART_TypeDef* UARTx, UART_InitTypeDef* UART_InitStruct);
 void UART_StructInit(UART_InitTypeDef* UART_InitStruct);
+void UART_Init(UART_TypeDef* UARTx, UART_InitTypeDef* UART_InitStruct);
 void UART_Cmd(UART_TypeDef* UARTx, FunctionalState NewState);
 FlagStatus UART_GetFlagStatus(UART_TypeDef* UARTx, uint32_t UART_FLAG);
 void UART_SendData(UART_TypeDef* UARTx, uint8_t Data);
