@@ -1,17 +1,17 @@
-D:/prj/routine/daily/UART/rtl/baudrate_generator.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/baudrate_generator.v
-Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
--- Compiling module baudrate_generator
-
-Top level modules:
-	baudrate_generator
-
-} {} {}} D:/prj/routine/daily/UART/rtl/gyj_uart_tb.v {2 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/gyj_uart_tb.v
+D:/prj/routine/daily/UART/rtl/gyj_uart_tb.v {2 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/gyj_uart_tb.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module uart_tb
 ** Warning: D:/prj/routine/daily/UART/rtl/gyj_uart_tb.v(122): (vlog-2597) '4294967295' is being treated as 32-bit signed integer and will overflow.
 
 Top level modules:
 	uart_tb
+
+} {} {}} D:/prj/routine/daily/UART/rtl/baudrate_generator.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/baudrate_generator.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module baudrate_generator
+
+Top level modules:
+	baudrate_generator
 
 } {} {}} D:/prj/routine/daily/UART/rtl/gyj_uart_tx.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/UART/rtl/gyj_uart_tx.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017

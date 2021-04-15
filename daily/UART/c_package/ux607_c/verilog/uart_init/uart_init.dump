@@ -25,7 +25,7 @@ void UART_Init(UART_TypeDef* UARTx, UART_InitTypeDef* UART_InitStruct)
 /**---------------------------- UART CR Configuration -----------------------**/
 	/**tmpreg = UART->CR; **/
 	tmpreg = (uint32_t)UART_InitStruct->UART_Status | UART_InitStruct->UART_Br_Gen 
-    8000001a:	fd043783          	ld	a5,-48(s0)
+    8000001a:	fd043783          	ld	a5,-48(s0)			//TODO
     8000001e:	4798                	lw	a4,8(a5)
     80000020:	fd043783          	ld	a5,-48(s0)
     80000024:	47dc                	lw	a5,12(a5)
