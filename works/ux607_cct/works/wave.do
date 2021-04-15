@@ -1,65 +1,65 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate -group top /tb_top/sys_clk
-add wave -noupdate -group top /tb_top/aon_clk
-add wave -noupdate -group top /tb_top/tb_rst_n
-add wave -noupdate -group top /tb_top/gpio_30_pin
-add wave -noupdate -group top /tb_top/gpio_31_pin
-add wave -noupdate -group top /tb_top/hfclk
-add wave -noupdate -group top /tb_top/dumpwave
-add wave -noupdate -group top /tb_top/seed
-add wave -noupdate -group top -group tb_mem_init /tb_top/u_tb_mem_init/tb_clk
-add wave -noupdate -group top -group tb_mem_init /tb_top/u_tb_mem_init/i
-add wave -noupdate -group top -group tb_mem_init /tb_top/u_tb_mem_init/testcase
-add wave -noupdate -group top -group tb_monitor /tb_top/u_tb_monitor/tb_clk
-add wave -noupdate -group top -group tb_monitor /tb_top/u_tb_monitor/pc_write_to_host_cnt
-add wave -noupdate -group top -group tb_monitor /tb_top/u_tb_monitor/pc_write_to_host_cycle
-add wave -noupdate -group top -group tb_monitor /tb_top/u_tb_monitor/valid_ir_cycle
-add wave -noupdate -group top -group tb_monitor /tb_top/u_tb_monitor/cycle_count
-add wave -noupdate -group top -group tb_monitor /tb_top/u_tb_monitor/testcase
-add wave -noupdate -group top -group tb_monitor /tb_top/u_tb_monitor/dummy
-add wave -noupdate -group top -group tb_monitor /tb_top/u_tb_monitor/x3
-add wave -noupdate -group top -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/tb_clk
-add wave -noupdate -group top -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/tb_rst_n
-add wave -noupdate -group top -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/pc_write_to_host_cnt
-add wave -noupdate -group top -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/pc_write_to_host_cycle
-add wave -noupdate -group top -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/valid_ir_cycle
-add wave -noupdate -group top -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/cycle_count
-add wave -noupdate -group top -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/chk_write_tohost
-add wave -noupdate -group top -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/pc
-add wave -noupdate -group top -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/pc_vld
-add wave -noupdate -group top -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/pc_write_to_host_flag
-add wave -noupdate -group top -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/i_valid
-add wave -noupdate -group top -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/i_ready
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_clk
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_force_irq
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_force_resp_err
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_wfi_force_irq
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/random0_ena
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/random1_ena
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/random2_ena
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/random3_ena
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/random4_ena
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/random5_ena
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/random6_ena
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/random7_ena
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/random8_ena
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/random9_ena
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/dummy
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_dbg_irq
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_dbg_hlt
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_rx_evt
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_tmr_irq
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_sft_irq
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_nmi_plus
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_clic_irq
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_tmr_irq_plus
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_sft_irq_plus
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/x3
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/pc_write_to_host_cnt
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/pc_write_to_host_cycle
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/valid_ir_cycle
-add wave -noupdate -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/cycle_count
+add wave -noupdate -expand -group top /tb_top/sys_clk
+add wave -noupdate -expand -group top /tb_top/aon_clk
+add wave -noupdate -expand -group top /tb_top/tb_rst_n
+add wave -noupdate -expand -group top /tb_top/gpio_30_pin
+add wave -noupdate -expand -group top /tb_top/gpio_31_pin
+add wave -noupdate -expand -group top /tb_top/hfclk
+add wave -noupdate -expand -group top /tb_top/dumpwave
+add wave -noupdate -expand -group top /tb_top/seed
+add wave -noupdate -expand -group top -group tb_mem_init /tb_top/u_tb_mem_init/tb_clk
+add wave -noupdate -expand -group top -group tb_mem_init /tb_top/u_tb_mem_init/i
+add wave -noupdate -expand -group top -group tb_mem_init /tb_top/u_tb_mem_init/testcase
+add wave -noupdate -expand -group top -expand -group tb_monitor /tb_top/u_tb_monitor/tb_clk
+add wave -noupdate -expand -group top -expand -group tb_monitor /tb_top/u_tb_monitor/pc_write_to_host_cnt
+add wave -noupdate -expand -group top -expand -group tb_monitor /tb_top/u_tb_monitor/pc_write_to_host_cycle
+add wave -noupdate -expand -group top -expand -group tb_monitor /tb_top/u_tb_monitor/valid_ir_cycle
+add wave -noupdate -expand -group top -expand -group tb_monitor /tb_top/u_tb_monitor/cycle_count
+add wave -noupdate -expand -group top -expand -group tb_monitor /tb_top/u_tb_monitor/testcase
+add wave -noupdate -expand -group top -expand -group tb_monitor /tb_top/u_tb_monitor/dummy
+add wave -noupdate -expand -group top -expand -group tb_monitor /tb_top/u_tb_monitor/x3
+add wave -noupdate -expand -group top -expand -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/tb_clk
+add wave -noupdate -expand -group top -expand -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/tb_rst_n
+add wave -noupdate -expand -group top -expand -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/pc_write_to_host_cnt
+add wave -noupdate -expand -group top -expand -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/pc_write_to_host_cycle
+add wave -noupdate -expand -group top -expand -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/valid_ir_cycle
+add wave -noupdate -expand -group top -expand -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/cycle_count
+add wave -noupdate -expand -group top -expand -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/chk_write_tohost
+add wave -noupdate -expand -group top -expand -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/pc
+add wave -noupdate -expand -group top -expand -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/pc_vld
+add wave -noupdate -expand -group top -expand -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/pc_write_to_host_flag
+add wave -noupdate -expand -group top -expand -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/i_valid
+add wave -noupdate -expand -group top -expand -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/i_ready
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_clk
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_force_irq
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_force_resp_err
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_wfi_force_irq
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/random0_ena
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/random1_ena
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/random2_ena
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/random3_ena
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/random4_ena
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/random5_ena
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/random6_ena
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/random7_ena
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/random8_ena
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/random9_ena
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/dummy
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_dbg_irq
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_dbg_hlt
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_rx_evt
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_tmr_irq
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_sft_irq
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_nmi_plus
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_clic_irq
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_tmr_irq_plus
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_sft_irq_plus
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/x3
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/pc_write_to_host_cnt
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/pc_write_to_host_cycle
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/valid_ir_cycle
+add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/cycle_count
 add wave -noupdate -group soc_top /tb_top/u_ux607_soc_top/por_rst_n
 add wave -noupdate -group soc_top /tb_top/u_ux607_soc_top/sys_rst_n
 add wave -noupdate -group soc_top /tb_top/u_ux607_soc_top/sys_clk
@@ -3345,7 +3345,7 @@ add wave -noupdate -group uart1_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u
 add wave -noupdate -group uart1_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart1_top/io_in_0_e_valid
 add wave -noupdate -group uart1_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart1_top/io_in_0_e_bits_sink
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {16213 ns} 0}
+WaveRestoreCursors {{Cursor 1} {16585 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 585
 configure wave -valuecolwidth 144
@@ -3361,4 +3361,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {13672 ns} {18954 ns}
+WaveRestoreZoom {16278 ns} {16833 ns}
