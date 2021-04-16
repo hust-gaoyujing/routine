@@ -40,7 +40,7 @@ typedef struct
   */ 
   
 #define UART_No_Parity                      ((uint32_t)0x1000)
-#define UART_Odd_Parity                     ((uint32_t)0x00000) 
+#define UART_Odd_Parity                     ((uint32_t)0x0000) 
 #define UART_Even_Parity                   	((uint32_t)0x10000)
 /**
   * @}

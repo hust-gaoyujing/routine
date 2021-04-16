@@ -15,6 +15,7 @@ int main(void)
     80000002:	e406                	sd	ra,8(sp)
     80000004:	e022                	sd	s0,0(sp)
     80000006:	0800                	addi	s0,sp,16
+	//UART_InitTypeDef UART_InitStructure= {0};
 	UART_StructInit(&UART_InitStructure);
     80000008:	00001517          	auipc	a0,0x1
     8000000c:	ff850513          	addi	a0,a0,-8 # 80001000 <UART_InitStructure>
@@ -1157,7 +1158,7 @@ Disassembly of section .debug_line:
  1b0:	0300                	addi	s0,sp,384
  1b2:	010e                	slli	sp,sp,0x3
  1b4:	0205                	addi	tp,tp,1
- 1b6:	08090103          	lb	sp,128(s2) # 18080 <__stack_size+0x17880>
+ 1b6:	08090203          	lb	tp,128(s2) # 18080 <__stack_size+0x17880>
  1ba:	0100                	addi	s0,sp,128
  1bc:	0c090303          	lb	t1,192(s2)
  1c0:	0100                	addi	s0,sp,128

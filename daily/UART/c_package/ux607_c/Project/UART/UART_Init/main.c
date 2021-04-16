@@ -2,7 +2,7 @@
 /** Includes the periph need------------------------------------------------- **/
 #include "ux607_uart.h"
 
-UART_InitTypeDef UART_InitStructure;
+UART_InitTypeDef UART_InitStructure = {0};
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -13,6 +13,7 @@ UART_InitTypeDef UART_InitStructure;
   */
 int main(void)
 { 
+	//UART_InitTypeDef UART_InitStructure= {0};
 	UART_StructInit(&UART_InitStructure);
 	//
 	///** Configure UART **/
