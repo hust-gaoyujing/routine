@@ -141,4 +141,9 @@ make SOC=? CORE=? DOWMLOAD=? all
 
 make dasm 
 
-make SOC=ux607 BOARD=ux607_eval CORE=ux600 DOWMLOAD=ilm all
+```shell
+make SOC=ux607 BOARD=ux607_eval CORE=ux600 DOWMLOAD=ilm V=1 all
+```
+
+在添加makefile.conf中添加变量：
+

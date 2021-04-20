@@ -1177,11 +1177,11 @@ add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_to
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/clk_ilm_ram
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ilm_addr
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_iaddr
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_instr
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_ivalid
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_iexception
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_interrupt
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_tval
-add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_instr
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_priv
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_bjp_taken
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_dmode
@@ -3357,9 +3357,9 @@ add wave -noupdate -group uart1_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u
 add wave -noupdate -group uart1_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart1_top/io_in_0_e_valid
 add wave -noupdate -group uart1_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart1_top/io_in_0_e_bits_sink
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {163 ns} 0}
+WaveRestoreCursors {{Cursor 1} {16076 ns} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 585
+configure wave -namecolwidth 551
 configure wave -valuecolwidth 144
 configure wave -justifyvalue left
 configure wave -signalnamewidth 0
@@ -3373,4 +3373,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {16317 ns} {18846 ns}
+WaveRestoreZoom {15583 ns} {15841 ns}

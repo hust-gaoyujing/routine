@@ -11,10 +11,11 @@ Disassembly of section .text:
   */
 int main(void)
 { 
-    80000000:	1141                	addi	sp,sp,-16
+    80000000:	1141                	addi	sp,sp,-16							//
     80000002:	e406                	sd	ra,8(sp)
     80000004:	e022                	sd	s0,0(sp)
     80000006:	0800                	addi	s0,sp,16
+	//UART_InitTypeDef UART_InitStructure= {0};
 	UART_StructInit(&UART_InitStructure);
     80000008:	00001517          	auipc	a0,0x1
     8000000c:	ff850513          	addi	a0,a0,-8 # 80001000 <UART_InitStructure>
@@ -44,7 +45,7 @@ void UART_StructInit(UART_InitTypeDef* UART_InitStruct)
     8000002c:	fea43423          	sd	a0,-24(s0)
 	/** UART_InitStruct members default value **/
 	UART_InitStruct->UART_BaudRate		= 115200;
-    80000030:	fe843783          	ld	a5,-24(s0)
+    80000030:	fe843783          	ld	a5,-24(s0)						//stop here
     80000034:	6771                	lui	a4,0x1c
     80000036:	2007071b          	addiw	a4,a4,512
     8000003a:	c398                	sw	a4,0(a5)
@@ -1157,7 +1158,7 @@ Disassembly of section .debug_line:
  1b0:	0300                	addi	s0,sp,384
  1b2:	010e                	slli	sp,sp,0x3
  1b4:	0205                	addi	tp,tp,1
- 1b6:	08090103          	lb	sp,128(s2) # 18080 <__stack_size+0x17880>
+ 1b6:	08090203          	lb	tp,128(s2) # 18080 <__stack_size+0x17880>
  1ba:	0100                	addi	s0,sp,128
  1bc:	0c090303          	lb	t1,192(s2)
  1c0:	0100                	addi	s0,sp,128
