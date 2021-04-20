@@ -11,7 +11,7 @@ Disassembly of section .text:
   */
 int main(void)
 { 
-    80000000:	1141                	addi	sp,sp,-16							//
+    80000000:	1141                	addi	sp,sp,-16							//将堆栈指针减16
     80000002:	e406                	sd	ra,8(sp)
     80000004:	e022                	sd	s0,0(sp)
     80000006:	0800                	addi	s0,sp,16
