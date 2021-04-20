@@ -123,4 +123,22 @@
   
   |
   
-  |
+  |——application
+  
+  |		|——baremetal
+  
+  |				   |——uart_test		
+  
+  |							 |——Makefile
+  
+  |							 |——main.c
+
+conf.h文件放在哪里？？
+
+
+
+make SOC=? CORE=? DOWMLOAD=? all 
+
+make dasm 
+
+make SOC=ux607 BOARD=ux607_eval CORE=ux600 DOWMLOAD=ilm all
