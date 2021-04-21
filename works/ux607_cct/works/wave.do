@@ -1178,6 +1178,7 @@ add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_to
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ilm_addr
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_iaddr
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_instr
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/vapgj050raiah87lnzt_a
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_ivalid
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_iexception
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_interrupt
@@ -1560,7 +1561,6 @@ add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_to
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/qjvmrd1013dapqkahq_f87b
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/x0i6aykuzxn1t7_hyw9s7r4to
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/pbyudse8quydhisrzo9pbl4
-add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/vapgj050raiah87lnzt_a
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/cvksl3f95u8b10a3rmr6qvom
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/togorwkvhfveb6zwndvww
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/i036i6j05gm5ht39aak7k
@@ -3357,9 +3357,9 @@ add wave -noupdate -group uart1_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u
 add wave -noupdate -group uart1_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart1_top/io_in_0_e_valid
 add wave -noupdate -group uart1_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart1_top/io_in_0_e_bits_sink
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {16076 ns} 0}
+WaveRestoreCursors {{Cursor 1} {16148 ns} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 551
+configure wave -namecolwidth 571
 configure wave -valuecolwidth 144
 configure wave -justifyvalue left
 configure wave -signalnamewidth 0
@@ -3373,4 +3373,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {15583 ns} {15841 ns}
+WaveRestoreZoom {15938 ns} {16297 ns}
