@@ -12,14 +12,14 @@ Disassembly of section .text:
 int main(void)
 { 
     80000000:	1141                	addi	sp,sp,-16							//将堆栈指针减16
-    80000002:	e406                	sd	ra,8(sp)
-    80000004:	e022                	sd	s0,0(sp)
-    80000006:	0800                	addi	s0,sp,16
-	//UART_InitTypeDef UART_InitStructure= {0};
-	UART_StructInit(&UART_InitStructure);
-    80000008:	00001517          	auipc	a0,0x1
-    8000000c:	ff850513          	addi	a0,a0,-8 # 80001000 <UART_InitStructure>
-    80000010:	016000ef          	jal	ra,80000026 <UART_StructInit>
+    80000002:	e406                	sd	ra,8(sp)								//将ra（返回地址）写入地址[sp+8]
+    80000004:	e022                	sd	s0,0(sp)								//将s0（非易失行寄存器值）写入地址[sp+0]
+    80000006:	0800                	addi	s0,sp,16							//将(sp+16)写入s0
+	//UART_InitTypeDef UART_InitStructure= {0};					
+	UART_StructInit(&UART_InitStructure);						
+    80000008:	00001517          	auipc	a0,0x1									//将0x1000写入寄存器a0
+    8000000c:	ff850513          	addi	a0,a0,-8 # 80001000 <UART_InitStructure>//将a0寄存器的值减8	
+    80000010:	016000ef          	jal	ra,80000026 <UART_StructInit>				//ra=pc+4；pc=pc+0x16
 	//
 	///** Configure UART **/
 	UART_Init(UART, &UART_InitStructure);
@@ -39,13 +39,13 @@ int main(void)
   **/
 void UART_StructInit(UART_InitTypeDef* UART_InitStruct)
 {
-    80000026:	1101                	addi	sp,sp,-32
-    80000028:	ec22                	sd	s0,24(sp)
-    8000002a:	1000                	addi	s0,sp,32
-    8000002c:	fea43423          	sd	a0,-24(s0)
+    80000026:	1101                	addi	sp,sp,-32							//将堆栈指针减32
+    80000028:	ec22                	sd	s0,24(sp)								//将s0（非易失行寄存器值）写入地址[sp+24]
+    8000002a:	1000                	addi	s0,sp,32							//将(sp+32)写入s0
+    8000002c:	fea43423          	sd	a0,-24(s0)									//将a0寄存器的值写入地址[s0-24]
 	/** UART_InitStruct members default value **/
 	UART_InitStruct->UART_BaudRate		= 115200;
-    80000030:	fe843783          	ld	a5,-24(s0)						//stop here
+    80000030:	fe843783          	ld	a5,-24(s0)									//将地址[s0-24]的值写入寄存器a5
     80000034:	6771                	lui	a4,0x1c
     80000036:	2007071b          	addiw	a4,a4,512
     8000003a:	c398                	sw	a4,0(a5)
