@@ -1,1 +1,1 @@
-/home/gaoyujing/SRCV-AI-IFICs/ux607_rls_pkg/ux607_cct/vsim/bin/run.makefile
+/mnt/d/prj/routine/works/ux607_cct/vsim/bin/run.makefile

@@ -17,7 +17,7 @@ int main(void)
     80000006:	0800                	addi	s0,sp,16							//将(sp+16)写入s0
 	//UART_InitTypeDef UART_InitStructure= {0};					
 	UART_StructInit(&UART_InitStructure);						
-    80000008:	00001517          	auipc	a0,0x1									//将0x1000写入寄存器a0
+    80000008:	00001517          	auipc	a0,0x1									//将(pc+0x1000)写入寄存器a0
     8000000c:	ff850513          	addi	a0,a0,-8 # 80001000 <UART_InitStructure>//将a0寄存器的值减8	
     80000010:	016000ef          	jal	ra,80000026 <UART_StructInit>				//ra=pc+4；pc=pc+0x16
 	//
@@ -46,9 +46,9 @@ void UART_StructInit(UART_InitTypeDef* UART_InitStruct)
 	/** UART_InitStruct members default value **/
 	UART_InitStruct->UART_BaudRate		= 115200;
     80000030:	fe843783          	ld	a5,-24(s0)									//将地址[s0-24]的值写入寄存器a5
-    80000034:	6771                	lui	a4,0x1c
-    80000036:	2007071b          	addiw	a4,a4,512
-    8000003a:	c398                	sw	a4,0(a5)
+    80000034:	6771                	lui	a4,0x1c									//将0x1c000写入寄存器a4
+    80000036:	2007071b          	addiw	a4,a4,512								//a4=a4+512=115200
+    8000003a:	c398                	sw	a4,0(a5)								//M[a5]=a4
 	UART_InitStruct->UART_Parity		= UART_Even_Parity;
     8000003c:	fe843783          	ld	a5,-24(s0)
     80000040:	6741                	lui	a4,0x10
