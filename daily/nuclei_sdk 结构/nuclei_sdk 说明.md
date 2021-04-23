@@ -153,5 +153,11 @@ make dasm
 make SOC=ux607 BOARD=ux607_eval CORE=ux600 DOWMLOAD=ilm V=1 all
 ```
 
+
+
+```shell
+cp uart_test.verilog /mnt/d/prj/routine/works/ux607_cct/works
+```
+
 在添加makefile.conf中添加变量：
 
