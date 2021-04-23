@@ -7,7 +7,7 @@
 # Test add instruction.
 #
 
-#include "riscv_test64.h"
+#include "riscv_test.h"
 #include "test_macros.h"
 
 RVTEST_RV64U

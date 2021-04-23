@@ -54,7 +54,7 @@ integer seed;
 
   initial begin
     //#200000000
-    #20000000
+    #50000000
     $display("Time Out !!!");
     $finish;
   end
