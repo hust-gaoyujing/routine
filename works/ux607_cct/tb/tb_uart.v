@@ -1,4 +1,8 @@
-module uart_tb(
+`include "ux607_defines.v"
+`include "tb_defines.v"
+`include "ux607_subsys_defines.v"
+
+module tb_uart(
   input  tb_clk,
   input  tb_rst_n
   );
@@ -22,12 +26,13 @@ module uart_tb(
 
 	//initial interface
 	initial begin 
-		`UART0_TOP.io_port_rxd = 1'b1;
+		force `SOC_GPIO_TOP.io_port_pins_16_o_ie = 1'b1;	
+		$display("testtesttesttest!!!");
 	end 
 	
 	//LOAD DATA TO DATA_TX
 	initial begin 
-		$readmemh("data.hex", data_in);
+		$readmemh("uart_data.hex", data_in);
 	end 
 	
 	//VERIFICATION MAIN	

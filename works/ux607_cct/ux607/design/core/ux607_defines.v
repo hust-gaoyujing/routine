@@ -1690,7 +1690,9 @@
 `define TX_OK_DEF		1'b0
 `define RX_OK_DEF		1'b0
 `define UART_CSR_DFT	32'h8_0000
-`define UART_CTRL_DFT	32'h10311
+`define UART_CTRL_DFT	32'h11000
 `define DATA_REG_DFT	32'hFF
+
+`timescale 1ns/1ps
 
 `endif

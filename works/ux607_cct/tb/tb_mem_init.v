@@ -28,7 +28,7 @@ module tb_mem_init(
   initial begin //{
       $display("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");  
       if($value$plusargs("TESTCASE=%s",testcase))begin
-        $display("TESTCASE=%s",testcase);
+        //$display("TESTCASE=%s",testcase);
       end
 
 

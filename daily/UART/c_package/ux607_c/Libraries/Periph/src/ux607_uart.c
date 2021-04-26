@@ -47,7 +47,7 @@ void UART_Init(UART_TypeDef* UARTx, UART_InitTypeDef* UART_InitStruct)
 	
 	/** Determine the integer part **/
     /** Integer part computing in case Oversampling mode is 16 Samples **/
-    integerdivider = (sysclock / (16 * (UART_InitStruct->UART_BaudRate))) - 1;    
+    integerdivider = (uint32_t)((sysclock / (16 * (UART_InitStruct->UART_BaudRate))) - 0.5);    
 	
 	/** Write to UART CSR **/
 	UARTx->CSR = (uint32_t)integerdivider << 16;

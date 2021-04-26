@@ -48,6 +48,13 @@
   `define DLM_CTRL `CPU_CORE_TOP.u_ux607_dlm_ctrl
   `define LSUAGU `EXU.u_ux607_exu_alu.u_ux607_exu_alu_lsuagu
  
+  //SELF_DEFINE FOR PERIPH
+  `define SOC_PERIPS_TOP  	`SUB_MAIN.u_ux607_subsys_perips
+  `define SOC_GPIO_TOP  	`SOC_PERIPS_TOP.u_ux607_gpio_top
+  `define SOC_UART0_TOP		`SOC_PERIPS_TOP.u_ux607_uart0_top
+  
+  
+  
   // HACK-HERE:
 
   //  If you integrate the UX607 core into your SoC, you can hack here to change the path to your ILM and DLM path, this path is used to initialize the ILM to run the tests

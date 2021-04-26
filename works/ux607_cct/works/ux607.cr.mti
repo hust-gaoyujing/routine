@@ -12,6 +12,20 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	ux607_tl_repeater_5
 
+} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_flash_qspi_top.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_flash_qspi_top.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module ux607_flash_qspi_top
+
+Top level modules:
+	ux607_flash_qspi_top
+
+} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_uart0_clk.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_uart0_clk.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module uart_clk
+
+Top level modules:
+	uart_clk
+
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_ResetCatchAndSync.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_ResetCatchAndSync.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module ux607_ResetCatchAndSync
@@ -19,12 +33,26 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	ux607_ResetCatchAndSync
 
+} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_uart0_tx.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_uart0_tx.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module uart_tx
+
+Top level modules:
+	uart_tx
+
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_uarttx.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_uarttx.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module ux607_uarttx
 
 Top level modules:
 	ux607_uarttx
+
+} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_uart0_br_gen.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_uart0_br_gen.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module baudrate_generator
+
+Top level modules:
+	baudrate_generator
 
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_pwm16.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_pwm16.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
@@ -47,12 +75,8 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	ux607_icb2to1_bus
 
-} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/mems/ux607_mrom_top.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/mems/ux607_mrom_top.v
+} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_sram_icb_ecc_ctrl.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_sram_icb_ecc_ctrl.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
--- Compiling module ux607_mrom_top
-
-Top level modules:
-	ux607_mrom_top
 
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_1cyc_sram_ctrl.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_1cyc_sram_ctrl.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
@@ -61,8 +85,19 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	ux607_1cyc_sram_ctrl
 
-} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_sram_icb_ecc_ctrl.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_sram_icb_ecc_ctrl.v
+} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/mems/ux607_mrom_top.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/mems/ux607_mrom_top.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module ux607_mrom_top
+
+Top level modules:
+	ux607_mrom_top
+
+} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_uart0_control.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_uart0_control.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module uart_ctrl
+
+Top level modules:
+	uart_ctrl
 
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_queue_1.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_queue_1.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
@@ -70,6 +105,13 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 
 Top level modules:
 	ux607_queue_1
+
+} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_pwm8_top.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_pwm8_top.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module ux607_pwm8_top
+
+Top level modules:
+	ux607_pwm8_top
 
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/mems/ux607_dstat_ram.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/mems/ux607_dstat_ram.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
@@ -80,6 +122,13 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 
 Top level modules:
 	ux607_expl_axi_slv
+
+} {} {}} D:/prj/routine/works/ux607_cct/tb/tb_mem_init.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/tb/tb_mem_init.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module tb_mem_init
+
+Top level modules:
+	tb_mem_init
 
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/mems/ux607_sim_ram.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/mems/ux607_sim_ram.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
@@ -132,12 +181,29 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	ux607_qspi_media
 
+} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_uart0_rx.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_uart0_rx.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module uart_rx
+
+Top level modules:
+	uart_rx
+
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/fab/ux607_icb1to4_bus.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/fab/ux607_icb1to4_bus.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module ux607_icb1to4_bus
 
 Top level modules:
 	ux607_icb1to4_bus
+
+} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_i2c_master_defines.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_i2c_master_defines.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+
+} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_uart0_top.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_uart0_top.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module ux607_uart0_top
+
+Top level modules:
+	ux607_uart0_top
 
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_uartrx.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_uartrx.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
@@ -146,9 +212,6 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	ux607_uartrx
 
-} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_i2c_master_defines.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_i2c_master_defines.v
-Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
-
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_DeglitchShiftRegister.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_DeglitchShiftRegister.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module ux607_DeglitchShiftRegister
@@ -156,12 +219,26 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	ux607_DeglitchShiftRegister
 
+} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_subsys_mems.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_subsys_mems.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module ux607_subsys_mems
+
+Top level modules:
+	ux607_subsys_mems
+
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_tlwidthwidget_qspi.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_tlwidthwidget_qspi.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module ux607_tlwidthwidget_qspi
 
 Top level modules:
 	ux607_tlwidthwidget_qspi
+
+} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_gpio_top.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_gpio_top.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module ux607_gpio_top
+
+Top level modules:
+	ux607_gpio_top
 
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_subsys_top.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_subsys_top.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
@@ -219,19 +296,19 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	ux607_subsys_srams
 
-} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_subsys_axi2sram.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_subsys_axi2sram.v
-Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
--- Compiling module ux607_subsys_axi2sram
-
-Top level modules:
-	ux607_subsys_axi2sram
-
 } {} {}} D:/prj/routine/works/ux607_cct/tb/tb_monitor.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/tb/tb_monitor.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module tb_monitor
 
 Top level modules:
 	tb_monitor
+
+} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_subsys_axi2sram.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_subsys_axi2sram.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module ux607_subsys_axi2sram
+
+Top level modules:
+	ux607_subsys_axi2sram
 
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_AsyncResetRegVec_36.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_AsyncResetRegVec_36.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
@@ -254,6 +331,13 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	ux607_tlb_ram
 
+} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_SRLatch.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_SRLatch.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module ux607_SRLatch
+
+Top level modules:
+	ux607_SRLatch
+
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_subsys_axi2axi_async.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_subsys_axi2axi_async.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module ux607_subsys_axi2axi_async
@@ -262,13 +346,6 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	ux607_subsys_axi2axi_async
 
-} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_SRLatch.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_SRLatch.v
-Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
--- Compiling module ux607_SRLatch
-
-Top level modules:
-	ux607_SRLatch
-
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_sram_icb_ctrl.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_sram_icb_ctrl.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module ux607_sram_icb_ctrl
@@ -276,15 +353,11 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	ux607_sram_icb_ctrl
 
+} {} {}} D:/prj/routine/works/ux607_cct/tb/tb_defines.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/tb/tb_defines.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_subsys_defines.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_subsys_defines.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
-
-} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_queue.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_queue.v
-Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
--- Compiling module ux607_queue
-
-Top level modules:
-	ux607_queue
 
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_AsyncResetRegVec_1.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_AsyncResetRegVec_1.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
@@ -293,12 +366,19 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	ux607_AsyncResetRegVec_1
 
-} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_subsys_axi1to2.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_subsys_axi1to2.v
+} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_queue.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_queue.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
--- Compiling module ux607_subsys_axi1to2
+-- Compiling module ux607_queue
 
 Top level modules:
-	ux607_subsys_axi1to2
+	ux607_queue
+
+} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/mems/ux607_dtag_ram.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/mems/ux607_dtag_ram.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module ux607_dtag_ram
+
+Top level modules:
+	ux607_dtag_ram
 
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/mems/ux607_icb_ram_top.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/mems/ux607_icb_ram_top.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
@@ -307,12 +387,12 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	ux607_icb_ram_top
 
-} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/mems/ux607_dtag_ram.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/mems/ux607_dtag_ram.v
+} {} {}} D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_subsys_axi1to2.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_subsys_axi1to2.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
--- Compiling module ux607_dtag_ram
+-- Compiling module ux607_subsys_axi1to2
 
 Top level modules:
-	ux607_dtag_ram
+	ux607_subsys_axi1to2
 
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_qspi_4cs.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_qspi_4cs.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
@@ -656,6 +736,9 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	ux607_uart
 
+} {} {}} D:/prj/routine/works/ux607_cct/works/ux607_defines.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/works/ux607_defines.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_expl_apb_slv.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_expl_apb_slv.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module ux607_expl_apb_slv
@@ -669,6 +752,9 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 
 Top level modules:
 	ux607_subsys_lm
+
+} {} {}} D:/prj/routine/works/ux607_cct/works/ux607_subsys_defines.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/works/ux607_subsys_defines.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_AsyncResetRegVec_129.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/perips/ux607_AsyncResetRegVec_129.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017

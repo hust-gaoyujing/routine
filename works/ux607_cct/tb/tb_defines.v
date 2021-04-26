@@ -20,9 +20,6 @@
   `define EXCP  `CMT.u_ux607_exu_excp
   `define DBG   `CPU_CORE_TOP.u_ux607_dbg_top
   `define DBG_CSR `CPU_CORE_TOP.u_ux607_dbg_top.u_ux607_dbg_csr
-	`define PERIPS_TOP `CPU_SOC_TOP.u_ux607_subsys_top.u_ux607_subsys_main.u_ux607_subsys_perips
-	`define UART0_TOP `PERIPS_TOP.u_ux607_uart0_top
-	
 `ifndef UX607_HAS_DEBUG_NEW//{
   `define DBG_DM `CPU_CORE_TOP.u_ux607_dbg_top.u_ux607_debug_subsystem.ux607_dm
 `endif//UX607_HAS_DEBUG_NEW}
@@ -51,6 +48,13 @@
   `define DLM_CTRL `CPU_CORE_TOP.u_ux607_dlm_ctrl
   `define LSUAGU `EXU.u_ux607_exu_alu.u_ux607_exu_alu_lsuagu
  
+  //SELF_DEFINE FOR PERIPH
+  `define SOC_PERIPS_TOP  	`SUB_MAIN.u_ux607_subsys_perips
+  `define SOC_GPIO_TOP  	`SOC_PERIPS_TOP.u_ux607_gpio_top
+  `define SOC_UART0_TOP		`SOC_PERIPS_TOP.u_ux607_uart0_top
+  
+  
+  
   // HACK-HERE:
 
   //  If you integrate the UX607 core into your SoC, you can hack here to change the path to your ILM and DLM path, this path is used to initialize the ILM to run the tests

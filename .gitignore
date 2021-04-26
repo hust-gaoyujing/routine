@@ -5,7 +5,6 @@ python*
 works/uart/wlf*
 works/ux607_cct/works/wlf*
 tools/*
-
-
+!tools/nuclei-sdk/nuclei-sdk-master
 /__py*
 /test

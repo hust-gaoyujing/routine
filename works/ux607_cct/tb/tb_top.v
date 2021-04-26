@@ -17,10 +17,15 @@ module tb_top();
 
 //Set random seed
 integer seed;
+	reg [8*300:1] 	FREQUENCE;
+  
   initial begin
     if($value$plusargs("SEED=%d", seed)) begin
       $display("SEED = %d", seed);
     end
+  	if($value$plusargs("FREQUENCE=%s",FREQUENCE))
+		$display("FREQUENCE=%0s",FREQUENCE);
+  
   end
 
   initial begin
@@ -32,11 +37,17 @@ integer seed;
      #2000 tb_rst_n <=1'b1;
   end
 
-  always
-  begin 
-     #31 sys_clk <= ~sys_clk;
-  end
-
+  //always
+  //begin 
+  //   #31 sys_clk <= ~sys_clk;
+  //end
+	initial begin 
+		if(FREQUENCE == "16M")  
+			forever #31.25 sys_clk <= ~sys_clk;		//for 16Mhz
+		else if(FREQUENCE == "144M")  
+			forever #3.47 sys_clk <= ~sys_clk;		//for 144Mhz
+	end 
+  
   always
   begin 
      #1000 aon_clk <= ~aon_clk;
@@ -53,8 +64,7 @@ integer seed;
   end
 
   initial begin
-    //#200000000
-    #50000000
+    #200000000
     $display("Time Out !!!");
     $finish;
   end
@@ -64,12 +74,6 @@ integer seed;
   tb_mem_init u_tb_mem_init(sys_clk);
   tb_monitor u_tb_monitor(sys_clk);
   tb_irq_gen u_tb_irq_gen(sys_clk);
-  
-  //****************************************************************************************************
-  // Here we include the TB of periphs
-	//`ifdef UART_TEST
-	//	tb_uart u_tb_uart(sys_clk);
-	//`endif
   
   //****************************************************************************************************
   // Here we instantiated the Demo SoC
