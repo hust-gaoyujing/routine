@@ -26,9 +26,9 @@ module tb_monitor(
       end
   end //}
 	
-	//`ifdef UART
+	`ifdef UART
 		tb_uart u_tb_uart(tb_clk,tb_rst_n);
-	//`endif 
+	`endif 
 
 	
   `ifdef RV
