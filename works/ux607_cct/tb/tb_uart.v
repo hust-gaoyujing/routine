@@ -27,7 +27,6 @@ module tb_uart(
 	//initial interface
 	initial begin 
 		force `SOC_GPIO_TOP.io_port_pins_16_o_ie = 1'b1;	
-		$display("testtesttesttest!!!");
 	end 
 	
 	//LOAD DATA TO DATA_TX
