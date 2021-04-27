@@ -19,6 +19,7 @@ module tb_irq_gen(
     $display("FORCE_RESP_ERR=%d",tb_force_resp_err);
     $value$plusargs("WFI_FORCE_IRQ=%d",tb_wfi_force_irq);
     $display("WFI_FORCE_IRQ=%d",tb_wfi_force_irq);
+	$display("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     //$display("SEED=%d",$urandom_range(1, 2000));
   end
 

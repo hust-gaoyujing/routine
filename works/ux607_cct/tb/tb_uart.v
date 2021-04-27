@@ -27,6 +27,7 @@ module tb_uart(
 	//initial interface
 	initial begin 
 		force `SOC_GPIO_TOP.io_port_pins_16_o_ie = 1'b1;	
+		force `SOC_UART0_TOP.io_port_rxd = `SOC_UART0_TOP.io_port_txd;
 	end 
 	
 	//LOAD DATA TO DATA_TX
@@ -81,7 +82,7 @@ module tb_uart(
 		begin 
 			begin 
 				for(i = 0;i < 256;i = i + 1)begin 
-					port_rxd <= 1'b0; 						//start_bit
+					port_rxd <= 1'b0; 								//start_bit
 					data_tmp = data_in[i];
 					even_parity <= data_tmp[7] ^ data_tmp[6] ^ data_tmp[5] ^ data_tmp[4]
 								^data_tmp[3] ^ data_tmp[2] ^ data_tmp[1] ^ data_tmp[0];	
@@ -92,7 +93,7 @@ module tb_uart(
 					//if(NO_PARITY != 1) begin
 						#8681 	port_rxd <= even_parity;			//parity_bit
 					//end 
-					#8681 	port_rxd <= 1'b1;				//stop_bit
+					#8681 	port_rxd <= 1'b1;						//stop_bit
 					#8681;
 				end
 			end 

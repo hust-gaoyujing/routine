@@ -29,7 +29,7 @@ MEMORY
 {
 
   ilm (rxai!w) : ORIGIN = 0x80000000, LENGTH = 64K
-  ram (wxa!ri) : ORIGIN = 0x90000000, LENGTH = 64K
+  dlm (wxa!ri) : ORIGIN = 0x90000000, LENGTH = 64K
 }
 
 
@@ -163,7 +163,7 @@ SECTIONS
   {
     . = ALIGN(4);
     PROVIDE( _data = . );
-  } >ram AT>ilm
+  } >dlm AT>ilm
 
   .data          :
   {
@@ -179,7 +179,7 @@ SECTIONS
     *(.srodata.cst4)
     *(.srodata.cst2)
     *(.srodata .srodata.*)
-  } >ilm AT>ilm
+  } >dlm AT>ilm
 
   . = ALIGN(4);
   PROVIDE( _edata = . );
@@ -195,16 +195,16 @@ SECTIONS
     *(.gnu.linkonce.b.*)
     *(COMMON)
     . = ALIGN(4);
-  } >ilm AT>ilm
+  } >dlm AT>dlm
 
   . = ALIGN(8);
   PROVIDE( _end = . );
   PROVIDE( end = . );
 
-  .stack ORIGIN(ilm) + LENGTH(ilm) - __stack_size :
+  .stack ORIGIN(dlm) + LENGTH(dlm) - __stack_size :
   {
     PROVIDE( _heap_end = . );
     . = __stack_size;
     PROVIDE( _sp = . );
-  } >ilm AT>ilm
+  } >dlm AT>dlm
 }

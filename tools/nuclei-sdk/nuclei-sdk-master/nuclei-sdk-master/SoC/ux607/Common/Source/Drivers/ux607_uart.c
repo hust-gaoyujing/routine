@@ -35,14 +35,6 @@ void UART_Init(UART_TypeDef* UARTx, UART_InitTypeDef* UART_InitStruct)
 {
 	uint32_t tmpreg = 0x00, sysclock = 0x00;
 	uint32_t integerdivider = 0x00;
-
-/**---------------------------- UART CR Configuration -----------------------**/
-	/**tmpreg = UART->CR; **/
-	tmpreg = (uint32_t)UART_InitStruct->UART_Status | UART_InitStruct->UART_Br_Gen 
-				| UART_InitStruct->UART_Mode | UART_InitStruct->UART_Parity;
-	/** Write to UART CR **/
-	UARTx->CR = tmpreg;
-
 /**---------------------------- UART CSR Configuration -----------------------**/
     sysclock = FREQ_SYS;
 	
@@ -53,9 +45,17 @@ void UART_Init(UART_TypeDef* UARTx, UART_InitTypeDef* UART_InitStruct)
 	//	integerdivider = 0x8;
 	//else if(sysclock == 144)					//144M
 	//	integerdivider = 0x4d;
-		
+	
+/**---------------------------- UART CR Configuration -----------------------**/
+	/**tmpreg = UART->CR; **/
+	tmpreg = (uint32_t)UART_InitStruct->UART_Status | UART_InitStruct->UART_Br_Gen 
+				| UART_InitStruct->UART_Mode | UART_InitStruct->UART_Parity;
+
 	/** Write to UART CSR **/
 	UARTx->CSR = (uint32_t)integerdivider << 16;
+	/** Write to UART CR **/
+	UARTx->CR = tmpreg;
+
 }
 
 
