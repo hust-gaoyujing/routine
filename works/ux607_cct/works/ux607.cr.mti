@@ -296,6 +296,13 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	ux607_subsys_srams
 
+} {} {}} D:/prj/routine/works/ux607_cct/tb/tb_monitor.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/tb/tb_monitor.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module tb_monitor
+
+Top level modules:
+	tb_monitor
+
 } {} {}} D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_subsys_axi2sram.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/works/ux607_cct/ux607/design/subsys/ux607_subsys_axi2sram.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module ux607_subsys_axi2sram
