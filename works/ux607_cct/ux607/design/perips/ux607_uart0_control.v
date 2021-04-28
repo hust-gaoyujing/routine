@@ -100,7 +100,7 @@ module uart_ctrl(
 		else if(cmd_handshake_rd) begin 
 			case(cmd_addr) 
 				`DATA_REG_ADDR	: rsp_rdata <= data_reg_rd;
-				`UART_CSR_ADDR 	: rsp_rdata <= {parity_error,uart_csr[19:8],3'b0,rx_ok,3'b0,tx_ok};
+				`UART_CSR_ADDR 	: rsp_rdata <= {uart_csr[31:16],7'b0,parity_error,3'b0,rx_ok,3'b0,tx_ok};
 				`UART_CTRL_ADDR : rsp_rdata <= uart_ctrl;
 				default			: rsp_rdata <= 32'h0;
 			endcase
@@ -118,7 +118,7 @@ module uart_ctrl(
 		else if(cmd_handshake_wr) begin 
 			case(cmd_addr) 
                 `DATA_REG_ADDR	: data_reg <= cmd_wdata[7:0];	
-                `UART_CSR_ADDR 	: uart_csr[31:8] <= cmd_wdata[31:8];
+                `UART_CSR_ADDR 	: uart_csr[31:16] <= cmd_wdata[31:16];
                 `UART_CTRL_ADDR : uart_ctrl <= cmd_wdata;
 				default			: begin 
 				end 
@@ -127,7 +127,7 @@ module uart_ctrl(
 		/////need or not?????
 		else begin 
 			data_reg <= data_reg;	
-			uart_csr[31:8] <= uart_csr[31:8];
+			uart_csr[31:16] <= uart_csr[31:16];
 			uart_ctrl <= uart_ctrl;
 		end
 

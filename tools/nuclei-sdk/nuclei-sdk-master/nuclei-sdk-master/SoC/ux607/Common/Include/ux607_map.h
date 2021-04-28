@@ -11,7 +11,7 @@ typedef struct
 {
   __IO uint32_t CSR;
   __IO uint32_t CR;
-  __IO uint32_t DR;
+  __IO uint8_t DR;
 } UART_TypeDef;
 
 

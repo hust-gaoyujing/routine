@@ -30,7 +30,6 @@ add wave -noupdate -expand -group top -expand -group tb_monitor -expand -group t
 add wave -noupdate -expand -group top -expand -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/pc_vld
 add wave -noupdate -expand -group top -expand -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/pc_write_to_host_flag
 add wave -noupdate -expand -group top -expand -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/i_valid
-add wave -noupdate -expand -group top -expand -group tb_monitor -expand -group tb_wait_pass /tb_top/u_tb_monitor/u_tb_wait_pass/i_ready
 add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_clk
 add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_force_irq
 add wave -noupdate -expand -group top -group tb_irq_gen /tb_top/u_tb_irq_gen/tb_force_resp_err
@@ -1169,6 +1168,7 @@ add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_to
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ppi_ahbl_hresp
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ppi_ahbl_hready
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ppi_ahbl_clk_en
+add wave -noupdate -expand -group core /tb_top/u_tb_monitor/u_tb_wait_pass/i_ready
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ilm_cs
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ilm_byte_we
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ilm_wdata
@@ -1176,9 +1176,9 @@ add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_to
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_cause
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/clk_ilm_ram
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ilm_addr
+add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/vapgj050raiah87lnzt_a
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_iaddr
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_instr
-add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/vapgj050raiah87lnzt_a
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_ivalid
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_iexception
 add wave -noupdate -expand -group core /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_interrupt
@@ -3184,125 +3184,125 @@ add wave -noupdate -group uartgpio /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_
 add wave -noupdate -group uartgpio /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_uart0_pins/io_pins_txd_o_ie
 add wave -noupdate -group uartgpio /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_uart0_pins/io_pins_txd_o_pue
 add wave -noupdate -group uartgpio /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_uart0_pins/io_pins_txd_o_ds
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/clk
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rst_n
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/i_icb_cmd_valid
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/i_icb_cmd_ready
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/i_icb_cmd_addr
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/i_icb_cmd_read
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/i_icb_cmd_wdata
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/i_icb_rsp_valid
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/i_icb_rsp_ready
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/i_icb_rsp_rdata
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/io_interrupts_0_0
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/io_port_txd
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/io_port_rxd
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/uart_csr
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/uart_ctrl
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/data_reg_wr
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/data_reg_rd
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/tx_ok
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rx_ok
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/divisor
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_en
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/tx_en
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rx_en
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/uart_clk_en
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/no_parity
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ev_parity
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/parity_error
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/wr_data_flag
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rd_data_flag
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/tx_data_sample
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rx_data_sample
-add wave -noupdate -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/uart_gate_clk
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/clk
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/rst_n
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/i_icb_cmd_valid
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/i_icb_cmd_ready
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/i_icb_cmd_addr
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/i_icb_cmd_read
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/i_icb_cmd_wdata
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/i_icb_rsp_valid
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/i_icb_rsp_ready
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/i_icb_rsp_rdata
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/tx_ok
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/rx_ok
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/parity_error
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/data_reg_rd
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/data_reg_wr
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/uart_csr_o
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/uart_ctrl_o
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/io_interrupts_0_0
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/rd_data_flag
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/wr_data_flag
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/uart_csr
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/uart_ctrl
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/data_reg
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/cmd_valid
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/cmd_ready
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/cmd_addr
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/cmd_read
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/cmd_wdata
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/rsp_valid
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/rsp_ready
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/rsp_rdata
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/cmd_handshake_wr
-add wave -noupdate -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/cmd_handshake_rd
-add wave -noupdate -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/clk
-add wave -noupdate -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/tx_data_sample
-add wave -noupdate -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/rst_n
-add wave -noupdate -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/tx_en
-add wave -noupdate -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/no_parity
-add wave -noupdate -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/ev_parity
-add wave -noupdate -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/tx_start
-add wave -noupdate -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/txd_in
-add wave -noupdate -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/tx_ok
-add wave -noupdate -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/txd
-add wave -noupdate -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/tx_cnt
-add wave -noupdate -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/txd_data
-add wave -noupdate -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/txd_out_r
-add wave -noupdate -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/tx_current_state
-add wave -noupdate -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/tx_next_state
-add wave -noupdate -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/tx_on_flag
-add wave -noupdate -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/even_parity
-add wave -noupdate -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/has_even_parity
-add wave -noupdate -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/has_odd_parity
-add wave -noupdate -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/tx_pos
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/clk
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rx_data_sample
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rst_n
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rx_en
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/no_parity
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/ev_parity
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rd_data_flag
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rxd
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rx_ok
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rxd_out
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/parity_error
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rx_cnt
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/sample_cnt
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rxd_out_r
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rx_current_state
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rx_next_state
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/tmp_a
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/tmp_b
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/tmp_c
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/tmp_vote
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/parity_result
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/has_even_parity
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/has_odd_parity
-add wave -noupdate -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rx_pos
-add wave -noupdate -group uart0_top -group baud_gen /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_gen/clk
-add wave -noupdate -group uart0_top -group baud_gen /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_gen/rst_n
-add wave -noupdate -group uart0_top -group baud_gen /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_gen/baud_en
-add wave -noupdate -group uart0_top -group baud_gen /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_gen/divisor
-add wave -noupdate -group uart0_top -group baud_gen /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_gen/tx_data_sample
-add wave -noupdate -group uart0_top -group baud_gen /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_gen/rx_data_sample
-add wave -noupdate -group uart0_top -group baud_gen /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_gen/sample_cnt
-add wave -noupdate -group uart0_top -group baud_gen /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_gen/baud_cnt
-add wave -noupdate -group uart0_top -group baud_gen /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_gen/baud_clk_r
-add wave -noupdate -group uart0_top -group baud_gen /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_gen/sample_clk_r
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/clk
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rst_n
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/i_icb_cmd_valid
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/i_icb_cmd_ready
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/i_icb_cmd_addr
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/i_icb_cmd_read
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/i_icb_cmd_wdata
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/i_icb_rsp_valid
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/i_icb_rsp_ready
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/i_icb_rsp_rdata
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/io_interrupts_0_0
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/io_port_txd
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/io_port_rxd
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/uart_csr
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/uart_ctrl
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/data_reg_wr
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/data_reg_rd
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/tx_ok
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rx_ok
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/divisor
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_en
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/tx_en
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rx_en
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/uart_clk_en
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/no_parity
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ev_parity
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/parity_error
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/wr_data_flag
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rd_data_flag
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/tx_data_sample
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rx_data_sample
+add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/uart_gate_clk
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/clk
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/rst_n
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/i_icb_cmd_valid
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/i_icb_cmd_ready
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/i_icb_cmd_addr
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/i_icb_cmd_read
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/i_icb_cmd_wdata
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/i_icb_rsp_valid
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/i_icb_rsp_ready
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/i_icb_rsp_rdata
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/tx_ok
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/rx_ok
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/parity_error
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/data_reg_rd
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/data_reg_wr
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/uart_csr_o
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/uart_ctrl_o
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/io_interrupts_0_0
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/rd_data_flag
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/wr_data_flag
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/uart_csr
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/uart_ctrl
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/data_reg
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/cmd_valid
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/cmd_ready
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/cmd_addr
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/cmd_read
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/cmd_wdata
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/rsp_valid
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/rsp_ready
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/rsp_rdata
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/cmd_handshake_wr
+add wave -noupdate -expand -group uart0_top -group ctrl /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/ctrl/cmd_handshake_rd
+add wave -noupdate -expand -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/clk
+add wave -noupdate -expand -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/tx_data_sample
+add wave -noupdate -expand -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/rst_n
+add wave -noupdate -expand -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/tx_en
+add wave -noupdate -expand -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/no_parity
+add wave -noupdate -expand -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/ev_parity
+add wave -noupdate -expand -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/tx_start
+add wave -noupdate -expand -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/txd_in
+add wave -noupdate -expand -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/tx_ok
+add wave -noupdate -expand -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/txd
+add wave -noupdate -expand -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/tx_cnt
+add wave -noupdate -expand -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/txd_data
+add wave -noupdate -expand -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/txd_out_r
+add wave -noupdate -expand -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/tx_current_state
+add wave -noupdate -expand -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/tx_next_state
+add wave -noupdate -expand -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/tx_on_flag
+add wave -noupdate -expand -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/even_parity
+add wave -noupdate -expand -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/has_even_parity
+add wave -noupdate -expand -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/has_odd_parity
+add wave -noupdate -expand -group uart0_top -group txd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/txd/tx_pos
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/clk
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rx_data_sample
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rst_n
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rx_en
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/no_parity
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/ev_parity
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rd_data_flag
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rxd
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rx_ok
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rxd_out
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/parity_error
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rx_cnt
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/sample_cnt
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rxd_out_r
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rx_current_state
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rx_next_state
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/tmp_a
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/tmp_b
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/tmp_c
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/tmp_vote
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/parity_result
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/has_even_parity
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/has_odd_parity
+add wave -noupdate -expand -group uart0_top -group rxd /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rxd/rx_pos
+add wave -noupdate -expand -group uart0_top -group baud_gen /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_gen/clk
+add wave -noupdate -expand -group uart0_top -group baud_gen /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_gen/rst_n
+add wave -noupdate -expand -group uart0_top -group baud_gen /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_gen/baud_en
+add wave -noupdate -expand -group uart0_top -group baud_gen /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_gen/divisor
+add wave -noupdate -expand -group uart0_top -group baud_gen /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_gen/tx_data_sample
+add wave -noupdate -expand -group uart0_top -group baud_gen /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_gen/rx_data_sample
+add wave -noupdate -expand -group uart0_top -group baud_gen /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_gen/sample_cnt
+add wave -noupdate -expand -group uart0_top -group baud_gen /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_gen/baud_cnt
+add wave -noupdate -expand -group uart0_top -group baud_gen /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_gen/baud_clk_r
+add wave -noupdate -expand -group uart0_top -group baud_gen /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/baud_gen/sample_clk_r
 add wave -noupdate -group uart1_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart1_top/i_icb_cmd_addr
 add wave -noupdate -group uart1_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart1_top/clk
 add wave -noupdate -group uart1_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart1_top/rst_n
@@ -3357,7 +3357,7 @@ add wave -noupdate -group uart1_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u
 add wave -noupdate -group uart1_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart1_top/io_in_0_e_valid
 add wave -noupdate -group uart1_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart1_top/io_in_0_e_bits_sink
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {9988733 ps} 0} {{Cursor 2} {57160499 ps} 0}
+WaveRestoreCursors {{Cursor 1} {14966026 ps} 0} {{Cursor 2} {57160499 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 202
 configure wave -valuecolwidth 144
@@ -3373,4 +3373,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {9160526 ps} {11309431 ps}
+WaveRestoreZoom {14938524 ps} {15032215 ps}

@@ -13,8 +13,15 @@ int main(void)
 { 
 	TEST_START;
 	
+	//variable define 
 	UART_InitTypeDef UART_InitStructure;
+	FlagStatus flag;
+	u32 i,cnt=0;
+	u32 for_delay;
+	u32 error_cnt=0;
 	
+	
+	//array define 
 	char data_in[256] ={
 	0xF3, 0x2F, 0x00, 0x7D, 0x93, 0xFF, 0x0F, 0x20, 0x63, 0x9A, 0x0F, 0x00, 0xF3, 0x2F, 0x20, 0x34,	
 	0x93, 0xFF, 0xFF, 0x7F, 0x93, 0xCF, 0x1F, 0x00, 0x63, 0x82, 0x0F, 0x22, 0x81, 0x40, 0x01, 0x41,	
@@ -33,16 +40,55 @@ int main(void)
 	0x9B, 0x85, 0xF5, 0xFF, 0x73, 0x25, 0x20, 0x34, 0x6D, 0x8D, 0xC9, 0x45, 0x63, 0x0B, 0xB5, 0x02,	
 	0x9B, 0x85, 0xF5, 0xFF, 0x73, 0x25, 0x20, 0x34, 0x6D, 0x8D, 0xC9, 0x45, 0x63, 0x0B, 0xB5, 0x02	
 	};
+	char data_out[256];
+	
 	
 	UART_StructInit(&UART_InitStructure);
 	//
 	///** Configure UART **/
 	UART_Init(UART, &UART_InitStructure);
 	
-	while(UART_GetFlagStatus(UART_TypeDef* UARTx, UART_FLAG_TX_OK)
+	//delay for 
+	while(cnt < 100)  {
+		for_delay = UART->CSR;	
+		cnt++;
+	}
+	
+	UART_SendData(UART, 0xf3);
+	flag = UART_GetFlagStatus(UART, UART_FLAG_TX_OK);
+	while( flag != SET){
+		flag = UART_GetFlagStatus(UART, UART_FLAG_TX_OK);
+	}
+	flag = UART_GetFlagStatus(UART, UART_FLAG_TX_OK);
+	while( flag == SET){
+		flag = UART_GetFlagStatus(UART, UART_FLAG_TX_OK);
+	}
 	
 	
-	TEST_PASS;
+	////send data and receive data
+	//for(i = 0;i < 256;i++){
+	//	UART_SendData(UART, data_in[i]);
+	//	flag = UART_GetFlagStatus(UART, UART_FLAG_TX_OK);
+	//	while( flag != SET){
+	//		flag = UART_GetFlagStatus(UART, UART_FLAG_TX_OK);
+	//	}
+	//	flag = UART_GetFlagStatus(UART, UART_FLAG_TX_OK);
+	//	while( flag == SET){
+	//		flag = UART_GetFlagStatus(UART, UART_FLAG_TX_OK);
+	//	}
+	//	data_out[i] = UART_ReceiveData(UART);
+	//}
+	//	
+	////monitor and compare
+	//for(i = 0;i < 256;i++){
+	//	if(data_out[i] != data_in[i])
+	//		error_cnt ++;
+	//}
+	
+	if(error_cnt != 0) 
+		TEST_FAIL;
+	if(error_cnt == 0)
+		TEST_PASS;
 	
 }
 

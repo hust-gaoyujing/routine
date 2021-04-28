@@ -40,11 +40,11 @@ void UART_Init(UART_TypeDef* UARTx, UART_InitTypeDef* UART_InitStruct)
 	
 	/** Determine the integer part **/
     /** Integer part computing in case Oversampling mode is 16 Samples **/
-    integerdivider = ((sysclock / (16 * (UART_InitStruct->UART_BaudRate))) - 0.5);
+    //integerdivider = ((sysclock / (16 * (UART_InitStruct->UART_BaudRate))) - 1);
 	//if(sysclock == 16) 							//16M
 	//	integerdivider = 0x8;
-	//else if(sysclock == 144)					//144M
-	//	integerdivider = 0x4d;
+	if(sysclock == 144000000)					//144M
+		integerdivider = 0x4d;
 	
 /**---------------------------- UART CR Configuration -----------------------**/
 	/**tmpreg = UART->CR; **/
@@ -53,6 +53,7 @@ void UART_Init(UART_TypeDef* UARTx, UART_InitTypeDef* UART_InitStruct)
 
 	/** Write to UART CSR **/
 	UARTx->CSR = (uint32_t)integerdivider << 16;
+
 	/** Write to UART CR **/
 	UARTx->CR = tmpreg;
 
@@ -116,7 +117,7 @@ FlagStatus UART_GetFlagStatus(UART_TypeDef* UARTx, uint32_t UART_FLAG)
 void UART_SendData(UART_TypeDef* UARTx, uint8_t Data)
 {
   /** Transmit Data **/
-  UARTx->DR = Data ;
+  UARTx->DR = (uint8_t)Data ;
 }
 
 

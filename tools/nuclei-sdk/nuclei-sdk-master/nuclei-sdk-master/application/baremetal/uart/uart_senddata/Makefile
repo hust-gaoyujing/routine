@@ -1,4 +1,4 @@
-TARGET = uart_test
+TARGET = uart_senddata
 
 NUCLEI_SDK_ROOT = ../../../..
 
