@@ -3184,6 +3184,23 @@ add wave -noupdate -group uartgpio /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_
 add wave -noupdate -group uartgpio /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_uart0_pins/io_pins_txd_o_ie
 add wave -noupdate -group uartgpio /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_uart0_pins/io_pins_txd_o_pue
 add wave -noupdate -group uartgpio /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_uart0_pins/io_pins_txd_o_ds
+add wave -noupdate /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ilm_cs
+add wave -noupdate /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ilm_byte_we
+add wave -noupdate /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ilm_wdata
+add wave -noupdate /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ilm_rdata
+add wave -noupdate /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_cause
+add wave -noupdate /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/clk_ilm_ram
+add wave -noupdate /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/ilm_addr
+add wave -noupdate /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/vapgj050raiah87lnzt_a
+add wave -noupdate /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_iaddr
+add wave -noupdate /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_instr
+add wave -noupdate /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_ivalid
+add wave -noupdate /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_iexception
+add wave -noupdate /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_interrupt
+add wave -noupdate /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_tval
+add wave -noupdate /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_priv
+add wave -noupdate /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_bjp_taken
+add wave -noupdate /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_core/trace_dmode
 add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/clk
 add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/rst_n
 add wave -noupdate -expand -group uart0_top /tb_top/u_ux607_soc_top/u_ux607_subsys_top/u_ux607_subsys_main/u_ux607_subsys_perips/u_ux607_uart0_top/i_icb_cmd_valid

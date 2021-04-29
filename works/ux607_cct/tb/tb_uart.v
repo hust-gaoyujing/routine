@@ -6,6 +6,8 @@ module tb_uart(
   input  tb_clk,
   input  tb_rst_n
   );
+	localparam ILM_RAM_DP = `UX607_ILM_RAM_DP;
+	
 	wire  							interrupts_0_0;                
 	wire  							port_txd;
 	reg		 						port_rxd;
@@ -32,21 +34,20 @@ module tb_uart(
 	
 	//LOAD DATA TO DATA_TX
 	initial begin 
-		$readmemh("uart_data.hex", data_in);
+		//$readmemh("uart_data.hex", data_in);
 	end 
 	
 	//VERIFICATION MAIN	
 	initial begin
-	//	reg_setting;
-	//	if(TEST_TYPE == "TX") begin 
-	//		force port_rxd = port_txd;
-	//		data_tx;
-	//	end 
-	//	else if(TEST_TYPE == "RX")
-	//		data_rx;
-	//
-	//	#10000;
-	//	$finish;
+
+	end 
+	
+	//monitor the error_num
+	always @(`ILM_MEM[ILM_RAM_DP-1][7:0]) begin 
+		if(`ILM_MEM[ILM_RAM_DP-1][7:0] == 8'h0) begin
+			$display("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+			$display("No. %d trans failed",`ILM_MEM[ILM_RAM_DP-1][7:0]);
+		end
 	end 
 	
 	task monitor;

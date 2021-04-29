@@ -13,7 +13,7 @@
 
 #define __REG(mem_addr)	(*(volatile u32 *)(mem_addr))
 
-#define	TEST_START		__REG(0x8000fffc) = 0x11111111;
-#define	TEST_PASS		__REG(0x8000fffc) = 0x88888888;
-#define	TEST_FAIL		__REG(0x8000fffc) = 0x44444444;
-#define	TEST_OVER		__REG(0x8000fffc) = 0x66666666;
+#define	TEST_START		__REG(0x8000fffc) = 0x11111111
+#define	TEST_PASS		__REG(0x8000fffc) = 0x88888888
+#define	TEST_FAIL		__REG(0x8000fffc) = 0x44444444
+#define	TEST_OVER		__REG(0x8000fffc) = 0x66666666

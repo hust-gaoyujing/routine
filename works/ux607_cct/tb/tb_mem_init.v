@@ -30,7 +30,11 @@ module tb_mem_init(
       if($value$plusargs("TESTCASE=%s",testcase))begin
         //$display("TESTCASE=%s",testcase);
       end
-
+	
+	//Initial ilm_mem
+	for(i=0;i<ILM_RAM_DP*`UX607_ILM_WMSK_WIDTH;i=i+1) begin 
+		ilm_mem[i] = 8'b0;
+	end 
 
     $readmemh({testcase, ".verilog"}, ilm_mem);
 `ifdef UX607_ILM_DATA_WIDTH_IS_32
@@ -59,7 +63,7 @@ module tb_mem_init(
 `endif
 
 `ifdef UX607_ILM_DATA_WIDTH_IS_64
-    for (i=0;i<(ILM_RAM_DP);i=i+1) begin
+	for (i=0;i<(ILM_RAM_DP);i=i+1) begin
         `ILM_MEM[i][00+7:00] = ilm_mem[i*8+0];
         `ILM_MEM[i][08+7:08] = ilm_mem[i*8+1];
         `ILM_MEM[i][16+7:16] = ilm_mem[i*8+2];
@@ -69,7 +73,6 @@ module tb_mem_init(
         `ILM_MEM[i][48+7:48] = ilm_mem[i*8+6];
         `ILM_MEM[i][56+7:56] = ilm_mem[i*8+7];
     end
-
 
     for (i=0;i<(ILM_RAM_DP);i=i+1) begin
         `DLM_MEM0[i][00+7:00] = 8'b0;
@@ -150,9 +153,12 @@ module tb_mem_init(
   
   // when reset happens, intialize ILM again
   always @(negedge (`CPU_CORE_TOP.core_reset_n | `CPU_CORE_TOP.por_reset_n)) begin
-
+	//Initial ilm_mem
+	for(i=0;i<ILM_RAM_DP*`UX607_ILM_WMSK_WIDTH;i=i+1) begin 
+		ilm_mem[i] = 8'b0;
+	end 
+	
     $readmemh({testcase, ".verilog"}, ilm_mem);
-
 `ifdef UX607_ILM_DATA_WIDTH_IS_32
     for (i=0;i<(ILM_RAM_DP);i=i+1) begin
         `ILM_MEM[i][00+7:00] = ilm_mem[i*4+0];
@@ -166,7 +172,7 @@ module tb_mem_init(
     end
 `endif
 `ifdef UX607_ILM_DATA_WIDTH_IS_64
-    for (i=0;i<(ILM_RAM_DP);i=i+1) begin
+    for (i=0;i<(ILM_RAM_DP-100);i=i+1) begin
         `ILM_MEM[i][00+7:00] = ilm_mem[i*8+0];
         `ILM_MEM[i][08+7:08] = ilm_mem[i*8+1];
         `ILM_MEM[i][16+7:16] = ilm_mem[i*8+2];

@@ -95,4 +95,4 @@ void UART_Init(UART_TypeDef* UARTx, UART_InitTypeDef* UART_InitStruct);
 void UART_Cmd(UART_TypeDef* UARTx, FunctionalState NewState);
 FlagStatus UART_GetFlagStatus(UART_TypeDef* UARTx, uint32_t UART_FLAG);
 void UART_SendData(UART_TypeDef* UARTx, uint8_t Data);
-uint32_t UART_ReceiveData(UART_TypeDef* UARTx);
+uint8_t UART_ReceiveData(UART_TypeDef* UARTx);
