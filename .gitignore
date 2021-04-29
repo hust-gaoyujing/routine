@@ -6,6 +6,7 @@ python*
 
 works/uart/wlf*
 works/ux607_cct/works/wlf*
+works/ux607_cct/works/work
 tools/*
 !tools/nuclei-sdk
 
