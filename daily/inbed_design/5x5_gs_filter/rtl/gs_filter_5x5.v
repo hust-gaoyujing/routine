@@ -11,6 +11,7 @@ module gs_filter_5x5(
 	output				op_valid_out,
 	output	[7:0]		op_data_out
 );
+	parameter KERNEL = 5;
 	
 	//input data mux
 	wire [7:0]	op_data_in;
@@ -120,33 +121,28 @@ module gs_filter_5x5(
 		else
 			step4_0 <= (step3_0 >> 4) + step3_0[3]; 
 			
-	////================  addr valid =====================//
-	//reg addr_valid; 	
-	//wire ad_start_flag;
-	//wire ad_end_flag;
-	//
-	//assign ad_start_flag = (!op_addr_in[7:0]) ? 1'b1 : 1'b0;
-	//assign ad_end_flag = (op_addr_in[7:0] == 8'hff) ? 1'b1; 1'b0;
-	//
-	//always @(posedge clk or negedge rst_n)
-	//	if(!rst_n) 
-	//		addr_valid <= 1'b0;
-	//	else if(ad_start_flag)
-	//		addr_valid <= 1'b1;
-	//	else if(ad_end_flag)
-	//		addr_valid <= 1'b0;
-	
 	//================  op_valid_out ======================//
-	reg [8:0]	valid_shift_r;
-	assign op_valid_out = valid_shift_r[8];
+	reg [KERNEL:1]	valid_shift_r;
+	assign op_valid_out = valid_shift_r[KERNEL];
 	
 	always @(posedge clk or negedge rst_n)
 		if(!rst_n)
-			valid_shift_r <= 9'b0;
+			valid_shift_r <= KERNEL'b0;
 		else if(start)
-			valid_shift_r <= 9'b0;
+			valid_shift_r <= KERNEL'b0;
 		else 
-			valid_shift_r <= {valid_shift_r[7:0] , op_valid_in};
+			valid_shift_r <= {valid_shift_r[KERNEL - 1:1] , op_valid_in};
 	
-
+	
+	//================for debug ====================//
+	reg [8:0]  addr_cnt;
+	always @(posedge clk or negedge rst_n)
+		if(!rst_n)
+			addr_cnt <= 9'h1fe;
+		else if(addr_cnt == 9'h101)
+			addr_cnt <= 9'h1fe;
+		else if(op_valid_in)
+			addr_cnt <= addr_cnt + 1;
+	
+	
 endmodule

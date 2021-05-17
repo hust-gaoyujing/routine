@@ -21,7 +21,7 @@ module gs_dt_rd(
 	
 	wire x_end_flag;
 	wire y_end_flag;
-	wire y_half_flag;
+	//wire y_half_flag;
 	
 	assign x_end_flag = (reg_x == X_END) ? 1'b1 : 1'b0;
 	assign y_end_flag = (reg_y == 9'h1ff) ? 1'b1 : 1'b0;
