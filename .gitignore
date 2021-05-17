@@ -7,6 +7,10 @@ python*
 works/uart/wlf*
 works/ux607_cct/works/wlf*
 works/ux607_cct/works/work
+works/gs_filter/wlf*
+works/gs_filter/work
+
+
 tools/*
 !tools/nuclei-sdk
 
