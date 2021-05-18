@@ -38,7 +38,6 @@ module dog_top(
 	dog_op 	u_dog_op(
 		.clk				(	clk				),	
 		.rst_n       		(	rst_n			),
-		.start				(	start			),
 		.ram0_valid_in 		(	ram0_valid_in   ),	
 		.ram0_data_in  		(	ram0_data_in  	),	
 		.ram1_valid_in 		(	ram1_valid_in   ),	

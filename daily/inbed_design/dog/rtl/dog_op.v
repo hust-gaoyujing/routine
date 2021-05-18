@@ -1,8 +1,25 @@
 
+// 7*7 Gaussian Blur: 
+//      do[n]	= 	di[n-3]  + 	6*di[n-2]  +  15*di[n-1]  +  20*di[n]  +  15*di[n+1]  +  6*di[n+2]  +  di[n+3]
+//			  	= 	(di[n-3]  + di[n+3])  +  20*di[n]  +  6*(di[n-2]  + di[n+2])  +  15*(di[n-1]  +  di[n+1]) 	
+//        			   \_____ + _____/        \ * /      6 * (  \____ + ____/  )  +   15*(  \____ + ____/  )  
+//Level_1					step1_0    +      step1_1  +    6 *    step1_2        +      15 *   step1_3 
+//								\______ + ______/      +     \__ * __/            +       \___ * ___/         
+//Level_2							 step2_0	       +       step2_1            +       
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 module gs_filter_5x5(
 	input 				clk,
 	input 				rst_n,
-	input				start,
 	input				ram0_valid_in,   
 	input	[7:0]		ram0_data_in,  	
 	input				ram1_valid_in,   
@@ -13,19 +30,22 @@ module gs_filter_5x5(
 );
 	parameter KERNEL = 5;
 	
-	//input data mux
+	//=============== input data mux ====================//
 	wire [7:0]	op_data_in;
 	wire 		op_valid_in;
 	
 	assign op_valid_in = ram0_valid_in ^ ram1_valid_in;
 	assign op_data_in = ram0_valid_in ? ram0_data_in : ram1_data_in; 
 	
+	//==================== fifo ==========================// 
 	//fifo for storing the input data
 	reg		[7:0]		op_data_0;
 	reg		[7:0]		op_data_1;
 	reg		[7:0]		op_data_2;
 	reg		[7:0]		op_data_3;
 	reg		[7:0]		op_data_4;
+	reg		[7:0]		op_data_5;
+	reg		[7:0]		op_data_6;
 	
 	always @(posedge clk or negedge rst_n)
 		if(!rst_n) begin 
@@ -34,13 +54,8 @@ module gs_filter_5x5(
 		    op_data_2 <= 8'b0;
 		    op_data_3 <= 8'b0;
 		    op_data_4 <= 8'b0;
-		end 
-		else if(start) begin 
-			op_data_0 <= 8'b0;
-		    op_data_1 <= 8'b0;
-		    op_data_2 <= 8'b0;
-		    op_data_3 <= 8'b0;
-		    op_data_4 <= 8'b0;
+		    op_data_5 <= 8'b0;
+		    op_data_6 <= 8'b0;
 		end 
 		else if(op_valid_in) begin 
 			op_data_0 <= op_data_in;		
@@ -48,14 +63,17 @@ module gs_filter_5x5(
 		    op_data_2 <= op_data_1 ;
 		    op_data_3 <= op_data_2 ;
 		    op_data_4 <= op_data_3 ;
+		    op_data_5 <= op_data_4 ;
+		    op_data_6 <= op_data_5 ;
 		end 
 	
-	//========== Calculation of op_data_out ===============//
+	//========== Calculation of 7*7 gs_blur ================//
 	//temporary reg for storing calculation result
 	//step 1
-	reg 	[10:0] 		step1_0;
-	reg 	[10:0] 		step1_1;
-	reg 	[10:0] 		step1_2;
+	reg 	[8:0] 		step1_0; 	
+	reg 	[8:0] 		step1_1;	
+	reg 	[8:0] 		step1_2;
+	reg 	[7:0] 		step1_3;
 	//step 2
 	reg 	[11:0]		step2_0;
 	reg		[10:0]		step2_1;
@@ -73,11 +91,6 @@ module gs_filter_5x5(
 		    step1_1 <= 11'b0;
 		    step1_2 <= 11'b0;
 		end 
-		else if(start) begin 
-			step1_0 <= 11'b0;
-		    step1_1 <= 11'b0;
-		    step1_2 <= 11'b0;
-		end 
 		else begin 
 		//else if(op_valid_in) begin 
 			step1_0 <= op_data_0 		+ (op_data_1 << 2);
@@ -91,10 +104,6 @@ module gs_filter_5x5(
 			step2_0 <= 12'b0;
 		    step2_1	<= 11'b0;
 		end 
-		else if(start) begin 
-			step2_0 <= 12'b0;
-		    step2_1	<= 11'b0;
-		end 
 		else begin 
 		//else if(op_valid_in) begin 
 			step2_0 <= step1_0 + step1_1;
@@ -105,8 +114,6 @@ module gs_filter_5x5(
 	always @(posedge clk or negedge rst_n)
 		if(!rst_n)
 			step3_0 <= 12'b0;
-		else if(start)
-			step3_0 <= 12'b0;
 		else
 		//else if(op_valid_in) 
 			step3_0 <= step2_0 + step2_1; 
@@ -114,8 +121,6 @@ module gs_filter_5x5(
 	//step 4
 	always @(posedge clk or negedge rst_n)
 		if(!rst_n) 
-			step4_0 <= 8'b0;
-		else if(start)
 			step4_0 <= 8'b0;
 		//else if(op_valid_in)
 		else
@@ -127,9 +132,7 @@ module gs_filter_5x5(
 	
 	always @(posedge clk or negedge rst_n)
 		if(!rst_n)
-			valid_shift_r <= KERNEL'b0;
-		else if(start)
-			valid_shift_r <= KERNEL'b0;
+			valid_shift_r <= 0;
 		else 
 			valid_shift_r <= {valid_shift_r[KERNEL - 1:1] , op_valid_in};
 	
