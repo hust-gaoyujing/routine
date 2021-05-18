@@ -3,16 +3,16 @@
 //      do[n]	= 	di[n-3]  + 	6*di[n-2]  +  15*di[n-1]  +  20*di[n]  +  15*di[n+1]  +  6*di[n+2]  +  di[n+3]
 //			  	= 	(di[n-3]  + di[n+3])  +  20*di[n]  +  6*(di[n-2]  + di[n+2])  +  15*(di[n-1]  +  di[n+1]) 	
 //        			   \_____ + _____/        \ * /      6 * (  \____ + ____/  )  +   15*(  \____ + ____/  )  
-//Level_1					step1_0    +      step1_1  +    6 *    step1_2        +      15 *   step1_3 
-//								\______ + ______/      +     \__ * __/            +       \___ * ___/         
-//Level_2							 step2_0	       +       step2_1            +       
-//
-//
-//
-//
-//
-//
-//
+//Levell					step1_0    +      step1_1  +    6 *    step1_2        +      16    *   step1_3   + (-step1_3)
+//								\______ + ______/      +     \__ * __/            +       \___ * ___/              /
+//Level2 							 step2_0	       +       step2_1            +          step2_2      +     step2_3        
+//                                      \_____________ + _________/               +             \________ + _____/
+//Level3                                             step3_0                      +                    step3_1
+//                                                     \_________________________ + _____________________/
+//Level4                                                                        step4_0
+//																  				  | 	
+//																				(/  %)
+//Level5                                  										step5_0
 //
 //
 //
@@ -71,60 +71,78 @@ module gs_filter_5x5(
 	//temporary reg for storing calculation result
 	//step 1
 	reg 	[8:0] 		step1_0; 	
-	reg 	[8:0] 		step1_1;	
+	reg 	[11:0] 		step1_1;	
 	reg 	[8:0] 		step1_2;
-	reg 	[7:0] 		step1_3;
+	reg 	[8:0] 		step1_3;
 	//step 2
-	reg 	[11:0]		step2_0;
+	reg 	[12:0]		step2_0;
 	reg		[10:0]		step2_1;
+	reg		[12:0]		step2_2;
+	reg		[8:0]		step2_3;
 	//step 3
-	reg		[11:0]		step3_0;
+	reg		[13:0]		step3_0;
+	reg		[12:0]		step3_1;
 	//step 4
-	reg 	[7:0]		step4_0;
+	reg 	[13:0]		step4_0;
+	//step 5
+	reg 	[7:0]		step5_0;
 	
 	assign op_data_out = step4_0;
 	//calculation 
 	//step 1
 	always @(posedge clk or negedge rst_n)
 		if(!rst_n) begin 
-			step1_0 <= 11'b0;
-		    step1_1 <= 11'b0;
-		    step1_2 <= 11'b0;
+			step1_0 <= 0;
+		    step1_1 <= 0;
+		    step1_2 <= 0;
+		    step1_3 <= 0;
 		end 
 		else begin 
-		//else if(op_valid_in) begin 
-			step1_0 <= op_data_0 		+ (op_data_1 << 2);
-		    step1_1 <= (op_data_2 << 2) + (op_data_2 << 1);
-		    step1_2 <= (op_data_3 << 2) + op_data_4		;
+			step1_0 <= 	{1'b0 , op_data_0 		} + {1'b0 , op_data_6 		};
+		    step1_1 <= 	{		op_data_3 , 4'b0} + {2'b0 , op_data_3 , 2'b0};
+		    step1_2 <= 	{1'b0 , op_data_1 		} + {1'b0 , op_data_5 		};
+		    step1_3 <= 	{1'b0 , op_data_2 		} + {1'b0 , op_data_4 		};
 		end
 	
 	//step 2
 	always @(posedge clk or negedge rst_n)
 		if(!rst_n) begin 
-			step2_0 <= 12'b0;
-		    step2_1	<= 11'b0;
+			step2_0 <= 0;
+		    step2_1	<= 0;
+		    step2_2	<= 0;
+		    step2_3	<= 0;
 		end 
 		else begin 
-		//else if(op_valid_in) begin 
-			step2_0 <= step1_0 + step1_1;
-		    step2_1 <= step1_2;
+			step2_0 <= 	{4'b0 , step1_0 ,		} + {1'b0 , step1_1			};
+		    step2_1 <=  {   	step1_2 , 2'b0	} + {    	step1_2 , 1'b0	};
+		    step2_2 <=  {   	step1_3 , 4'b0	} 							 ;
+		    step2_3 <=  (       ~step1_3		) +  1						 ;
 		end 
 	
 	//step 3
 	always @(posedge clk or negedge rst_n)
-		if(!rst_n)
-			step3_0 <= 12'b0;
-		else
-		//else if(op_valid_in) 
-			step3_0 <= step2_0 + step2_1; 
-		
+		if(!rst_n) begin 
+			step3_0 <= 0;
+			step3_1 <= 0;
+		end 
+		else begin 
+			step3_0 <=  {1'b0 , step2_0			} + {3'b0 , step2_1			}; 
+			step3_1 <= 	{       step2_2 		} + {4'b0 , step2_3			}; 
+		end 	
+
 	//step 4
 	always @(posedge clk or negedge rst_n)
 		if(!rst_n) 
-			step4_0 <= 8'b0;
-		//else if(op_valid_in)
+			step4_0 <= 0;
 		else
-			step4_0 <= (step3_0 >> 4) + step3_0[3]; 
+			step4_0 <= 	{		step3_0 		} + {1'b0 , step3_1			}; 
+			
+	//step 5
+	always @(posedge clk or negedge rst_n)
+		if(!rst_n) 
+			step5_0 <= 8'b0;
+		else
+			step5_0 <= step3_0[13:6] + step3_0[5]; 
 			
 	//================  op_valid_out ======================//
 	reg [KERNEL:1]	valid_shift_r;
