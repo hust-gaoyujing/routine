@@ -80,9 +80,9 @@ module gs_filter_5x5(
 		end 
 		else begin 
 		//else if(op_valid_in) begin 
-			step1_0 <= op_data_0 		+ (op_data_1 << 2);
-		    step1_1 <= (op_data_2 << 2) + (op_data_2 << 1);
-		    step1_2 <= (op_data_3 << 2) + op_data_4		;
+			step1_0 <= {3'b0 , op_data_0		} + {1'b0 , op_data_1 , 2'b0};
+		    step1_1 <= {1'b0 , op_data_2 , 2'b0	} + {2'b0 , op_data_2 , 1'b0};
+		    step1_2 <= {1'b0 , op_data_3 , 2'b0 } + {3'b0 , op_data_4		};
 		end
 	
 	//step 2
@@ -119,7 +119,7 @@ module gs_filter_5x5(
 			step4_0 <= 8'b0;
 		//else if(op_valid_in)
 		else
-			step4_0 <= (step3_0 >> 4) + step3_0[3]; 
+			step4_0 <= step3_0[11:4]  + step3_0[3]; 
 			
 	//================  op_valid_out ======================//
 	reg [KERNEL:1]	valid_shift_r;
@@ -127,9 +127,9 @@ module gs_filter_5x5(
 	
 	always @(posedge clk or negedge rst_n)
 		if(!rst_n)
-			valid_shift_r <= KERNEL'b0;
+			valid_shift_r <= 0;
 		else if(start)
-			valid_shift_r <= KERNEL'b0;
+			valid_shift_r <= 0;
 		else 
 			valid_shift_r <= {valid_shift_r[KERNEL - 1:1] , op_valid_in};
 	

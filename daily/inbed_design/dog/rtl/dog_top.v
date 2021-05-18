@@ -1,6 +1,6 @@
 
 
-module gs_filter_top(
+module dog_top(
 	input 				clk					,
 	input 				rst_n               ,
 	input				start               ,
@@ -23,7 +23,7 @@ module gs_filter_top(
 	wire 			op_wr_valid;
 	wire [7:0]		op_wr_data;
 
-	gs_dt_rd	dt_rd(
+	dog_dt_rd	u_dog_dt_rd(
 		.clk				(	clk				),
 		.rst_n              (	rst_n           ),
 		.start              (	start           ),
@@ -35,7 +35,7 @@ module gs_filter_top(
 	);
 	
 	
-	gs_filter_5x5 	gs_filter(
+	dog_op 	u_dog_op(
 		.clk				(	clk				),	
 		.rst_n       		(	rst_n			),
 		.start				(	start			),
@@ -49,7 +49,7 @@ module gs_filter_top(
 	);
 	
 	
-	gs_dt_wr	dt_wr(
+	dog_dt_wr	u_dog_dt_wr(
 		.clk				(	clk					),
 		.rst_n              (	rst_n               ),
 		.wr_valid_in        (	op_wr_valid         ),

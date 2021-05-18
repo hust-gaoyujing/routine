@@ -1,5 +1,5 @@
 
-module gs_dt_rd(
+module dog_dt_rd(
 	input 				clk,
 	input 				rst_n, 
 	input				start,
@@ -9,13 +9,13 @@ module gs_dt_rd(
 	output				ram1_rd_valid_out,
 	output 	[15:0]		ram1_rd_addr_out
 );
-	parameter	[9:0]	X_START = 10'h3fe; 	//-2
-	parameter	[9:0]	X_END 	= 10'h101;	//257
+	parameter	[9:0]	X_START = 10'h3fe; 	//-3
+	parameter	[9:0]	X_END 	= 10'h101;	//258
 	
-	//reg_x increase from -2 to 257
+	//reg_x increase from -3 to 258
 	//reg_y[7:0] increase from 0 to 255
 	//reg[8] = 0 indicate that reading memory from ram0
-	//reg[8] = 0 indicate that reading memory from ram1
+	//reg[8] = 1 indicate that reading memory from ram1
 	reg [9:0]	reg_x;
 	reg	[8:0]	reg_y;
 	
