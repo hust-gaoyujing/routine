@@ -60,6 +60,4 @@ module dog_top(
 		.done               (	done                )
 	);
 
-
-
 endmodule 

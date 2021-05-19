@@ -1,5 +1,5 @@
 
-module gs_dt_wr(
+module dog_dt_wr(
 	input 				clk,
 	input 				rst_n,
 	input 				wr_valid_in,
@@ -10,7 +10,7 @@ module gs_dt_wr(
 	output	[7:0]		wr_data_out,
 	output				done
 );
-	parameter	[8:0]	X_START = 9'h1fc;	//-4
+	parameter	[8:0]	X_START = 9'h1fa;	//-6
 	parameter	[8:0]	X_END 	= 9'hff;	//255
 	
 	//================ wr_data_out ==========================//
@@ -49,16 +49,10 @@ module gs_dt_wr(
 			reg_y 	<= reg_y + 1;
 	
 	//================  wr_valid_out ========================//
-	//while reg_x is -4,-3,-2,-1, the data_in is invalid
+	//while reg_x is -6 to -1, the data_in is invalid
 	//reg wr_valid_out_r;
 	assign wr_valid_out = wr_valid_in & (~reg_x[8]);
 	
-	//always @(posedge clk or negedge rst_n)
-	//	if(!rst_n)
-	//		wr_valid_out_r <= 1'b0;
-	//	else         
-	//		wr_valid_out_r <= wr_valid_in;
-			
 	//================    done   ========================//
 	assign done = x_end_flag && y_end_flag;  
 	

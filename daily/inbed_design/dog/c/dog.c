@@ -139,7 +139,4 @@ int main(){
 		}
 		fclose(fp_2);	
 	}
-
-
-
 }
