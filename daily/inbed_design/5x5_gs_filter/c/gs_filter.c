@@ -78,7 +78,7 @@ int main(){
 		printf("open file successfully\n");
 		for(x=0; x<256; x++){
 			for(y=0; y<256; y++){
-				fprintf(fp_1,"%x\t",data_tmp[256*x+y]);
+				fprintf(fp_1,"%d\t",data_tmp[256*x+y]);
 			}
 				fprintf(fp_1,"\n");
 		}
@@ -95,7 +95,7 @@ int main(){
 		printf("open file successfully\n");
 		for(x=0; x<256; x++){
 			for(y=0; y<256; y++){
-				fprintf(fp_2,"%x\t",data_out[256*x+y]);
+				fprintf(fp_2,"%d\t",data_out[256*x+y]);
 			}
 				fprintf(fp_2,"\n");
 		}
