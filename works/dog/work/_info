@@ -1,0 +1,524 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/prj/routine/works/gs_filter
+T_opt
+!s110 1621415331
+V38d35[:R5:G2jA<g9Da9_1
+04 6 4 work dog_tb fast 0
+=1-84fdd1753feb-60a4d5a3-127-1d94
+o-quiet -auto_acc_if_foreign -work work +acc=bcglnprst+mem_wrap +acc=bcglnprst+dog_top +acc=bcglnprst+dog_op +acc=bcglnprst+dog_dt_wr +acc=bcglnprst+dog_dt_rd +acc=bcglnprst+mem_ip +acc=bcglnprst+dog_tb
+Z0 tCvgOpt 0
+n@_opt
+OL;O;10.7;67
+vbeh_vlog_ff_ce_clr_v8_4
+Z1 !s110 1621415299
+!i10b 1
+!s100 42e=NBK[:3cz6_D?aPaR_0
+I]GUn_oz<1zi_7E6Y2bOI41
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dD:/prj/routine/works/dog
+Z4 w1620829384
+Z5 8D:/prj/routine/daily/inbed_design/dog/rtl/blk_mem_gen_v8_4.v
+Z6 FD:/prj/routine/daily/inbed_design/dog/rtl/blk_mem_gen_v8_4.v
+L0 148
+Z7 OL;L;10.7;67
+r1
+!s85 0
+31
+Z8 !s108 1621415299.000000
+Z9 !s107 D:/prj/routine/daily/inbed_design/dog/rtl/blk_mem_gen_v8_4.v|
+Z10 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/inbed_design/dog/rtl/blk_mem_gen_v8_4.v|
+!i113 0
+Z11 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R0
+vbeh_vlog_ff_clr_v8_4
+R1
+!i10b 1
+!s100 k;noFNz8FG`5lRY[2FYOR2
+IJFh0o_K03J68i]m_U=7^63
+R2
+R3
+R4
+R5
+R6
+L0 109
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R0
+vbeh_vlog_ff_pre_v8_4
+R1
+!i10b 1
+!s100 D^zWZgZ[V`j7H17A_7O9j1
+IgC>2Q6LaXEI9IdM<_ISKb0
+R2
+R3
+R4
+R5
+R6
+L0 129
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R0
+vbeh_vlog_muxf7_v8_4
+R1
+!i10b 1
+!s100 Tnf9<4lW3DQn3IfUBSKC;3
+IW[HCUnaz2DDVa`>No:]gR3
+R2
+R3
+R4
+R5
+R6
+L0 95
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R0
+vblk_mem_axi_read_wrapper_beh_v8_4
+R1
+!i10b 1
+!s100 :^TnjZ[m7O:=3jjOFFLY^3
+IneN2X<oB3fC2amlS@Ef900
+R2
+R3
+R4
+R5
+R6
+L0 1270
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R0
+vblk_mem_axi_regs_fwd_v8_4
+R1
+!i10b 1
+!s100 >:_VUI^S3H>GD>>V_Z_c`1
+Ie@Dfg@M_G0XE7UA1PzS1;3
+R2
+R3
+R4
+R5
+R6
+L0 1493
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R0
+vblk_mem_axi_write_wrapper_beh_v8_4
+R1
+!i10b 1
+!s100 ^z4O@C>L841M;0klQZ;2[1
+IQYmkM@eaKn_G5c`Y690D72
+R2
+R3
+R4
+R5
+R6
+L0 994
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R0
+vblk_mem_gen_v8_4_4
+R1
+!i10b 1
+!s100 =nLYFVaIF72f_c<l9>=RK2
+I56fMWAfnX?f2kln<gKe3W2
+R2
+R3
+R4
+R5
+R6
+L0 3412
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R0
+vblk_mem_gen_v8_4_4_mem_module
+R1
+!i10b 1
+!s100 ;CLOQDbB@b<Nbaj8SfD0W0
+I:hd82Mi2z3;okagg8V;8K3
+R2
+R3
+R4
+R5
+R6
+L0 1951
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R0
+vblk_mem_gen_v8_4_4_output_stage
+R1
+!i10b 1
+!s100 ]g7_NzI0fLQn]laOT?;JM2
+IM^X>ai`dbeE[a[LOL0E;B3
+R2
+R3
+R4
+R5
+R6
+L0 1563
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R0
+vblk_mem_gen_v8_4_4_softecc_output_reg_stage
+R1
+!i10b 1
+!s100 Qbf^lE?NhV@B^hE<H@5hg0
+IO_L1][kX;U0n:W3B3TJOA0
+R2
+R3
+R4
+R5
+R6
+L0 1859
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R0
+vdog_dt_rd
+Z12 !s110 1621415300
+!i10b 1
+!s100 Fc3W]fI^kSnLko7;nIDAB1
+I`<mdM1iOBB:1haAU0EG_H1
+R2
+R3
+Z13 w1621341243
+8D:/prj/routine/daily/inbed_design/dog/rtl/gs_dt_rd.v
+FD:/prj/routine/daily/inbed_design/dog/rtl/gs_dt_rd.v
+L0 2
+R7
+r1
+!s85 0
+31
+Z14 !s108 1621415300.000000
+!s107 D:/prj/routine/daily/inbed_design/dog/rtl/gs_dt_rd.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/inbed_design/dog/rtl/gs_dt_rd.v|
+!i113 0
+R11
+R0
+vdog_dt_wr
+R1
+!i10b 1
+!s100 K=SQXUJMS;2]LNoH3FYI53
+I;h08P]zLI<F=NhU<3dL2l2
+R2
+R3
+w1621402962
+Z15 8D:/prj/routine/daily/inbed_design/dog/rtl/dog_dt_wr.v
+Z16 FD:/prj/routine/daily/inbed_design/dog/rtl/dog_dt_wr.v
+L0 2
+R7
+r1
+!s85 0
+31
+R8
+Z17 !s107 D:/prj/routine/daily/inbed_design/dog/rtl/dog_dt_wr.v|
+Z18 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/inbed_design/dog/rtl/dog_dt_wr.v|
+!i113 0
+R11
+R0
+vdog_op
+R1
+!i10b 1
+!s100 :jTREWTH2cfM;al7o97_:1
+IJF696m<cHA@:e6zTmaPZo2
+R2
+R3
+w1621412742
+Z19 8D:/prj/routine/daily/inbed_design/dog/rtl/dog_op.v
+Z20 FD:/prj/routine/daily/inbed_design/dog/rtl/dog_op.v
+Z21 L0 38
+R7
+r1
+!s85 0
+31
+R8
+Z22 !s107 D:/prj/routine/daily/inbed_design/dog/rtl/dog_op.v|
+Z23 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/inbed_design/dog/rtl/dog_op.v|
+!i113 0
+R11
+R0
+vdog_tb
+!s110 1621415324
+!i10b 1
+!s100 z76mbL@jFJl8e<BR]S0XE3
+IPcelhd8_]1I2[L4n9JX473
+R2
+R3
+w1621415317
+Z24 8D:/prj/routine/daily/inbed_design/dog/rtl/dog_tb.v
+Z25 FD:/prj/routine/daily/inbed_design/dog/rtl/dog_tb.v
+L0 3
+R7
+r1
+!s85 0
+31
+!s108 1621415324.000000
+Z26 !s107 D:/prj/routine/daily/inbed_design/dog/rtl/dog_tb.v|
+Z27 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/inbed_design/dog/rtl/dog_tb.v|
+!i113 0
+R11
+R0
+vdog_top
+R1
+!i10b 1
+!s100 3^n6T8c]8ajhEBLYkUzFY3
+I[8mR<KXDBVn`NHPj:^K^Z1
+R2
+R3
+R13
+8D:/prj/routine/daily/inbed_design/dog/rtl/dog_top.v
+FD:/prj/routine/daily/inbed_design/dog/rtl/dog_top.v
+L0 3
+R7
+r1
+!s85 0
+31
+R8
+!s107 D:/prj/routine/daily/inbed_design/dog/rtl/dog_top.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/inbed_design/dog/rtl/dog_top.v|
+!i113 0
+R11
+R0
+vgauss_filter_tb
+Z28 !s110 1621402796
+!i10b 1
+!s100 Ueg9:=36559SR9_Q_P`S61
+IoV71ag?=i_]U<Bi]kMzDg2
+R2
+R3
+R13
+R24
+R25
+L0 3
+R7
+r1
+!s85 0
+31
+Z29 !s108 1621402796.000000
+R26
+R27
+!i113 0
+R11
+R0
+vgs_dt_wr
+R28
+!i10b 1
+!s100 W20j]>?0ChnAQkJ=B1O921
+IR5=LAG46G6:M_jok>k<c:3
+R2
+R3
+w1621402472
+R15
+R16
+L0 2
+R7
+r1
+!s85 0
+31
+R29
+R17
+R18
+!i113 0
+R11
+R0
+vgs_filter_5x5
+!s110 1621402848
+!i10b 1
+!s100 7:I?eXU0E^gz7zm@8Rd5J3
+I_7d>SGFM;37nNUBAk>7z;0
+R2
+R3
+w1621402830
+R19
+R20
+R21
+R7
+r1
+!s85 0
+31
+!s108 1621402848.000000
+R22
+R23
+!i113 0
+R11
+R0
+vmem_ip
+R12
+!i10b 1
+!s100 3UBN^Wj9P3ZOG?1GG<gH23
+I_MLoEagP7>IHEo2=53Cfn3
+R2
+R3
+R4
+8D:/prj/routine/daily/inbed_design/dog/rtl/mem_ip.v
+FD:/prj/routine/daily/inbed_design/dog/rtl/mem_ip.v
+L0 56
+R7
+r1
+!s85 0
+31
+R14
+!s107 D:/prj/routine/daily/inbed_design/dog/rtl/mem_ip.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/inbed_design/dog/rtl/mem_ip.v|
+!i113 0
+R11
+R0
+vmem_wrap
+R12
+!i10b 1
+!s100 RieHKF7NeKb<9Be0YKeK:3
+IBTeJ8Elg>@8nUO9cgXSej0
+R2
+R3
+w1621185914
+8D:/prj/routine/daily/inbed_design/dog/rtl/mem_wrap.v
+FD:/prj/routine/daily/inbed_design/dog/rtl/mem_wrap.v
+L0 1
+R7
+r1
+!s85 0
+31
+R14
+!s107 D:/prj/routine/daily/inbed_design/dog/rtl/mem_wrap.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/inbed_design/dog/rtl/mem_wrap.v|
+!i113 0
+R11
+R0
+vread_netlist_v8_4
+R1
+!i10b 1
+!s100 Z?G>?Mbi:E@5z43I0Rcid2
+I3jh^kTh3@2T57j1I@z1e92
+R2
+R3
+R4
+R5
+R6
+L0 635
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R0
+vSTATE_LOGIC_v8_4
+R1
+!i10b 1
+!s100 MH_n4?=PDAS_WW=@]g21c2
+I[cY[l;OoP[:7K@DWaT9:]0
+R2
+R3
+R4
+R5
+R6
+L0 73
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R0
+n@s@t@a@t@e_@l@o@g@i@c_v8_4
+vwrite_netlist_v8_4
+R1
+!i10b 1
+!s100 QhEcQLbWo]V7;4Q;O1IlL3
+Ib2cZHHo`ZSS3^OeRAfO1B0
+R2
+R3
+R4
+R5
+R6
+L0 166
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R0

@@ -1,6 +1,6 @@
 `timescale       1ns / 1ps
 
-module gauss_filter_tb();
+module dog_tb();
 	
 	reg			clk;
 	reg			rst_n;
@@ -26,7 +26,7 @@ module gauss_filter_tb();
 	wire [15:0]		ram1_wr_addr_o   	;
 	wire [7:0]		ram1_wr_data_o   	;
 	
-	gs_filter_top 	u_gs_filter_top(
+	dog_top 	u_dog_top(
 		.clk				(	clk					),	
 		.rst_n              (   rst_n               ),
 		.start              (   start               ),
@@ -47,7 +47,7 @@ module gauss_filter_tb();
     // ============================================================
     // image buf
     // ============================================================
-    reg  [15:0]		tb_mem [0:65535];
+    reg  [7:0]		tb_mem [0:65535];
     reg        		tb_wr_en;
     reg  [16:0] 	tb_wr_addr;
     reg  [7:0] 		tb_wr_data;
@@ -147,17 +147,9 @@ module gauss_filter_tb();
         end
         tb_rd_en <=  1'd0;
 		
-         
         #(PERIOD*10)
         $fclose( tb_file_dest );
         
-		//for( tb_rd_addr_x = 0; tb_rd_addr_x < 256; tb_rd_addr_x =tb_rd_addr_x + 1) begin 
-		//	for( tb_rd_addr_y = 0; tb_rd_addr_y < 256; tb_rd_addr_y =tb_rd_addr_y + 1) begin 
-		//		$display("%32x",gauss_filter_tb.ram1.u_mem[{tb_rd_addr_x,tb_rd_addr_y}]);
-		//	end
-		//	$display("\n");
-		//end 
-		
         $display("\n: FINISH\n");
         $finish;
     end // initial
@@ -168,7 +160,7 @@ module gauss_filter_tb();
     integer tb_cnt = 0;
     always @( posedge clk ) begin
         if( tb_rd_vl ) begin
-            $fwrite( tb_file_dest, "%H ", tb_rd_data );
+            $fwrite( tb_file_dest, "%D\t", tb_rd_data );
             if( tb_cnt == 255 ) begin
                 tb_cnt <= 0;
                 $fwrite( tb_file_dest, "\n" );

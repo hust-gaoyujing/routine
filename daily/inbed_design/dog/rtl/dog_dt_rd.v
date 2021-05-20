@@ -9,8 +9,8 @@ module dog_dt_rd(
 	output				ram1_rd_valid_out,
 	output 	[15:0]		ram1_rd_addr_out
 );
-	parameter	[9:0]	X_START = 10'h3fe; 	//-3
-	parameter	[9:0]	X_END 	= 10'h101;	//258
+	parameter	[9:0]	X_START = 10'h3fd; 	//-3
+	parameter	[9:0]	X_END 	= 10'h102;	//258
 	
 	//reg_x increase from -3 to 258
 	//reg_y[7:0] increase from 0 to 255
@@ -21,11 +21,9 @@ module dog_dt_rd(
 	
 	wire x_end_flag;
 	wire y_end_flag;
-	//wire y_half_flag;
 	
 	assign x_end_flag = (reg_x == X_END) ? 1'b1 : 1'b0;
 	assign y_end_flag = (reg_y == 9'h1ff) ? 1'b1 : 1'b0;
-	//assign y_half_flag = (reg_y == 9'hff) ? 1'b1 : 1'b0;
 	
 	//================= enable ==================//
 	reg enable;
@@ -65,7 +63,6 @@ module dog_dt_rd(
 	
 	//================ ram0 or ram1 mux ===========//
 	reg 		ram0_valid_reg;
-	//reg 		ram1_valid_reg;
 	reg [7:0] 	reg_x_tmp;
 	reg [7:0] 	reg_y_tmp;
 	
@@ -82,14 +79,6 @@ module dog_dt_rd(
 		else if(reg_y[8])
 			ram0_valid_reg <= 1'b0;
 			
-	//always @(posedge clk or negedge rst_n)
-	//	if(!rst_n) 
-	//		ram1_valid_reg <= 1'b0;
-	//	else if(reg_y[8] && enable)
-	//		ram1_valid_reg <= 1'b1;
-	//	else 
-	//		ram1_valid_reg <= 1'b0;	
-	
 	always @(posedge clk or negedge rst_n)
 		if(!rst_n)
 			reg_x_tmp <= 8'h0;
@@ -105,6 +94,5 @@ module dog_dt_rd(
 			reg_y_tmp <= 8'h0;
 		else 
 			reg_y_tmp <= reg_y[7:0];
-	
 
 endmodule

@@ -168,7 +168,7 @@ module gauss_filter_tb();
     integer tb_cnt = 0;
     always @( posedge clk ) begin
         if( tb_rd_vl ) begin
-            $fwrite( tb_file_dest, "%H ", tb_rd_data );
+            $fwrite( tb_file_dest, "%D\t", tb_rd_data );
             if( tb_cnt == 255 ) begin
                 tb_cnt <= 0;
                 $fwrite( tb_file_dest, "\n" );
