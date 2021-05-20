@@ -137,7 +137,7 @@ module gauss_filter_tb();
             $finish;
         end else begin
             $display ("write result to file.....\n");
-            $fwrite( tb_file_dest, "//  256  256\n");
+            //$fwrite( tb_file_dest, "//  256  256\n");
         end
         
 		@ (posedge clk);

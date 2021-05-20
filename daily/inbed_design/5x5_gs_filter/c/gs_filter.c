@@ -102,6 +102,20 @@ int main(){
 		fclose(fp_2);	
 	}
 
-
+	FILE  *fp_3;
+	if((fp_3=fopen("data_in_dec.txt","w"))==NULL){
+		printf("open file failed\n");
+		exit(0);	
+	}
+	else{
+		printf("open file successfully\n");
+		for(x=0; x<256; x++){
+			for(y=0; y<256; y++){
+				fprintf(fp_3,"%d\t",data_in[256*x+y]);
+			}
+				fprintf(fp_3,"\n");
+		}
+		fclose(fp_2);	
+	}
 
 }

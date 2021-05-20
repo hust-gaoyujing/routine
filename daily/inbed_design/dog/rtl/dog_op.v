@@ -89,12 +89,12 @@ module dog_op(
 	//temporary reg for storing calculation result
 	//Level 1
 	reg 	[8:0] 		gs7_1_0; 	
-	reg 	[11:0] 		gs7_1_1;	
+	reg 	[12:0] 		gs7_1_1;	
 	reg 	[8:0] 		gs7_1_2;
 	reg 	[8:0] 		gs7_1_3;
 	//Level 2
 	reg 	[12:0]		gs7_2_0;
-	reg		[10:0]		gs7_2_1;
+	reg		[11:0]		gs7_2_1;
 	reg		[12:0]		gs7_2_2;
 	//Level 3
 	reg		[13:0]		gs7_3_0;
@@ -115,7 +115,7 @@ module dog_op(
 		end 
 		else begin 
 			gs7_1_0 <= 	{1'b0 , op_data_0 		} + {1'b0 , op_data_6 		};
-		    gs7_1_1 <= 	{		op_data_3 , 4'b0} + {2'b0 , op_data_3 , 2'b0};
+		    gs7_1_1 <= 	{1'b0 ,	op_data_3 , 4'b0} + {3'b0 , op_data_3 , 2'b0};
 		    gs7_1_2 <= 	{1'b0 , op_data_1 		} + {1'b0 , op_data_5 		};
 		    gs7_1_3 <= 	{1'b0 , op_data_2 		} + {1'b0 , op_data_4 		};
 		end
@@ -128,8 +128,8 @@ module dog_op(
 		    gs7_2_2	<= 	0;
 		end 
 		else begin 
-			gs7_2_0 <= 	{4'b0 , gs7_1_0 		} + {1'b0 , gs7_1_1			};
-		    gs7_2_1 <=  {   	gs7_1_2 , 2'b0	} + {    	gs7_1_2 , 1'b0	};
+			gs7_2_0 <= 	{4'b0 , gs7_1_0 		} + {	 	gs7_1_1			};
+		    gs7_2_1 <=  {1'b0 ,	gs7_1_2 , 2'b0	} + {2'b0 , gs7_1_2 , 1'b0	};
 		    gs7_2_2 <=  {   	gs7_1_3 , 4'b0	} + {4'hf , ~gs7_1_3 		};
 		end 
 	
@@ -140,7 +140,7 @@ module dog_op(
 			gs7_3_1 <= 	0;
 		end 
 		else begin 
-			gs7_3_0 <=  {1'b0 , gs7_2_0			} + {3'b0 , gs7_2_1			}; 
+			gs7_3_0 <=  {		gs7_2_0			} + {1'b0 , gs7_2_1			}; 
 			gs7_3_1 <= 	{       gs7_2_2 		} + 1						 ; 
 		end 	
 
@@ -149,7 +149,7 @@ module dog_op(
 		if(!rst_n) 
 			gs7_4_0 <= 	0;
 		else
-			gs7_4_0 <= 	{		gs7_3_0 		} + {1'b0 , gs7_3_1			}; 
+			gs7_4_0 <= 	{1'b0 , gs7_3_0 		} + {1'b0 , gs7_3_1			}; 
 			
 	//Level 5
 	always @(posedge clk or negedge rst_n)
@@ -161,7 +161,7 @@ module dog_op(
 	//========== Calculation of 3*3 gs_blur ================//
 	//temporary reg for storing calculation result
 	//Level 1
-	reg 	[8:0] 		gs3_1_0; 	
+	reg 	[9:0] 		gs3_1_0; 	
 	reg 	[7:0] 		gs3_1_1; 	
 	//Level 2
 	reg		[9:0]		gs3_2_0;
@@ -187,7 +187,7 @@ module dog_op(
 		if(!rst_n)
 			gs3_2_0 <= 	0;
 		else 
-			gs3_2_0 <= 	{1'b0 , gs3_1_0			} + {2'b0 , gs3_1_1			};		
+			gs3_2_0 <= 	{ 		gs3_1_0			} + {2'b0 , gs3_1_1			};		
 	
 	//Level 3 
 	always @(posedge clk or negedge rst_n)
@@ -228,13 +228,13 @@ module dog_op(
 	
 	
 	//================for debug ====================//
-	reg [8:0]  addr_cnt;
-	always @(posedge clk or negedge rst_n)
-		if(!rst_n)
-			addr_cnt <= 9'h1fd;
-		else if(addr_cnt == 9'h103)
-			addr_cnt <= 9'h1fd;
-		else if(op_valid_in)
-			addr_cnt <= addr_cnt + 1;
+	//reg [8:0]  addr_cnt;
+	//always @(posedge clk or negedge rst_n)
+	//	if(!rst_n)
+	//		addr_cnt <= 9'h1fd;
+	//	else if(addr_cnt == 9'h103)
+	//		addr_cnt <= 9'h1fd;
+	//	else if(op_valid_in)
+	//		addr_cnt <= addr_cnt + 1;
 	
 endmodule

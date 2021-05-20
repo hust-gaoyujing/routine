@@ -53,12 +53,6 @@ module gs_dt_wr(
 	//reg wr_valid_out_r;
 	assign wr_valid_out = wr_valid_in & (~reg_x[8]);
 	
-	//always @(posedge clk or negedge rst_n)
-	//	if(!rst_n)
-	//		wr_valid_out_r <= 1'b0;
-	//	else         
-	//		wr_valid_out_r <= wr_valid_in;
-			
 	//================    done   ========================//
 	assign done = x_end_flag && y_end_flag;  
 	
