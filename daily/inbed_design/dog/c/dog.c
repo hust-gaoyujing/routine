@@ -68,10 +68,10 @@ int main(){
 		//	if((x*row+y) < 10) 
 		//		printf("gs3_tmp[x*row+y] = %x\n",gs3_tmp[x*row+y]);
 			//dog by (7*7gs - 3*3gs)
-			dog_tmp[x*row+y] = gs7_tmp[x*row+y] - gs3_tmp[x*row+y];
-			if(dog_tmp[x*row+y] < 0) 
+			//dog_tmp[x*row+y] = gs7_tmp[x*row+y] - gs3_tmp[x*row+y];
+			//if(dog_tmp[x*row+y] < 0) 
 				//dog_tmp[x*row+y] = 256;
-				dog_tmp[x*row+y] = 256 + dog_tmp[x*row+y];
+			//	dog_tmp[x*row+y] = 256 + dog_tmp[x*row+y];
 			//	dog_tmp[x*row+y] = 0;
 			//else 
 			//	dog_tmp[x*row+y] = 0;
@@ -86,7 +86,7 @@ int main(){
 				int x_sr = 	((x+sr) < 0) ?  -(x+sr) : 
 							((x+sr) >= row) ? (2*(row-1) - (x+sr)) : 
 							(x+sr);
-				gs7_out[x*row+y] += gs_7[sr + 3] * dog_tmp[x_sr*row+y];
+				gs7_out[x*row+y] += gs_7[sr + 3] * gs7_tmp[x_sr*row+y];
 			}
 			mod = gs7_out[x*row+y] % 64;
 			gs7_out[x*row+y] /= 64;
@@ -94,14 +94,12 @@ int main(){
 				gs7_out[x*row+y]++;
 			else 
 				gs7_out[x*row+y] = gs7_out[x*row+y];
-			if((x*row+y) == 0)
-				printf("gs7_out[0] = %x\n",gs7_out[x*row+y]);
 			//3*3 Guassian Blur
 			for(sr = -1;sr <= 1;sr++){
 				int x_sr = 	((x+sr) < 0) ?  -(x+sr) : 
 							((x+sr) >= col) ? (2*(col-1) - (x+sr)) : 
 							(x+sr);
-				gs3_out[x*row+y] += gs_3[sr + 1] * dog_tmp[x_sr*row+y];
+				gs3_out[x*row+y] += gs_3[sr + 1] * gs3_tmp[x_sr*row+y];
 			}
 			mod = gs3_out[x*row+y] % 4;
 			gs3_out[x*row+y] /= 4;
@@ -109,21 +107,27 @@ int main(){
 				gs3_out[x*row+y]++;
 			else 
 				gs3_out[x*row+y] = gs3_out[x*row+y];
-			if((x*row+y) == 0)
-				printf("gs3_out[0] = %x\n",gs3_out[x*row+y]);
-			//dog by (3*3gs - 7*7gs)
-			dog_out[x*row+y] = gs7_out[x*row+y] - gs3_out[x*row+y];
-			if(dog_out[x*row+y] < 0) 
-				dog_out[x*row+y] = 256 + dog_out[x*row+y];
+			////dog by (3*3gs - 7*7gs)
+			//dog_out[x*row+y] = gs7_out[x*row+y] - gs3_out[x*row+y];
+			//if(dog_out[x*row+y] < 0) 
+			/////	/dog_out[x*row+y] = 256 + dog_out[x*row+y];
 			//	dog_out[x*row+y] = 0;
 			//else 
 			//	dog_tmp[x*row+y] = 255;
 		}
 	}
 	
+	for(y = 0;y < col;y++){
+		for(x = 0;x < row;x++){
+			dog_out[x*row+y] = gs7_out[x*row+y] - gs3_out[x*row+y];
+			if(dog_out[x*row+y] < 0)
+				dog_out[x*row+y] = 256 + dog_out[x*row+y];
+		}
+	}		
+	
 	//load array data of dog_tmp to file
 	FILE  *fp_1;
-	if((fp_1=fopen("dog_tmp.txt","w"))==NULL){
+	if((fp_1=fopen("gs7_out.txt","w"))==NULL){
 		printf("open file failed\n");
 		exit(0);	
 	}
@@ -131,11 +135,27 @@ int main(){
 		printf("open file successfully\n");
 		for(x=0; x<row; x++){
 			for(y=0; y<col; y++){
-				fprintf(fp_1,"%x\t",dog_tmp[row*x+y]);
+				fprintf(fp_1,"%d\t",gs7_out[row*x+y]);
 			}
 				fprintf(fp_1,"\n");
 		}
 		fclose(fp_1);	
+	}
+
+	FILE  *fp_5;
+	if((fp_5=fopen("gs3_out.txt","w"))==NULL){
+		printf("open file failed\n");
+		exit(0);	
+	}
+	else{
+		printf("open file successfully\n");
+		for(x=0; x<row; x++){
+			for(y=0; y<col; y++){
+				fprintf(fp_5,"%d\t",gs3_out[row*x+y]);
+			}
+				fprintf(fp_5,"\n");
+		}
+		fclose(fp_5);	
 	}
 
 	//load array data of dog_out to file
