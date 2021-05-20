@@ -9,15 +9,14 @@ z2
 cModel Technology
 Z0 dD:/prj/routine/works/ux607_cct/works
 T_opt
-!s110 1621193458
-V[no6`Z>HgV55mF@lWaRhl1
+!s110 1621328240
+VN@k8gK7IAVSJCkV;EJWhh1
 Z1 04 15 4 work gauss_filter_tb fast 0
-=1-84fdd1753feb-60a172f1-329-468c
+=1-9c7bef330309-60a3816f-3bd-3aac
 Z2 o-quiet -auto_acc_if_foreign -work work +acc=bcglnprst+mem_wrap +acc=bcglnprst+gs_filter_5x5 +acc=bcglnprst+gs_filter_top +acc=bcglnprst+gs_dt_wr +acc=bcglnprst+gauss_filter_tb +acc=bcglnprst+gs_dt_rd
 Z3 tCvgOpt 0
 n@_opt
 Z4 OL;O;10.7;67
-R0
 T_opt1
 !s110 1621232049
 VSg7]GT]ZKaEbk1_FIF6d[2
@@ -28,6 +27,10 @@ R3
 n@_opt1
 R4
 R0
+<<<<<<< HEAD
+vbeh_vlog_ff_ce_clr_v8_4
+Z5 !s110 1621328050
+=======
 T_opt2
 !s110 1621415768
 VOYDV0;aP?ND4XJ4Q?K>Mn1
@@ -39,6 +42,7 @@ n@_opt2
 R4
 vbeh_vlog_ff_ce_clr_v8_4
 Z5 !s110 1621415761
+>>>>>>> fa1cc8c29e9ddbb1ecf50ff2c4739cb2a6ee614d
 !i10b 1
 !s100 42e=NBK[:3cz6_D?aPaR_0
 IMgQI`8U8d3kT5O;_251^91
@@ -52,7 +56,11 @@ Z11 OL;L;10.7;67
 r1
 !s85 0
 31
+<<<<<<< HEAD
+Z12 !s108 1621328050.000000
+=======
 Z12 !s108 1621415761.000000
+>>>>>>> fa1cc8c29e9ddbb1ecf50ff2c4739cb2a6ee614d
 Z13 !s107 D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/blk_mem_gen_v8_4.v|
 Z14 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/blk_mem_gen_v8_4.v|
 !i113 0
@@ -122,7 +130,7 @@ R14
 R15
 R3
 vblk_mem_axi_read_wrapper_beh_v8_4
-R5
+Z16 !s110 1621328051
 !i10b 1
 !s100 :^TnjZ[m7O:=3jjOFFLY^3
 IG9Q];fhT9m8^ZITf3<k;D3
@@ -143,7 +151,7 @@ R14
 R15
 R3
 vblk_mem_axi_regs_fwd_v8_4
-R5
+R16
 !i10b 1
 !s100 >:_VUI^S3H>GD>>V_Z_c`1
 IWhR_R7AKO];IC1>XR4?223
@@ -164,7 +172,7 @@ R14
 R15
 R3
 vblk_mem_axi_write_wrapper_beh_v8_4
-R5
+R16
 !i10b 1
 !s100 ^z4O@C>L841M;0klQZ;2[1
 I_7E8e]_Rka5Kk6z[RzC2_0
@@ -185,7 +193,7 @@ R14
 R15
 R3
 vblk_mem_gen_v8_4_4
-R5
+R16
 !i10b 1
 !s100 =nLYFVaIF72f_c<l9>=RK2
 Ig8JB<h7370z1:B=;dk`li3
@@ -206,7 +214,7 @@ R14
 R15
 R3
 vblk_mem_gen_v8_4_4_mem_module
-R5
+R16
 !i10b 1
 !s100 ;CLOQDbB@b<Nbaj8SfD0W0
 I;Cz[?o@k[R?c@;djlANQ63
@@ -227,7 +235,7 @@ R14
 R15
 R3
 vblk_mem_gen_v8_4_4_output_stage
-R5
+R16
 !i10b 1
 !s100 ]g7_NzI0fLQn]laOT?;JM2
 Ij27HY4=]H]lQO`W`_nBS30
@@ -248,7 +256,7 @@ R14
 R15
 R3
 vblk_mem_gen_v8_4_4_softecc_output_reg_stage
-R5
+R16
 !i10b 1
 !s100 Qbf^lE?NhV@B^hE<H@5hg0
 IbZ[h_RB9TYRBGnR:i]M;J3
@@ -269,7 +277,7 @@ R14
 R15
 R3
 vgauss_filter_tb
-R5
+R16
 !i10b 1
 !s100 [adihk[CREGkFIFlbGMBM3
 IccN19Q85@1`=7YF43kSkN2
@@ -283,14 +291,14 @@ R11
 r1
 !s85 0
 31
-R12
+Z17 !s108 1621328051.000000
 !s107 D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/gauss_filter_5x5_tb.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/gauss_filter_5x5_tb.v|
 !i113 0
 R15
 R3
 vgs_dt_rd
-R5
+R16
 !i10b 1
 !s100 137AdKaYgm3D;PCLzWHY20
 Ia0843Cc^N9ZW85=HYGjbV0
@@ -304,14 +312,14 @@ R11
 r1
 !s85 0
 31
-R12
+R17
 !s107 D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/gs_dt_rd.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/gs_dt_rd.v|
 !i113 0
 R15
 R3
 vgs_dt_wr
-R5
+R16
 !i10b 1
 !s100 k3TnQiAZ>[1VTO5Yc]5R@2
 Ikc8_6XI<`7YZi;BaFIUBo1
@@ -325,20 +333,24 @@ R11
 r1
 !s85 0
 31
-R12
+R17
 !s107 D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/gs_dt_wr.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/gs_dt_wr.v|
 !i113 0
 R15
 R3
 vgs_filter_5x5
-R5
+!s110 1621328221
 !i10b 1
 !s100 0Ezc:6PS[>>LedRafcLPO3
 ID`gCd0^@Z;hfzjIh;`@Hj0
 R6
 R7
+<<<<<<< HEAD
+w1621328207
+=======
 w1621341243
+>>>>>>> fa1cc8c29e9ddbb1ecf50ff2c4739cb2a6ee614d
 8D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/gs_filter_5x5.v
 FD:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/gs_filter_5x5.v
 L0 2
@@ -346,14 +358,14 @@ R11
 r1
 !s85 0
 31
-R12
+!s108 1621328221.000000
 !s107 D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/gs_filter_5x5.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/gs_filter_5x5.v|
 !i113 0
 R15
 R3
 vgs_filter_top
-R5
+R16
 !i10b 1
 !s100 WDl8m<S]c^4<H:_fLF8bX2
 I_kcWQ]fP@3=Oi]ENKWShj0
@@ -367,14 +379,18 @@ R11
 r1
 !s85 0
 31
-R12
+R17
 !s107 D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/gs_filter_top.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/gs_filter_top.v|
 !i113 0
 R15
 R3
 vmem_ip
+<<<<<<< HEAD
+R16
+=======
 Z17 !s110 1621415762
+>>>>>>> fa1cc8c29e9ddbb1ecf50ff2c4739cb2a6ee614d
 !i10b 1
 !s100 3UBN^Wj9P3ZOG?1GG<gH23
 IiU1`mUBJIJ?`fNW56a;a:3
@@ -388,7 +404,11 @@ R11
 r1
 !s85 0
 31
+<<<<<<< HEAD
+R17
+=======
 R12
+>>>>>>> fa1cc8c29e9ddbb1ecf50ff2c4739cb2a6ee614d
 !s107 D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/mem_ip.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/mem_ip.v|
 !i113 0
