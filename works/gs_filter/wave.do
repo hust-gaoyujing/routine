@@ -53,7 +53,6 @@ add wave -noupdate -group dt_wr /gauss_filter_tb/u_gs_filter_top/dt_wr/reg_x
 add wave -noupdate -group dt_wr /gauss_filter_tb/u_gs_filter_top/dt_wr/reg_y
 add wave -noupdate -group dt_wr /gauss_filter_tb/u_gs_filter_top/dt_wr/x_end_flag
 add wave -noupdate -group dt_wr /gauss_filter_tb/u_gs_filter_top/dt_wr/y_end_flag
-add wave -noupdate -group dt_wr /gauss_filter_tb/u_gs_filter_top/dt_wr/wr_valid_out_r
 add wave -noupdate -expand -group dt_rd /gauss_filter_tb/u_gs_filter_top/dt_rd/clk
 add wave -noupdate -expand -group dt_rd /gauss_filter_tb/u_gs_filter_top/dt_rd/rst_n
 add wave -noupdate -expand -group dt_rd /gauss_filter_tb/u_gs_filter_top/dt_rd/start
