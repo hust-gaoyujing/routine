@@ -109,54 +109,49 @@ int main(){
 				gs3_out[x*row+y] = gs3_out[x*row+y];
 			////dog by (3*3gs - 7*7gs)
 			//dog_out[x*row+y] = gs7_out[x*row+y] - gs3_out[x*row+y];
-			//if(dog_out[x*row+y] < 0) 
-			/////	/dog_out[x*row+y] = 256 + dog_out[x*row+y];
-			//	dog_out[x*row+y] = 0;
-			//else 
-			//	dog_tmp[x*row+y] = 255;
+			//dog_out[x*row+y] = 128 - dog_out[x*row+y];
 		}
 	}
 	
 	for(y = 0;y < col;y++){
 		for(x = 0;x < row;x++){
 			dog_out[x*row+y] = gs7_out[x*row+y] - gs3_out[x*row+y];
-			if(dog_out[x*row+y] < 0)
-				dog_out[x*row+y] = 256 + dog_out[x*row+y];
+			dog_out[x*row+y] = 128 - dog_out[x*row+y];
 		}
 	}		
 	
-	//load array data of dog_tmp to file
-	FILE  *fp_1;
-	if((fp_1=fopen("gs7_out.txt","w"))==NULL){
-		printf("open file failed\n");
-		exit(0);	
-	}
-	else{
-		printf("open file successfully\n");
-		for(x=0; x<row; x++){
-			for(y=0; y<col; y++){
-				fprintf(fp_1,"%d\t",gs7_out[row*x+y]);
-			}
-				fprintf(fp_1,"\n");
-		}
-		fclose(fp_1);	
-	}
-
-	FILE  *fp_5;
-	if((fp_5=fopen("gs3_out.txt","w"))==NULL){
-		printf("open file failed\n");
-		exit(0);	
-	}
-	else{
-		printf("open file successfully\n");
-		for(x=0; x<row; x++){
-			for(y=0; y<col; y++){
-				fprintf(fp_5,"%d\t",gs3_out[row*x+y]);
-			}
-				fprintf(fp_5,"\n");
-		}
-		fclose(fp_5);	
-	}
+	////load array data of dog_tmp to file
+	//FILE  *fp_1;
+	//if((fp_1=fopen("gs7_out.txt","w"))==NULL){
+	//	printf("open file failed\n");
+	//	exit(0);	
+	//}
+	//else{
+	//	printf("open file successfully\n");
+	//	for(x=0; x<row; x++){
+	//		for(y=0; y<col; y++){
+	//			fprintf(fp_1,"%d\t",gs7_out[row*x+y]);
+	//		}
+	//			fprintf(fp_1,"\n");
+	//	}
+	//	fclose(fp_1);	
+	//}
+	//
+	//FILE  *fp_5;
+	//if((fp_5=fopen("gs3_out.txt","w"))==NULL){
+	//	printf("open file failed\n");
+	//	exit(0);	
+	//}
+	//else{
+	//	printf("open file successfully\n");
+	//	for(x=0; x<row; x++){
+	//		for(y=0; y<col; y++){
+	//			fprintf(fp_5,"%d\t",gs3_out[row*x+y]);
+	//		}
+	//			fprintf(fp_5,"\n");
+	//	}
+	//	fclose(fp_5);	
+	//}
 
 	//load array data of dog_out to file
 	FILE  *fp_2;

@@ -17,14 +17,22 @@ module dog_tb();
 	wire [7:0]		ram0_data_in       	;
 	wire 			ram1_valid_in      	;
 	wire [7:0]		ram1_data_in	    ;
+	wire 			ram2_valid_in      	;
+    wire [7:0]		ram2_data_in	    ;
 
 	wire [15:0]		ram0_rd_addr_o	    ;
 	wire 			ram0_rd_valid_o    	;
 	wire [15:0]		ram1_rd_addr_o     	;
 	wire 			ram1_rd_valid_o    	;
+	wire [15:0]		ram2_rd_addr_o     	;
+	wire 			ram2_rd_valid_o    	;
+	
 	wire 			ram1_wr_valid_o  	;
 	wire [15:0]		ram1_wr_addr_o   	;
 	wire [7:0]		ram1_wr_data_o   	;
+	wire 			ram2_wr_valid_o  	;
+	wire [15:0]		ram2_wr_addr_o   	;
+	wire [7:0]		ram2_wr_data_o   	;
 	
 	dog_top 	u_dog_top(
 		.clk				(	clk					),	
@@ -34,14 +42,22 @@ module dog_tb();
 		.ram0_data_in       (   ram0_data_in        ),
 		.ram1_valid_in      (   ram1_valid_in       ),
 		.ram1_data_in	    (   ram1_data_in	    ),
-
+		.ram2_valid_in      (   ram2_valid_in       ),
+        .ram2_data_in	    (   ram2_data_in	    ),
+		
 		.ram0_rd_addr_o	    (   ram0_rd_addr_o	    ),
 		.ram0_rd_valid_o    (   ram0_rd_valid_o     ),
 		.ram1_rd_addr_o     (   ram1_rd_addr_o      ),
 		.ram1_rd_valid_o    (   ram1_rd_valid_o     ),
+		.ram2_rd_addr_o     (   ram2_rd_addr_o      ),
+		.ram2_rd_valid_o    (   ram2_rd_valid_o     ),
+		
 		.ram1_wr_valid_o    (   ram1_wr_valid_o   	),
 	    .ram1_wr_addr_o     (   ram1_wr_addr_o    	),
 	    .ram1_wr_data_o	    (   ram1_wr_data_o    	),
+		.ram2_wr_valid_o    (   ram2_wr_valid_o   	),
+		.ram2_wr_addr_o     (   ram2_wr_addr_o    	),
+		.ram2_wr_data_o	    (   ram2_wr_data_o    	),
 		.done               (   done                )
 	);
     // ============================================================
@@ -70,13 +86,12 @@ module dog_tb();
 		
 		.enc                (   1'b0    			),
 		.addrc              (   16'h0     			),
-		.doutc              (        ),
-		.validc             (        )
+		.doutc              (        				),
+		.validc             (        				)
 	);
     
 	mem_wrap	ram1(
 		.clk				(  	clk					),
-		
 		.wea                (	ram1_wr_valid_o     ),
 		.addra              (	ram1_wr_addr_o      ),
 		.dina               (	ram1_wr_data_o      ),
@@ -86,12 +101,29 @@ module dog_tb();
 		.doutb              (   ram1_data_in        ),
 		.validb             (   ram1_valid_in       ),
 		
+		.enc                (   1'b0				),
+		.addrc              (   16'h0				),
+		.doutc              (   					),
+		.validc             (   					)	
+	);
+	
+	mem_wrap	ram2(
+		.clk				(  	clk					),
+		.wea                (	ram2_wr_valid_o     ),
+		.addra              (	ram2_wr_addr_o      ),
+		.dina               (	ram2_wr_data_o      ),
+													
+		.enb                (   ram2_rd_valid_o     ),
+		.addrb              (   ram2_rd_addr_o      ),
+		.doutb              (   ram2_data_in        ),
+		.validb             (   ram2_valid_in       ),
+		
 		.enc                (   tb_rd_en   			),
 		.addrc              (   tb_rd_addr  		),
 		.doutc              (   tb_rd_data 			),
 		.validc             (   tb_rd_vl			)	
-		
 	);
+	
     // ================================
     // Initialize
     // ================================

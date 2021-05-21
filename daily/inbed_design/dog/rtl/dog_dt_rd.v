@@ -7,7 +7,9 @@ module dog_dt_rd(
 	output				ram0_rd_valid_out,
 	output 	[15:0]		ram0_rd_addr_out,
 	output				ram1_rd_valid_out,
-	output 	[15:0]		ram1_rd_addr_out
+	output 	[15:0]		ram1_rd_addr_out,
+	output				ram2_rd_valid_out,	
+	output 	[15:0]		ram2_rd_addr_out
 );
 	parameter	[9:0]	X_START = 10'h3fd; 	//-3
 	parameter	[9:0]	X_END 	= 10'h102;	//258
@@ -68,8 +70,10 @@ module dog_dt_rd(
 	
 	assign ram0_rd_valid_out = ram0_valid_reg;
 	assign ram1_rd_valid_out = enable ? (~ram0_rd_valid_out) : 1'b0;
+	assign ram2_rd_valid_out = ram1_rd_valid_out;
 	assign ram0_rd_addr_out = ram0_rd_valid_out ? {reg_y_tmp , reg_x_tmp} : 16'h0;
 	assign ram1_rd_addr_out = ram1_rd_valid_out ? {reg_x_tmp , reg_y_tmp} : 16'b0;
+	assign ram2_rd_addr_out = ram1_rd_addr_out;
 	
 	always @(posedge clk or negedge rst_n)
 		if(!rst_n) 
