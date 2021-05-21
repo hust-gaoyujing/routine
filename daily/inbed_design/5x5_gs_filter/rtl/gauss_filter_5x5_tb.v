@@ -137,7 +137,7 @@ module gauss_filter_tb();
             $finish;
         end else begin
             $display ("write result to file.....\n");
-            $fwrite( tb_file_dest, "//  256  256\n");
+            //$fwrite( tb_file_dest, "//  256  256\n");
         end
         
 		@ (posedge clk);
@@ -146,17 +146,9 @@ module gauss_filter_tb();
                 @ (posedge clk);
         end
         tb_rd_en <=  1'd0;
-		
          
         #(PERIOD*10)
         $fclose( tb_file_dest );
-        
-		//for( tb_rd_addr_x = 0; tb_rd_addr_x < 256; tb_rd_addr_x =tb_rd_addr_x + 1) begin 
-		//	for( tb_rd_addr_y = 0; tb_rd_addr_y < 256; tb_rd_addr_y =tb_rd_addr_y + 1) begin 
-		//		$display("%32x",gauss_filter_tb.ram1.u_mem[{tb_rd_addr_x,tb_rd_addr_y}]);
-		//	end
-		//	$display("\n");
-		//end 
 		
         $display("\n: FINISH\n");
         $finish;

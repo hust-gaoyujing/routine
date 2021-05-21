@@ -34,20 +34,11 @@ int main(){
 				data_tmp[x*line+y] += gs[sr + 2] * data_in[x*line+y_sr];
 			}
 			mod = data_tmp[x*line+y] % 16;
-		//`	if((x*line+y) < 10) 
-		//`		printf("mod = %x\t",mod);
-		//`	if((x*line+y) < 10) 
-		//`		printf("data_tmp[x*line+y] = %x\t",data_tmp[x*line+y]);
 			data_tmp[x*line+y] /= 16;
-		//	if((x*line+y) < 10) 
-		//		printf("data_tmp[x*line+y] = %x\t",data_tmp[x*line+y]);
 			if(mod >= 8)
 				data_tmp[x*line+y]++;
 			else 
 				data_tmp[x*line+y] = data_tmp[x*line+y];
-		//	if((x*line+y) < 10) 
-		//		printf("data_tmp[x*line+y] = %x\n",data_tmp[x*line+y]);
-			
 		}
 	}
 	
@@ -68,7 +59,6 @@ int main(){
 		}
 	}
 	
-
 	FILE  *fp_1;
 	if((fp_1=fopen("data_tmp.txt","w"))==NULL){
 		printf("open file failed\n");
@@ -84,7 +74,6 @@ int main(){
 		}
 		fclose(fp_1);	
 	}
-
 
 	FILE  *fp_2;
 	if((fp_2=fopen("data_out.txt","w"))==NULL){
@@ -102,6 +91,20 @@ int main(){
 		fclose(fp_2);	
 	}
 
-
+	FILE  *fp_3;
+	if((fp_3=fopen("data_in_dec.txt","w"))==NULL){
+		printf("open file failed\n");
+		exit(0);	
+	}
+	else{
+		printf("open file successfully\n");
+		for(x=0; x<256; x++){
+			for(y=0; y<256; y++){
+				fprintf(fp_3,"%d\t",data_in[256*x+y]);
+			}
+				fprintf(fp_3,"\n");
+		}
+		fclose(fp_2);	
+	}
 
 }
