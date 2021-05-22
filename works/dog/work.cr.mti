@@ -26,12 +26,26 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	mem_ip
 
+} {} {}} D:/prj/routine/daily/inbed_design/dog/rtl/dog_op.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/inbed_design/dog/rtl/dog_op.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module dog_op
+
+Top level modules:
+	dog_op
+
 } {} {}} D:/prj/routine/daily/inbed_design/dog/rtl/dog_top.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/inbed_design/dog/rtl/dog_top.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module dog_top
 
 Top level modules:
 	dog_top
+
+} {} {}} D:/prj/routine/daily/inbed_design/dog/rtl/mem_wrap.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/inbed_design/dog/rtl/mem_wrap.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module mem_wrap
+
+Top level modules:
+	mem_wrap
 
 } {} {}} D:/prj/routine/daily/inbed_design/dog/rtl/blk_mem_gen_v8_4.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/inbed_design/dog/rtl/blk_mem_gen_v8_4.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
@@ -52,12 +66,5 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 
 Top level modules:
 	blk_mem_gen_v8_4_4
-
-} {} {}} D:/prj/routine/daily/inbed_design/dog/rtl/mem_wrap.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/inbed_design/dog/rtl/mem_wrap.v
-Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
--- Compiling module mem_wrap
-
-Top level modules:
-	mem_wrap
 
 } {} {}}

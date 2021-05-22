@@ -26,20 +26,6 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	gs_dt_wr
 
-} {} {}} D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/gs_filter_5x5.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/gs_filter_5x5.v
-Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
--- Compiling module gs_filter_5x5
-
-Top level modules:
-	gs_filter_5x5
-
-} {} {}} D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/gs_dt_wr.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/gs_dt_wr.v
-Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
--- Compiling module gs_dt_wr
-
-Top level modules:
-	gs_dt_wr
-
 } {} {}} D:/prj/routine/daily/???????/???????/5x5_gs_filter/rtl/gauss_filter_5x5_tb.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/???????/???????/5x5_gs_filter/rtl/gauss_filter_5x5_tb.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module gauss_filter_tb
@@ -48,13 +34,6 @@ Top level modules:
 	gauss_filter_tb
 
 } {} {}} D:/prj/routine/daily/???????/???????/5x5_gs_filter/rtl/gs_dt_rd.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/???????/???????/5x5_gs_filter/rtl/gs_dt_rd.v
-Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
--- Compiling module gs_dt_rd
-
-Top level modules:
-	gs_dt_rd
-
-} {} {}} D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/gs_dt_rd.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/gs_dt_rd.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module gs_dt_rd
 
@@ -95,13 +74,6 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	gs_filter_top
 
-} {} {}} D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/mem_wrap.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/mem_wrap.v
-Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
--- Compiling module mem_wrap
-
-Top level modules:
-	mem_wrap
-
 } {} {}} D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/blk_mem_gen_v8_4.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/blk_mem_gen_v8_4.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 -- Compiling module STATE_LOGIC_v8_4
@@ -121,6 +93,13 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 
 Top level modules:
 	blk_mem_gen_v8_4_4
+
+} {} {}} D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/mem_wrap.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/mem_wrap.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module mem_wrap
+
+Top level modules:
+	mem_wrap
 
 } {} {}} D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/gs_filter_top.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/daily/inbed_design/5x5_gs_filter/rtl/gs_filter_top.v
 Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
