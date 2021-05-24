@@ -107,9 +107,6 @@ int main(){
 				gs3_out[x*row+y]++;
 			else 
 				gs3_out[x*row+y] = gs3_out[x*row+y];
-			////dog by (3*3gs - 7*7gs)
-			//dog_out[x*row+y] = gs7_out[x*row+y] - gs3_out[x*row+y];
-			//dog_out[x*row+y] = 128 - dog_out[x*row+y];
 		}
 	}
 	
