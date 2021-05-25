@@ -42,8 +42,8 @@ module dog_dt_wr(
 	assign x_end_flag = (reg_x == 9'hff) ? 1'b1 : 1'b0;
 	assign y_end_flag = (reg_y == 9'h1ff) ? 1'b1 : 1'b0;
 	
-	assign ram1_wr_addr_out = reg_y[8] ? {reg_x[7:0] , reg_y[7:0]} : 16'h0003;
-	assign ram2_wr_addr_out = reg_y[8] ? {reg_x[7:0] , reg_y[7:0]} : {reg_y[7:0] , reg_x[7:0]};
+	assign ram1_wr_addr_out = reg_y[8] ? 16'h00fa					: {reg_y[7:0] , reg_x[7:0]};
+	assign ram2_wr_addr_out = reg_y[8] ? {reg_x[7:0] , reg_y[7:0]} 	: {reg_y[7:0] , reg_x[7:0]};
 	
 	//reg_x
 	always @(posedge clk or negedge rst_n)
@@ -65,7 +65,7 @@ module dog_dt_wr(
 	//while reg_x is -6 to -1, the wr_data_in is invalid
 	//reg wr_wr_valid_out_r;
 	assign ram1_wr_valid_out = ram1_wr_valid_in & (~reg_x[8]);
-	assign ram2_wr_valid_out = ram2_wr_valid_in & (~reg_x[8]);
+	assign ram2_wr_valid_out = wr_valid_in & (~reg_x[8]);
 	
 	//================    done   ========================//
 	assign done = x_end_flag && y_end_flag;  

@@ -214,8 +214,8 @@ module dog_op(
 		    gs3_1_1 <= 	0;
 		end 
 		else begin 
-			gs3_1_0 <= 	{1'b0 , gs3_data_3 		} + {		gs3_data_5 , 1'b0};
-		    gs3_1_1 <= 	gs3_data_5;
+			gs3_1_0 <= 	{2'b0 , gs3_data_4 		} + {1'b0 ,	gs3_data_5 , 1'b0};
+		    gs3_1_1 <= 	gs3_data_6;
 		end	
 	
 	//Level 2
@@ -257,7 +257,7 @@ module dog_op(
 	reg [DELAY+2:1]	dog_valid_shift_r;
 	assign ram1_valid_out	= ram_valid_shift_r[DELAY];
 	assign ram2_valid_out	= ram_valid_shift_r[DELAY];
-	assign dog_valid_out	= dog_valid_shift_r[DELAY+1];
+	assign dog_valid_out	= dog_valid_shift_r[DELAY+2];
 	
 	always @(posedge clk or negedge rst_n)
 		if(!rst_n)
