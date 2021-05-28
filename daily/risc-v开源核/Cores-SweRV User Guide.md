@@ -56,4 +56,47 @@ git clone --recursive git@github.com:riscv/riscv-gnu-toolchain.git
 
 
 
-#### 3. 
+#### 3. Quickstart
+
+- 环境配置
+- 参数配置
+- 开启仿真
+
+##### 3.1 环境配置
+
+配置RC_ROOT，变量指向swerv项目所指向的目录地址：
+
+bash环境下使用：
+
+```shell
+export RV_ROOT=/path/to/swerv
+```
+
+csh环境下使用：
+
+```shell
+setenv RV_ROOT /path/to/swerv
+```
+
+
+
+##### 3.2 参数配置
+
+仿真命令格式如下：
+
+```shell
+make -f $RV_ROOT/tools/Makefile [<simulator>] [debug=1] [snapshot=<snapshot>] [target=<target>] [TEST=<test>] [TEST_DIR=<path_to_test_dir>] [CONF_PARAMS=<swerv.config option>]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
