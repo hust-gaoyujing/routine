@@ -10,14 +10,11 @@ works/ux607_cct/works/work
 works/gs_filter/wlf*
 works/gs_filter/work
 
-<<<<<<< HEAD
 daily/risc-v开源核/*
-=======
 daily/risc-v开源核/Cores-SweRV
 daily/risc-v开源核/ibex
 
 
->>>>>>> a9edc52dca05d0166b23fcf9db71d70429cd221b
 
 tools/*
 !tools/nuclei-sdk
