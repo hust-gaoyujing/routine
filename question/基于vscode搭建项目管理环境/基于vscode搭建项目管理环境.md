@@ -62,15 +62,43 @@ Visual Studio Code Remote - WSL 扩展允许你直接借助 VS Code 令 [「适�
 
 #### 2. Vscode使用 Remote-SSH 链接服务器
 
-完成上面的步骤后，我们已经可以通过vscode实现windows和wsl的同步，
+windows10自带OpenSSH,不需要再使用Git的SSH,如图：
 
-此时我们在vscode界面的wsl下利用ssh远程链接服务器（需要输入密码）：
+![image-20210604095422070](基于vscode搭建项目管理环境.assets/image-20210604095422070.png)
 
-```shell
-ssh 192.168.0.41
-```
+且我们的服务器中已经自带OpenSSH,所以只需要在VScode中配置好各项参数即可实现Vscode与远程服务器的链接。
 
-因为之前使用gitlab时，wsl中已经配置有ssh,如果没有请自行安装。
+- 进入VScode,配置Remote-SSH的Extension Settings；
+
+  ![image-20210604100051531](基于vscode搭建项目管理环境.assets/image-20210604100051531.png)
+
+- 勾选以下选项；
+
+![image-20210604100235859](基于vscode搭建项目管理环境.assets/image-20210604100235859.png)
+
+- 配置.ssh\config;
+
+  ![image-20210604100437982](基于vscode搭建项目管理环境.assets/image-20210604100437982.png)
+
+  config文件进行如下配置：
+
+  ![image-20210604101300042](基于vscode搭建项目管理环境.assets/image-20210604101300042.png)
+
+- 使用Remote-SSH链接远程服务器；
+
+  ![image-20210604101637611](基于vscode搭建项目管理环境.assets/image-20210604101637611.png)
+
+- 在弹出的Terminal中输入登录密码（后续配置免密登录），此时terminal界面出现一系列远程服务器信息，左下角状态显示`SSH:alias`,说明链接成功；
+
+![image-20210604102057034](基于vscode搭建项目管理环境.assets/image-20210604102057034.png)
+
+​		open folder出现的目录为远程服务器下的目录结构：
+
+![image-20210604102515327](基于vscode搭建项目管理环境.assets/image-20210604102515327.png)
+
+- 添加一个bash终端，方便后续的命令行操作；
+
+  ![image-20210604102651085](基于vscode搭建项目管理环境.assets/image-20210604102651085.png)
 
 #### 3. 使用code指令添加folder
 
@@ -80,45 +108,109 @@ code命令使用说明可通过 `code -h`详见；
 
 常用的有 `code -a folder_name  `可在当前的vscode界面下，添加一个新的目录结构，如：
 
+
+
+#### 4. 项目移植到远程服务器注意事项
+
+##### 4.1 重新配置相关参数
+将项迁移到远程服务器后,需要重新配置一些参数，如下：
+
+```shell
+git config --global user.email "1474257100@qq.com"
+git config --global user.name "gaoyujing"
 ```
 
+因为服务器中没有SSL证书，所以之前在WSL中配置的http.sslverify参数需要重新配置：
+
+- 将*.bbwh.loc根证书通过WinSCP导入服务器中，存放在目录 `/usr/sfca/bbwh_loc_bundle.crt`;
+
+- 配置http.sslverify参数，指向SSL证书；
+
+  ```shell
+  git config --global http.sslcainfo /usr/sfca/bbwh_loc_bundle.crt
+  ```
+
+- 配置credential.helper参数，保存密码，避免重复输入密码；
+
+  ```shell
+  git config --global credential.helper store
+  ```
+
+- 查看当前git的参数配置；
+
+  ```shell
+  gaoyujing@bbwhai1-System-Product-Name:~/prj/Cores-SweRV$ git config --list
+  
+  user.email=1474257100@qq.com
+  user.name=gaoyujing
+  http.sslcainfo=/usr/sfca/bbwh_loc_bundle.crt
+  credential.helper=store
+  core.repositoryformatversion=0
+  core.filemode=false
+  core.bare=false
+  core.logallrefupdates=true
+  core.symlinks=false
+  core.ignorecase=true
+  remote.origin.url=https://gitlab.bbwh.loc/beyondbitwh/ai-ifchip/Cores-SweRV.git
+  remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+  branch.master.remote=origin
+  branch.master.merge=refs/heads/master
+  branch.dev.remote=origin
+  branch.dev.merge=refs/heads/dev
+  ```
+
+  配置后即可顺利的完成git操作了。
+
+##### 4.2 WinSCP使用弊端
+
+ 使用WinSCP将文件从Windows导入服务器由于前后的环境不同会导致文件的权限发生改变，如果出现这种情况需要进入目录下修改权限：
+
+```shell
+chmod -R 755 ./
 ```
 
- 
+##### 4.3 设置ssh免密登录
 
-```powershell
- Get-Command ssh
+打开powershell，输入命令行,生成ssh公钥私钥（一路回车直到显示密钥生成即可，或者会显示密钥已经存在，这时候就不需要再生成了）：
+
+```
+ssh-keygen
 ```
 
+使用WinSCP将生成的公钥和私钥拷贝到远程服务器端你的/home 文件夹下即可。
 
+之后在远程服务器端按顺序进行如下操作：
 
- IdentityFile "C:\Users\14742\.ssh\id_rsa"
-
-
-
-添加环境变量：
-
-在.bashrc中添加gtk变量指向“/mnt/e/gtkwave/gtkwave-3.3.100-bin-win32/gtkwave-3.3.100-bin-win32/gtkwave/bin/gtkwave.exe”
-
-
-
-在用户变量和系统变量中分别添加变量gtk指向gtkwave.exe；例如我的$env:gtk变量指向
-
-`E:\gtkwave\gtkwave-3.3.100-bin-win32\gtkwave-3.3.100-bin-win32\gtkwave\bin\gtkwave.exe`
-
-在powershell下，执行如下命令行即可打开gtkwave界面（或者直接打开波形文件）：
-
-```powershell
-start $env:gtk [sim.vcd]
+```shell
+mkdir .ssh
+mv id_rsa.pub .ssh
+cd .ssh
+cat id_rsa.pub >> authorized_keys
+sudo chmod 600 authorized_keys
+service sshd restart
 ```
 
+可能在最后一条命令要输出你的账号登录密码。
+这样远程ssh主机配置免密码登录就完成了。
+然后你可以在vscode重复打开远程ssh的步骤，看看是否还需要输入密码了。
 
 
 
+#### 5. 插件安装
 
-#### 3. 插件安装
+##### 5.1 makedown插件
 
-##### 3.2 pdf阅读插件（可选）
+**Markdown All in One:**一款专门针对 VSCode 开发的插件，安装后可以在 VSCode 上更丰富和完善的编辑 Markdown 文档，非常实用。
+
+![image-20210604135524363](基于vscode搭建项目管理环境.assets/image-20210604135524363.png)
+
+安装后打开一个markdown文件，点击右上角（如下图）的标志，即可阅读
+
+![image-20210604140757950](基于vscode搭建项目管理环境.assets/image-20210604140757950.png)
+
+
+
+##### 5.2 pdf阅读插件（可选）
 
 为了在vscode中完成“一切操作”，可以加入pdf插件，进行pdf的阅读，但是亲测效果没有其他pdf阅读软件实用，不是很推荐！！
 
