@@ -9,22 +9,22 @@ z2
 cModel Technology
 dD:/prj/routine/works/uart
 T_opt
-!s110 1634207047
-VS93V^nRaOAY<a;DX78lE61
+!s110 1634207472
+VJZLLC`z8F5z5lnB4l3:9V0
 04 7 4 work uart_tb fast 0
-=1-9c7bef330309-61680547-18f-2910
+=1-9c7bef330309-616806f0-258-1da4
 o-quiet -auto_acc_if_foreign -work work +acc=bcglnprst+uartTx +acc=bcglnprst+uart_tb +acc=bcglnprst+uartRx +acc=bcglnprst+baudGen +acc=bcglnprst+axi4Lite2Uart +acc=bcglnprst+Axi4LiteUartTop
 Z0 tCvgOpt 0
 n@_opt
 OL;O;10.7;67
 vaxi4Lite2Uart
-Z1 !s110 1634207034
+Z1 !s110 1634207461
 !i10b 1
-!s100 T00G^>3e;IbOCXR=?6ZQM3
-Ic2^R5RIE?@m?71Y8ZPO=_1
+!s100 O@>Z3d1XO`O3=Tg:F5U`C1
+I7zU;B39:A:CNYFkBVK2Zk0
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 Z3 dD:/prj/routine/daily/uart-chisel
-Z4 w1634207028
+Z4 w1634207454
 Z5 8D:/prj/routine/daily/uart-chisel/rtl/Axi4LiteUartTop.v
 Z6 FD:/prj/routine/daily/uart-chisel/rtl/Axi4LiteUartTop.v
 L0 470
@@ -32,7 +32,7 @@ Z7 OL;L;10.7;67
 r1
 !s85 0
 31
-Z8 !s108 1634207034.000000
+Z8 !s108 1634207461.000000
 Z9 !s107 D:/prj/routine/daily/uart-chisel/rtl/Axi4LiteUartTop.v|
 Z10 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/uart-chisel/rtl/Axi4LiteUartTop.v|
 !i113 0

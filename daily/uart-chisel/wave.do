@@ -123,7 +123,6 @@ add wave -noupdate -group bus /uart_tb/uart_1/bus/_stat_reg_T
 add wave -noupdate -group bus /uart_tb/uart_1/bus/_T_12
 add wave -noupdate -group bus /uart_tb/uart_1/bus/_T_17
 add wave -noupdate -group bus /uart_tb/uart_1/bus/_GEN_26
-add wave -noupdate -group bus /uart_tb/uart_1/bus/_io_tx_start_T_1
 add wave -noupdate -group tx /uart_tb/uart_1/tx/clock
 add wave -noupdate -group tx /uart_tb/uart_1/tx/reset
 add wave -noupdate -group tx /uart_tb/uart_1/tx/io_tx_data_sample

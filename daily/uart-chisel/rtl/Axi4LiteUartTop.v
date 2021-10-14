@@ -563,7 +563,7 @@ module axi4Lite2Uart(
   wire  _T_21 = 2'h1 == addr_3[3:2]; // @[Conditional.scala 37:30]
   wire  _T_22 = 2'h2 == addr_3[3:2]; // @[Conditional.scala 37:30]
   wire [31:0] _GEN_22 = _T_22 ? {{24'd0}, io_data_reg_rx} : data_4; // @[Conditional.scala 39:67 Axi4Lite_uart.scala 54:33 axi4_lite.scala 58:21]
-  wire  _io_tx_start_T_1 = addr_0 == 32'h2; // @[Axi4Lite_uart.scala 60:15]
+  wire  _io_tx_start_T_2 = addr_0[3:2] == 2'h2; // @[Axi4Lite_uart.scala 60:20]
   assign axi_readAddr_ready = ready_3; // @[axi4_lite.scala 68:28]
   assign axi_readData_valid = valid_4; // @[axi4_lite.scala 71:28]
   assign axi_readData_bits_data = data_4; // @[axi4_lite.scala 69:28]
@@ -577,7 +577,7 @@ module axi4Lite2Uart(
   assign io_parity_even = ctrl_reg[2]; // @[Axi4Lite_uart.scala 38:29]
   assign io_div = ctrl_reg[31:16]; // @[Axi4Lite_uart.scala 39:21]
   assign io_data_reg_tx = data_reg[7:0]; // @[Axi4Lite_uart.scala 62:18]
-  assign io_tx_start = _T_10 & _io_tx_start_T_1; // @[Axi4Lite_uart.scala 59:66]
+  assign io_tx_start = _T_10 & _io_tx_start_T_2; // @[Axi4Lite_uart.scala 59:66]
   always @(posedge clock) begin
     if (reset) begin // @[axi4_lite.scala 57:21]
       addr_0 <= 32'h0; // @[axi4_lite.scala 57:21]
