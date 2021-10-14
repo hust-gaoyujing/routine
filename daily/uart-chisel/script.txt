@@ -1,0 +1,11 @@
+VSIM:
+vsim "+FREQUENCE=144M" "+BAUDRATE=115200bps" "+TEST_TYPE=TX" "+BAUD_EN=1" "+TX_EN=1" "+RX_EN=1" "+UART_EN=1" "+NO_PARITY=0" "+EV_PARITY=1" work.uart_tb -voptargs="+acc=bcglnprst+uart_ctrl +acc=bcglnprst+uart_tb +acc=bcglnprst+uart_rx +acc=bcglnprst+baudrate_generator +acc=bcglnprst+uart_tx +acc=bcglnprst+gjy_uart_top"
+
+vsim "+FREQUENCE=16M" "+BAUDRATE=115200bps" "+TEST_TYPE=TX" "+BAUD_EN=1" "+TX_EN=1" "+RX_EN=1" "+UART_EN=1" "+NO_PARITY=0" "+EV_PARITY=1" work.uart_tb -voptargs="+acc=bcglnprst+uart_ctrl +acc=bcglnprst+uart_tb +acc=bcglnprst+uart_rx +acc=bcglnprst+baudrate_generator +acc=bcglnprst+uart_tx +acc=bcglnprst+gjy_uart_top"
+
+
+WAVE:
+do D:/prj/routine/works/uart/wave.do
+
+RUN:
+run -all

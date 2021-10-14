@@ -499,8 +499,8 @@ module axi4Lite2Uart(
   output        io_tx_start
 );
 `ifdef RANDOMIZE_REG_INIT
-  reg [159:0] _RAND_0;
-  reg [159:0] _RAND_1;
+  reg [31:0] _RAND_0;
+  reg [31:0] _RAND_1;
   reg [31:0] _RAND_2;
   reg [31:0] _RAND_3;
   reg [31:0] _RAND_4;
@@ -514,141 +514,146 @@ module axi4Lite2Uart(
   reg [31:0] _RAND_12;
   reg [31:0] _RAND_13;
   reg [31:0] _RAND_14;
+  reg [31:0] _RAND_15;
+  reg [31:0] _RAND_16;
 `endif // RANDOMIZE_REG_INIT
-  reg [159:0] addr_0; // @[axi4_lite.scala 55:21]
-  reg [159:0] data_0; // @[axi4_lite.scala 56:21]
-  reg  valid_2; // @[axi4_lite.scala 57:22]
-  reg  valid_4; // @[axi4_lite.scala 57:22]
-  reg  ready_0; // @[axi4_lite.scala 58:22]
-  reg  ready_1; // @[axi4_lite.scala 58:22]
-  reg  ready_3; // @[axi4_lite.scala 58:22]
-  reg  resp_2; // @[axi4_lite.scala 59:21]
-  reg  resp_4; // @[axi4_lite.scala 59:21]
-  reg  handshake_0; // @[axi4_lite.scala 73:26]
-  reg  handshake_1; // @[axi4_lite.scala 73:26]
-  reg  handshake_3; // @[axi4_lite.scala 73:26]
-  wire  slv_reg_wren = handshake_0 & handshake_1; // @[axi4_lite.scala 82:33]
-  wire  _T_2 = axi_writeResp_valid & axi_writeResp_ready; // @[axi4_lite.scala 91:35]
-  wire  _GEN_0 = axi_writeResp_valid & axi_writeResp_ready ? 1'h0 : handshake_0; // @[axi4_lite.scala 91:59 axi4_lite.scala 92:19 axi4_lite.scala 73:26]
-  wire  _GEN_1 = axi_writeResp_valid & axi_writeResp_ready & ready_0; // @[axi4_lite.scala 91:59 axi4_lite.scala 58:22 axi4_lite.scala 94:15]
-  wire  _GEN_2 = axi_writeAddr_valid & ~handshake_0 | _GEN_1; // @[axi4_lite.scala 86:47 axi4_lite.scala 87:15]
-  wire  _GEN_3 = axi_writeAddr_valid & ~handshake_0 | _GEN_0; // @[axi4_lite.scala 86:47 axi4_lite.scala 88:19]
-  wire [31:0] _GEN_30 = {{28'd0}, axi_writeData_bits_strb}; // @[axi4_lite.scala 101:40]
-  wire [31:0] _data_0_T = axi_writeData_bits_data & _GEN_30; // @[axi4_lite.scala 101:40]
-  wire  _GEN_5 = _T_2 ? 1'h0 : handshake_1; // @[axi4_lite.scala 103:59 axi4_lite.scala 104:18 axi4_lite.scala 73:26]
-  wire  _GEN_6 = _T_2 & ready_1; // @[axi4_lite.scala 103:59 axi4_lite.scala 58:22 axi4_lite.scala 106:14]
-  wire  _GEN_7 = axi_writeData_valid & ~handshake_1 | _GEN_6; // @[axi4_lite.scala 98:46 axi4_lite.scala 99:14]
-  wire  _GEN_8 = axi_writeData_valid & ~handshake_1 | _GEN_5; // @[axi4_lite.scala 98:46 axi4_lite.scala 100:18]
-  wire [159:0] _GEN_9 = axi_writeData_valid & ~handshake_1 ? {{128'd0}, _data_0_T} : data_0; // @[axi4_lite.scala 98:46 axi4_lite.scala 101:13 axi4_lite.scala 56:21]
-  wire  _GEN_10 = _T_2 ? 1'h0 : valid_2; // @[axi4_lite.scala 114:59 axi4_lite.scala 115:14 axi4_lite.scala 57:22]
-  wire  _GEN_11 = slv_reg_wren | _GEN_10; // @[axi4_lite.scala 110:22 axi4_lite.scala 111:14]
-  wire [1:0] _GEN_12 = slv_reg_wren ? 2'h0 : {{1'd0}, resp_2}; // @[axi4_lite.scala 110:22 axi4_lite.scala 113:13 axi4_lite.scala 59:21]
-  wire  _T_9 = axi_readData_valid & axi_readData_ready; // @[axi4_lite.scala 123:35]
-  wire  _GEN_13 = axi_readData_valid & axi_readData_ready ? 1'h0 : handshake_3; // @[axi4_lite.scala 123:58 axi4_lite.scala 124:19 axi4_lite.scala 73:26]
-  wire  _GEN_14 = axi_readData_valid & axi_readData_ready & ready_3; // @[axi4_lite.scala 123:58 axi4_lite.scala 58:22 axi4_lite.scala 126:15]
-  wire  _GEN_15 = axi_readAddr_valid & ~handshake_3 | _GEN_14; // @[axi4_lite.scala 119:46 axi4_lite.scala 120:15]
-  wire  _GEN_16 = axi_readAddr_valid & ~handshake_3 | _GEN_13; // @[axi4_lite.scala 119:46 axi4_lite.scala 121:19]
-  wire  _GEN_18 = _T_9 ? 1'h0 : valid_4; // @[axi4_lite.scala 134:58 axi4_lite.scala 135:14 axi4_lite.scala 57:22]
-  wire  _GEN_19 = handshake_3 | _GEN_18; // @[axi4_lite.scala 130:23 axi4_lite.scala 131:14]
-  wire [1:0] _GEN_20 = handshake_3 ? 2'h0 : {{1'd0}, resp_4}; // @[axi4_lite.scala 130:23 axi4_lite.scala 133:13 axi4_lite.scala 59:21]
+  reg [31:0] addr_0; // @[axi4_lite.scala 57:21]
+  reg [31:0] addr_3; // @[axi4_lite.scala 57:21]
+  reg [31:0] data_1; // @[axi4_lite.scala 58:21]
+  reg [31:0] data_4; // @[axi4_lite.scala 58:21]
+  reg  valid_2; // @[axi4_lite.scala 59:22]
+  reg  valid_4; // @[axi4_lite.scala 59:22]
+  reg  ready_0; // @[axi4_lite.scala 60:22]
+  reg  ready_1; // @[axi4_lite.scala 60:22]
+  reg  ready_3; // @[axi4_lite.scala 60:22]
+  reg  resp_2; // @[axi4_lite.scala 61:21]
+  reg  resp_4; // @[axi4_lite.scala 61:21]
+  reg  handshake_0; // @[axi4_lite.scala 75:26]
+  reg  handshake_1; // @[axi4_lite.scala 75:26]
+  reg  handshake_3; // @[axi4_lite.scala 75:26]
+  wire  slv_reg_wren = handshake_0 & handshake_1; // @[axi4_lite.scala 84:33]
+  wire  _T_1 = axi_writeAddr_valid & ~handshake_0; // @[axi4_lite.scala 88:28]
+  wire  _GEN_2 = slv_reg_wren ? 1'h0 : handshake_0; // @[axi4_lite.scala 97:46 axi4_lite.scala 98:19 axi4_lite.scala 75:26]
+  wire  _GEN_3 = _T_1 | _GEN_2; // @[axi4_lite.scala 95:47 axi4_lite.scala 96:19]
+  wire [6:0] mask_hi_hi = axi_writeData_bits_strb[3] ? 7'h7f : 7'h0; // @[Bitwise.scala 72:12]
+  wire [6:0] mask_hi_lo = axi_writeData_bits_strb[2] ? 7'h7f : 7'h0; // @[Bitwise.scala 72:12]
+  wire [6:0] mask_lo_hi = axi_writeData_bits_strb[1] ? 7'h7f : 7'h0; // @[Bitwise.scala 72:12]
+  wire [6:0] mask_lo_lo = axi_writeData_bits_strb[0] ? 7'h7f : 7'h0; // @[Bitwise.scala 72:12]
+  wire [27:0] mask = {mask_hi_hi,mask_hi_lo,mask_lo_hi,mask_lo_lo}; // @[Cat.scala 30:58]
+  wire  _T_6 = axi_writeData_valid & ~handshake_1; // @[axi4_lite.scala 107:28]
+  wire [31:0] _GEN_26 = {{4'd0}, mask}; // @[axi4_lite.scala 109:40]
+  wire [31:0] _data_1_T = axi_writeData_bits_data & _GEN_26; // @[axi4_lite.scala 109:40]
+  wire  _GEN_6 = slv_reg_wren ? 1'h0 : handshake_1; // @[axi4_lite.scala 116:46 axi4_lite.scala 117:18 axi4_lite.scala 75:26]
+  wire  _GEN_7 = _T_6 | _GEN_6; // @[axi4_lite.scala 114:46 axi4_lite.scala 115:18]
+  wire  _T_10 = axi_writeResp_valid & axi_writeResp_ready; // @[axi4_lite.scala 125:35]
+  wire  _GEN_8 = axi_writeResp_valid & axi_writeResp_ready ? 1'h0 : valid_2; // @[axi4_lite.scala 125:59 axi4_lite.scala 126:14 axi4_lite.scala 59:22]
+  wire  _GEN_9 = slv_reg_wren | _GEN_8; // @[axi4_lite.scala 121:22 axi4_lite.scala 122:14]
+  wire [1:0] _GEN_10 = slv_reg_wren ? 2'h0 : {{1'd0}, resp_2}; // @[axi4_lite.scala 121:22 axi4_lite.scala 124:13 axi4_lite.scala 61:21]
+  wire  _T_12 = axi_readAddr_valid & ~handshake_3; // @[axi4_lite.scala 130:27]
+  wire  _GEN_14 = axi_readData_valid & axi_readData_ready ? 1'h0 : valid_4; // @[axi4_lite.scala 148:58 axi4_lite.scala 149:14 axi4_lite.scala 59:22]
+  wire  _GEN_15 = handshake_3 | _GEN_14; // @[axi4_lite.scala 144:23 axi4_lite.scala 145:14]
+  wire [1:0] _GEN_16 = handshake_3 ? 2'h0 : {{1'd0}, resp_4}; // @[axi4_lite.scala 144:23 axi4_lite.scala 147:13 axi4_lite.scala 61:21]
   reg [31:0] stat_reg; // @[Axi4Lite_uart.scala 30:25]
   reg [31:0] ctrl_reg; // @[Axi4Lite_uart.scala 31:25]
   reg [31:0] data_reg; // @[Axi4Lite_uart.scala 32:25]
   wire [31:0] _stat_reg_T = {29'h0,io_parity_error,io_rx_busy,io_tx_busy}; // @[Cat.scala 30:58]
-  wire  _T_12 = 2'h1 == addr_0[3:2]; // @[Conditional.scala 37:30]
-  wire  _T_13 = 2'h2 == addr_0[3:2]; // @[Conditional.scala 37:30]
-  wire [159:0] _GEN_21 = _T_13 ? data_0 : {{128'd0}, data_reg}; // @[Conditional.scala 39:67 Axi4Lite_uart.scala 45:34 Axi4Lite_uart.scala 32:25]
-  wire [159:0] _GEN_22 = _T_12 ? data_0 : {{128'd0}, ctrl_reg}; // @[Conditional.scala 40:58 Axi4Lite_uart.scala 44:34 Axi4Lite_uart.scala 31:25]
-  wire [159:0] _GEN_23 = _T_12 ? {{128'd0}, data_reg} : _GEN_21; // @[Conditional.scala 40:58 Axi4Lite_uart.scala 32:25]
-  wire [159:0] _GEN_24 = slv_reg_wren ? _GEN_22 : {{128'd0}, ctrl_reg}; // @[Axi4Lite_uart.scala 42:22 Axi4Lite_uart.scala 31:25]
-  wire [159:0] _GEN_25 = slv_reg_wren ? _GEN_23 : {{128'd0}, data_reg}; // @[Axi4Lite_uart.scala 42:22 Axi4Lite_uart.scala 32:25]
-  wire  _T_15 = 2'h0 == addr_0[3:2]; // @[Conditional.scala 37:30]
-  wire [159:0] _GEN_26 = _T_13 ? {{152'd0}, io_data_reg_rx} : _GEN_9; // @[Conditional.scala 39:67 Axi4Lite_uart.scala 54:33]
-  wire  _io_tx_start_T_1 = data_0 == 160'h2; // @[Axi4Lite_uart.scala 60:14]
-  assign axi_readAddr_ready = ready_3; // @[axi4_lite.scala 66:28]
-  assign axi_readData_valid = valid_4; // @[axi4_lite.scala 69:28]
-  assign axi_readData_bits_data = data_0[31:0]; // @[axi4_lite.scala 67:28]
-  assign axi_readData_bits_resp = {{1'd0}, resp_4}; // @[axi4_lite.scala 68:28]
-  assign axi_writeAddr_ready = ready_0; // @[axi4_lite.scala 62:28]
-  assign axi_writeData_ready = ready_1; // @[axi4_lite.scala 63:28]
-  assign axi_writeResp_valid = valid_2; // @[axi4_lite.scala 65:28]
-  assign axi_writeResp_bits_resp = {{1'd0}, resp_2}; // @[axi4_lite.scala 64:28]
+  wire  _T_17 = 2'h1 == addr_0[3:2]; // @[Conditional.scala 37:30]
+  wire  _T_18 = 2'h2 == addr_0[3:2]; // @[Conditional.scala 37:30]
+  wire  _T_20 = 2'h0 == addr_3[3:2]; // @[Conditional.scala 37:30]
+  wire  _T_21 = 2'h1 == addr_3[3:2]; // @[Conditional.scala 37:30]
+  wire  _T_22 = 2'h2 == addr_3[3:2]; // @[Conditional.scala 37:30]
+  wire [31:0] _GEN_22 = _T_22 ? {{24'd0}, io_data_reg_rx} : data_4; // @[Conditional.scala 39:67 Axi4Lite_uart.scala 54:33 axi4_lite.scala 58:21]
+  wire  _io_tx_start_T_1 = addr_0 == 32'h2; // @[Axi4Lite_uart.scala 60:15]
+  assign axi_readAddr_ready = ready_3; // @[axi4_lite.scala 68:28]
+  assign axi_readData_valid = valid_4; // @[axi4_lite.scala 71:28]
+  assign axi_readData_bits_data = data_4; // @[axi4_lite.scala 69:28]
+  assign axi_readData_bits_resp = {{1'd0}, resp_4}; // @[axi4_lite.scala 70:28]
+  assign axi_writeAddr_ready = ready_0; // @[axi4_lite.scala 64:28]
+  assign axi_writeData_ready = ready_1; // @[axi4_lite.scala 65:28]
+  assign axi_writeResp_valid = valid_2; // @[axi4_lite.scala 67:28]
+  assign axi_writeResp_bits_resp = {{1'd0}, resp_2}; // @[axi4_lite.scala 66:28]
   assign io_clk_en = ctrl_reg[0]; // @[Axi4Lite_uart.scala 36:24]
   assign io_parity_en = ctrl_reg[1]; // @[Axi4Lite_uart.scala 37:27]
   assign io_parity_even = ctrl_reg[2]; // @[Axi4Lite_uart.scala 38:29]
   assign io_div = ctrl_reg[31:16]; // @[Axi4Lite_uart.scala 39:21]
   assign io_data_reg_tx = data_reg[7:0]; // @[Axi4Lite_uart.scala 62:18]
-  assign io_tx_start = _T_2 & _io_tx_start_T_1; // @[Axi4Lite_uart.scala 59:66]
+  assign io_tx_start = _T_10 & _io_tx_start_T_1; // @[Axi4Lite_uart.scala 59:66]
   always @(posedge clock) begin
-    if (reset) begin // @[axi4_lite.scala 55:21]
-      addr_0 <= 160'h0; // @[axi4_lite.scala 55:21]
-    end else if (axi_readAddr_valid & ~handshake_3) begin // @[axi4_lite.scala 119:46]
-      addr_0 <= {{128'd0}, axi_readAddr_bits_addr}; // @[axi4_lite.scala 122:14]
-    end else if (axi_writeAddr_valid & ~handshake_0) begin // @[axi4_lite.scala 86:47]
-      addr_0 <= {{128'd0}, axi_writeAddr_bits_addr}; // @[axi4_lite.scala 89:14]
+    if (reset) begin // @[axi4_lite.scala 57:21]
+      addr_0 <= 32'h0; // @[axi4_lite.scala 57:21]
+    end else if (axi_writeAddr_valid & ~handshake_0) begin // @[axi4_lite.scala 88:47]
+      addr_0 <= axi_writeAddr_bits_addr; // @[axi4_lite.scala 90:14]
     end
-    if (reset) begin // @[axi4_lite.scala 56:21]
-      data_0 <= 160'h0; // @[axi4_lite.scala 56:21]
+    if (reset) begin // @[axi4_lite.scala 57:21]
+      addr_3 <= 32'h0; // @[axi4_lite.scala 57:21]
+    end else if (axi_readAddr_valid & ~handshake_3) begin // @[axi4_lite.scala 130:46]
+      addr_3 <= axi_readAddr_bits_addr; // @[axi4_lite.scala 132:14]
+    end
+    if (reset) begin // @[axi4_lite.scala 58:21]
+      data_1 <= 32'h0; // @[axi4_lite.scala 58:21]
+    end else if (axi_writeData_valid & ~handshake_1) begin // @[axi4_lite.scala 107:46]
+      data_1 <= _data_1_T; // @[axi4_lite.scala 109:13]
+    end
+    if (reset) begin // @[axi4_lite.scala 58:21]
+      data_4 <= 32'h0; // @[axi4_lite.scala 58:21]
     end else if (handshake_3) begin // @[Axi4Lite_uart.scala 50:22]
-      if (_T_15) begin // @[Conditional.scala 40:58]
-        data_0 <= {{128'd0}, stat_reg}; // @[Axi4Lite_uart.scala 52:33]
-      end else if (_T_12) begin // @[Conditional.scala 39:67]
-        data_0 <= {{128'd0}, ctrl_reg}; // @[Axi4Lite_uart.scala 53:33]
+      if (_T_20) begin // @[Conditional.scala 40:58]
+        data_4 <= stat_reg; // @[Axi4Lite_uart.scala 52:33]
+      end else if (_T_21) begin // @[Conditional.scala 39:67]
+        data_4 <= ctrl_reg; // @[Axi4Lite_uart.scala 53:33]
       end else begin
-        data_0 <= _GEN_26;
+        data_4 <= _GEN_22;
       end
-    end else if (axi_writeData_valid & ~handshake_1) begin // @[axi4_lite.scala 98:46]
-      data_0 <= {{128'd0}, _data_0_T}; // @[axi4_lite.scala 101:13]
     end
-    if (reset) begin // @[axi4_lite.scala 57:22]
-      valid_2 <= 1'h0; // @[axi4_lite.scala 57:22]
+    if (reset) begin // @[axi4_lite.scala 59:22]
+      valid_2 <= 1'h0; // @[axi4_lite.scala 59:22]
     end else begin
-      valid_2 <= _GEN_11;
+      valid_2 <= _GEN_9;
     end
-    if (reset) begin // @[axi4_lite.scala 57:22]
-      valid_4 <= 1'h0; // @[axi4_lite.scala 57:22]
+    if (reset) begin // @[axi4_lite.scala 59:22]
+      valid_4 <= 1'h0; // @[axi4_lite.scala 59:22]
     end else begin
-      valid_4 <= _GEN_19;
+      valid_4 <= _GEN_15;
     end
-    if (reset) begin // @[axi4_lite.scala 58:22]
-      ready_0 <= 1'h0; // @[axi4_lite.scala 58:22]
+    if (reset) begin // @[axi4_lite.scala 60:22]
+      ready_0 <= 1'h0; // @[axi4_lite.scala 60:22]
     end else begin
-      ready_0 <= _GEN_2;
+      ready_0 <= _T_1;
     end
-    if (reset) begin // @[axi4_lite.scala 58:22]
-      ready_1 <= 1'h0; // @[axi4_lite.scala 58:22]
+    if (reset) begin // @[axi4_lite.scala 60:22]
+      ready_1 <= 1'h0; // @[axi4_lite.scala 60:22]
     end else begin
-      ready_1 <= _GEN_7;
+      ready_1 <= _T_6;
     end
-    if (reset) begin // @[axi4_lite.scala 58:22]
-      ready_3 <= 1'h0; // @[axi4_lite.scala 58:22]
+    if (reset) begin // @[axi4_lite.scala 60:22]
+      ready_3 <= 1'h0; // @[axi4_lite.scala 60:22]
     end else begin
-      ready_3 <= _GEN_15;
+      ready_3 <= _T_12;
     end
-    if (reset) begin // @[axi4_lite.scala 59:21]
-      resp_2 <= 1'h0; // @[axi4_lite.scala 59:21]
+    if (reset) begin // @[axi4_lite.scala 61:21]
+      resp_2 <= 1'h0; // @[axi4_lite.scala 61:21]
     end else begin
-      resp_2 <= _GEN_12[0];
+      resp_2 <= _GEN_10[0];
     end
-    if (reset) begin // @[axi4_lite.scala 59:21]
-      resp_4 <= 1'h0; // @[axi4_lite.scala 59:21]
+    if (reset) begin // @[axi4_lite.scala 61:21]
+      resp_4 <= 1'h0; // @[axi4_lite.scala 61:21]
     end else begin
-      resp_4 <= _GEN_20[0];
+      resp_4 <= _GEN_16[0];
     end
-    if (reset) begin // @[axi4_lite.scala 73:26]
-      handshake_0 <= 1'h0; // @[axi4_lite.scala 73:26]
+    if (reset) begin // @[axi4_lite.scala 75:26]
+      handshake_0 <= 1'h0; // @[axi4_lite.scala 75:26]
     end else begin
       handshake_0 <= _GEN_3;
     end
-    if (reset) begin // @[axi4_lite.scala 73:26]
-      handshake_1 <= 1'h0; // @[axi4_lite.scala 73:26]
+    if (reset) begin // @[axi4_lite.scala 75:26]
+      handshake_1 <= 1'h0; // @[axi4_lite.scala 75:26]
     end else begin
-      handshake_1 <= _GEN_8;
+      handshake_1 <= _GEN_7;
     end
-    if (reset) begin // @[axi4_lite.scala 73:26]
-      handshake_3 <= 1'h0; // @[axi4_lite.scala 73:26]
+    if (reset) begin // @[axi4_lite.scala 75:26]
+      handshake_3 <= 1'h0; // @[axi4_lite.scala 75:26]
     end else begin
-      handshake_3 <= _GEN_16;
+      handshake_3 <= _T_12;
     end
     if (reset) begin // @[Axi4Lite_uart.scala 30:25]
       stat_reg <= 32'h0; // @[Axi4Lite_uart.scala 30:25]
@@ -657,13 +662,19 @@ module axi4Lite2Uart(
     end
     if (reset) begin // @[Axi4Lite_uart.scala 31:25]
       ctrl_reg <= 32'h7; // @[Axi4Lite_uart.scala 31:25]
-    end else begin
-      ctrl_reg <= _GEN_24[31:0];
+    end else if (slv_reg_wren) begin // @[Axi4Lite_uart.scala 42:22]
+      if (_T_17) begin // @[Conditional.scala 40:58]
+        ctrl_reg <= data_1; // @[Axi4Lite_uart.scala 44:34]
+      end
     end
     if (reset) begin // @[Axi4Lite_uart.scala 32:25]
       data_reg <= 32'hff; // @[Axi4Lite_uart.scala 32:25]
-    end else begin
-      data_reg <= _GEN_25[31:0];
+    end else if (slv_reg_wren) begin // @[Axi4Lite_uart.scala 42:22]
+      if (!(_T_17)) begin // @[Conditional.scala 40:58]
+        if (_T_18) begin // @[Conditional.scala 39:67]
+          data_reg <= data_1; // @[Axi4Lite_uart.scala 45:34]
+        end
+      end
     end
   end
 // Register and memory initialization
@@ -702,36 +713,40 @@ initial begin
       `endif
     `endif
 `ifdef RANDOMIZE_REG_INIT
-  _RAND_0 = {5{`RANDOM}};
-  addr_0 = _RAND_0[159:0];
-  _RAND_1 = {5{`RANDOM}};
-  data_0 = _RAND_1[159:0];
+  _RAND_0 = {1{`RANDOM}};
+  addr_0 = _RAND_0[31:0];
+  _RAND_1 = {1{`RANDOM}};
+  addr_3 = _RAND_1[31:0];
   _RAND_2 = {1{`RANDOM}};
-  valid_2 = _RAND_2[0:0];
+  data_1 = _RAND_2[31:0];
   _RAND_3 = {1{`RANDOM}};
-  valid_4 = _RAND_3[0:0];
+  data_4 = _RAND_3[31:0];
   _RAND_4 = {1{`RANDOM}};
-  ready_0 = _RAND_4[0:0];
+  valid_2 = _RAND_4[0:0];
   _RAND_5 = {1{`RANDOM}};
-  ready_1 = _RAND_5[0:0];
+  valid_4 = _RAND_5[0:0];
   _RAND_6 = {1{`RANDOM}};
-  ready_3 = _RAND_6[0:0];
+  ready_0 = _RAND_6[0:0];
   _RAND_7 = {1{`RANDOM}};
-  resp_2 = _RAND_7[0:0];
+  ready_1 = _RAND_7[0:0];
   _RAND_8 = {1{`RANDOM}};
-  resp_4 = _RAND_8[0:0];
+  ready_3 = _RAND_8[0:0];
   _RAND_9 = {1{`RANDOM}};
-  handshake_0 = _RAND_9[0:0];
+  resp_2 = _RAND_9[0:0];
   _RAND_10 = {1{`RANDOM}};
-  handshake_1 = _RAND_10[0:0];
+  resp_4 = _RAND_10[0:0];
   _RAND_11 = {1{`RANDOM}};
-  handshake_3 = _RAND_11[0:0];
+  handshake_0 = _RAND_11[0:0];
   _RAND_12 = {1{`RANDOM}};
-  stat_reg = _RAND_12[31:0];
+  handshake_1 = _RAND_12[0:0];
   _RAND_13 = {1{`RANDOM}};
-  ctrl_reg = _RAND_13[31:0];
+  handshake_3 = _RAND_13[0:0];
   _RAND_14 = {1{`RANDOM}};
-  data_reg = _RAND_14[31:0];
+  stat_reg = _RAND_14[31:0];
+  _RAND_15 = {1{`RANDOM}};
+  ctrl_reg = _RAND_15[31:0];
+  _RAND_16 = {1{`RANDOM}};
+  data_reg = _RAND_16[31:0];
 `endif // RANDOMIZE_REG_INIT
   `endif // RANDOMIZE
 end // initial
@@ -740,7 +755,7 @@ end // initial
 `endif
 `endif // SYNTHESIS
 endmodule
-module Axi4LiteUartTop(
+module axi4LiteUartTop(
   input         clock,
   input         reset,
   output        io_axi_readAddr_ready,

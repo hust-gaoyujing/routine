@@ -1,0 +1,172 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/prj/routine/works/uart
+T_opt
+!s110 1634207047
+VS93V^nRaOAY<a;DX78lE61
+04 7 4 work uart_tb fast 0
+=1-9c7bef330309-61680547-18f-2910
+o-quiet -auto_acc_if_foreign -work work +acc=bcglnprst+uartTx +acc=bcglnprst+uart_tb +acc=bcglnprst+uartRx +acc=bcglnprst+baudGen +acc=bcglnprst+axi4Lite2Uart +acc=bcglnprst+Axi4LiteUartTop
+Z0 tCvgOpt 0
+n@_opt
+OL;O;10.7;67
+vaxi4Lite2Uart
+Z1 !s110 1634207034
+!i10b 1
+!s100 T00G^>3e;IbOCXR=?6ZQM3
+Ic2^R5RIE?@m?71Y8ZPO=_1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dD:/prj/routine/daily/uart-chisel
+Z4 w1634207028
+Z5 8D:/prj/routine/daily/uart-chisel/rtl/Axi4LiteUartTop.v
+Z6 FD:/prj/routine/daily/uart-chisel/rtl/Axi4LiteUartTop.v
+L0 470
+Z7 OL;L;10.7;67
+r1
+!s85 0
+31
+Z8 !s108 1634207034.000000
+Z9 !s107 D:/prj/routine/daily/uart-chisel/rtl/Axi4LiteUartTop.v|
+Z10 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/uart-chisel/rtl/Axi4LiteUartTop.v|
+!i113 0
+Z11 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R0
+naxi4@lite2@uart
+vAxi4LiteUartTop
+!s110 1634200109
+!i10b 1
+!s100 5`>CO?9bX=XdVDP<P0VFa1
+IdhD29jT>C=b``DLoG3mI:2
+R2
+R3
+w1634096949
+R5
+R6
+L0 743
+R7
+r1
+!s85 0
+31
+!s108 1634200108.000000
+R9
+R10
+!i113 0
+R11
+R0
+n@axi4@lite@uart@top
+vaxi4LiteUartTop
+R1
+!i10b 1
+!s100 =mMoQT]koY^llQYK>O:=H2
+I02HZ`S7DH4DbiP1gWmQLV2
+R2
+R3
+R4
+R5
+R6
+L0 758
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R0
+naxi4@lite@uart@top
+vbaudGen
+R1
+!i10b 1
+!s100 EZEKPJKX0m7cgB:IdSXWh1
+IA<EXIe=S>0boV8k@FfS5I1
+R2
+R3
+R4
+R5
+R6
+L0 1
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R0
+nbaud@gen
+vuart_tb
+R1
+!i10b 1
+!s100 3McbznJ^>n]m]hZY0P9zW2
+Im=FLBJMDMnB52^I4@l6aC3
+R2
+R3
+w1634204466
+8D:/prj/routine/daily/uart-chisel/rtl/gyj_uart_tb.v
+FD:/prj/routine/daily/uart-chisel/rtl/gyj_uart_tb.v
+L0 5
+R7
+r1
+!s85 0
+31
+R8
+!s107 D:/prj/routine/daily/uart-chisel/rtl/gyj_uart_tb.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/uart-chisel/rtl/gyj_uart_tb.v|
+!i113 0
+R11
+R0
+vuartRx
+R1
+!i10b 1
+!s100 Pd`<;;hm67jfH4@^i82>h0
+I135fBd[eFgc7eJel3V`Ia0
+R2
+R3
+R4
+R5
+R6
+L0 286
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R0
+nuart@rx
+vuartTx
+R1
+!i10b 1
+!s100 f9>_:XUMJ^fCdMncC7akZ0
+I1TGXf3YgJFEilOi:n55T00
+R2
+R3
+R4
+R5
+R6
+L0 112
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R0
+nuart@tx

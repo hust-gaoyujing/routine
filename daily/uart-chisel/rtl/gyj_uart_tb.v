@@ -1,10 +1,15 @@
-`include "uart_define.v"
+
 `timescale 1ns/1ps
 
 
 module uart_tb();
+	
+	`define UART_BASE_ADDR	32'h1000_6000
+	`define UART_STAT_ADDR	`UART_BASE_ADDR+32'h0
+	`define UART_CTRL_ADDR	`UART_BASE_ADDR+32'h4
+	`define UART_DATA_ADDR	`UART_BASE_ADDR+32'h8
 
-  	reg         clK;
+  	reg         clk;
   	reg         rst;
   	wire        arready;
   	reg         arvalid;
@@ -24,7 +29,7 @@ module uart_tb();
   	reg  [3:0]  wstrb;
   	reg         bready;
   	wire        bvalid;
-  	wire [1:0]  bbits_resp;
+  	wire [1:0]  bresp;
   	reg         port_rxd;
   	wire        port_txd;
 	
@@ -41,13 +46,13 @@ module uart_tb();
 	//parity check
 	reg even_parity;
 	reg odd_parity;
-	
+
 	//VARIABLE
 	reg [8*300:1] 	FREQUENCE;
 	reg [8*300:1] 	TEST_TYPE;
-	reg [2:0] 		CLK_EN;
-	reg [3:0] 		PARITY_EN;
-	reg [3:0] 		PARITY_EVEN;
+	reg [0:0] 		CLK_EN;
+	reg [0:0] 		PARITY_EN;
+	reg [0:0] 		PARITY_EVEN;
 	reg [8*300:1] 	BAUDRATE;
 
 	Axi4LiteUartTop uart_1(
@@ -55,12 +60,12 @@ module uart_tb();
 	  	.reset							(rst				),
 	  	.io_axi_readAddr_ready			(arready			),
 	  	.io_axi_readAddr_valid			(arvalid			),
-	  	.io_axi_readAddr_bits_addr		(ardata				),
+	  	.io_axi_readAddr_bits_addr		(araddr				),
 	  	.io_axi_readAddr_bits_prot		(arprot 			),
 	  	.io_axi_readData_ready			(rready 			),
 	  	.io_axi_readData_valid			(rvalid 			),
 	  	.io_axi_readData_bits_data		(rdata				),
-	  	.axi_readData_bits_resp			(rresp  			),
+	  	.io_axi_readData_bits_resp		(rresp  			),
 	  	.io_axi_writeAddr_ready			(awready 			),
 	  	.io_axi_writeAddr_valid			(awvalid			),
 	  	.io_axi_writeAddr_bits_addr		(awaddr 			),
@@ -92,8 +97,8 @@ module uart_tb();
 		if($value$plusargs("TEST_TYPE=%0s",TEST_TYPE))
 			$display("TEST_TYPE=%0s",TEST_TYPE);
 		
-		if($value$plusargs("CLk_EN=%h",UART_EN))
-			$display("UART_EN=%h",UART_EN);
+		if($value$plusargs("CLK_EN=%h",CLK_EN))
+			$display("CLK_EN=%h",CLK_EN);
 				
 		if($value$plusargs("PARITY_EN=%h",PARITY_EN))
 			$display("PARITY_EN=%h",PARITY_EN);
@@ -115,6 +120,24 @@ module uart_tb();
 	//initial interface
 	initial begin 
 		port_rxd = 1'b1;
+		even_parity = 1'b0;
+		data_tmp = 8'hff;
+		//aw
+		awvalid = 0;
+		awprot = 0;
+		awaddr = 0;
+		//w
+		wvalid = 0;
+		wdata = 0;
+		wstrb = 4'hf;
+		//b
+		bready = 0;
+		//ar
+		arvalid = 0;
+		araddr = 0;
+		arprot = 0;
+		//r
+		rready = 0;
 	end 
 	
 	initial begin 
@@ -122,11 +145,73 @@ module uart_tb();
 		$display("Time Out !!!");
 		$finish;
 	end 
-	
+
 	//rready and bready(assign 1'b1 all the time)
-	rready = 1'b1;
-	bready = 1'b1;
-	
+	always @(posedge clk or posedge rst) begin
+		if(rst) begin 
+			rready <= 0;
+		end 
+		else begin 
+			if(arvalid == 1'b1) begin
+				rready <= 1;
+			end
+			else if(rvalid && rready && (rresp==0)) begin
+				rready <= 0;
+			end 
+		end 
+	end
+
+	always @(posedge clk or posedge rst) begin
+		if(rst) begin 
+			arvalid <= 0;
+			araddr <= 0;
+		end 
+		else if(arvalid && arready) begin 
+			arvalid <= 0;
+			araddr <= 0;
+		end 
+	end
+
+	always @(posedge clk or posedge rst) begin
+		if(rst) begin 
+			bready <= 0;
+		end 
+		else begin 
+			if(awvalid == 1'b1) begin
+				bready <= 1;
+			end
+			else if(bvalid && bready && (bresp==0)) begin
+				bready <= 0;
+			end 
+		end 
+	end
+
+	always @(posedge clk or posedge rst) begin 
+		if(rst) begin 
+			awvalid <= 0;
+			awaddr <= 0;
+		end 
+		else begin 
+			if(awvalid && awready) begin 
+				awvalid <= 0;
+				awaddr <= 0;
+			end 
+		end 
+	end 	
+
+	always @(posedge clk or posedge rst) begin 
+		if(rst) begin 
+			wvalid <= 0;
+			wdata <= 0;
+		end 
+		else begin 
+			if(wvalid && wready) begin 
+				wvalid <= 0;
+				wdata <= 0;
+			end 
+		end 
+	end 
+
 	//LOAD DATA TO DATA_TX
 	initial begin 
 		$readmemh("data.hex", data_in);
@@ -134,6 +219,7 @@ module uart_tb();
 	
 	//VERIFICATION MAIN	
 	initial begin
+		#7000;
 		reg_setting;
 		if(TEST_TYPE == "TX") begin 
 			force port_rxd = port_txd;
@@ -141,7 +227,7 @@ module uart_tb();
 		end 
 		else if(TEST_TYPE == "RX")
 			data_rx;
-
+//
 		#10000;
 		$finish;
 	end 
@@ -177,96 +263,69 @@ module uart_tb();
 	
 	task read_register;
 		input  	[31:0]	    addr;
-		input 				over;
-		
+
 		begin
 	//cmd	
 			@(posedge clk); 
 			begin 
-				cmd_valid 	<= 1;
-				cmd_addr	<= addr;
-				cmd_read 	<= 1;
-				cmd_wdata	<= 32'h0;
+				arvalid <= 1;
+				araddr <= addr;	
 			end
-	//judge whether operate continuously		 	
-			if(over) begin 
-				@(posedge clk); 
-				begin 
-					cmd_valid 	<= 0;
-					cmd_addr	<= 0;
-					cmd_read 	<= 0;
-					cmd_wdata	<= 32'h0;
-				end
+	//wait transaction over		 	
+			while(!(rvalid  && rready && (rresp==0))) begin 
+				@(posedge clk);
 			end 
-			else begin  
-			
-			end
-			#1;
 		end 
 	endtask
 
 	task write_register;
 		input  	[31:0]	    addr; 
-		input  	[31:0]            			wdata;
-		input 								over;
+		input  	[31:0]      data;
 		
 		begin
 	//cmd
 			@(posedge clk); 
 			begin 
-				cmd_valid 	<= 1;
-				cmd_addr	<= addr;
-				cmd_read 	<= 0;
-				cmd_wdata	<= wdata;
+				awvalid <= 1;
+				awaddr <= addr;
+				wvalid <= 1;
+				wdata <= data;	
 			end
-	//judge whether operate continuously		 	
-			if(over) begin 
+	//wait transaction over	
+			while(!(bvalid && bready && (bresp==0))) begin 
 				@(posedge clk);
-				begin 
-					cmd_valid 	<= 0;
-					cmd_addr	<= 32'h0;
-					cmd_read 	<= 0;
-					cmd_wdata	<= 32'h0;
-				end
 			end 
-			else begin  
-			
-			end 	
-			#1;
 		end 
 	endtask
 
 	task reg_setting;
 		begin 
 			//check TX of 115200bps,even_parity
-			//setting the UART_CSR and UART_CTRL 
-			#10000;
+			//setting the UART_CTRL 
 			//16Mhz	
 			if(FREQUENCE == "16M") begin 
 				if(BAUDRATE == "115200bps") begin 
-					write_register(`UART_CSR_ADDR,32'h8_0000,1);  		
+					write_register(`UART_CTRL_ADDR,{16'h8,13'b0,PARITY_EVEN,PARITY_EN,CLK_EN});		
 				end 
 				else if(BAUDRATE == "9600bps") begin 
-					write_register(`UART_CSR_ADDR,32'h67_0000,1);  		
+					write_register(`UART_CTRL_ADDR,{16'h67,13'b0,PARITY_EVEN,PARITY_EN,CLK_EN});
 				end                                                     
-				else if(BAUDRATE == "4800bps") begin                    
-					write_register(`UART_CSR_ADDR,32'hcf_0000,1);  		
+				else if(BAUDRATE == "4800bps") begin      
+					write_register(`UART_CTRL_ADDR,{16'hcf,13'b0,PARITY_EVEN,PARITY_EN,CLK_EN});              
 				end
 			end
 			//144Mhz
 			else if(FREQUENCE == "144M") begin 
 				if(BAUDRATE == "115200bps") begin 
-					write_register(`UART_CSR_ADDR,32'h4d_0000,1);  		
+					write_register(`UART_CTRL_ADDR,{16'h4d,13'b0,PARITY_EVEN,PARITY_EN,CLK_EN});              
 				end 
 				else if(BAUDRATE == "9600bps") begin 
-					write_register(`UART_CSR_ADDR,32'h3a9_0000,1);  		
+					write_register(`UART_CTRL_ADDR,{16'h3a9,13'b0,PARITY_EVEN,PARITY_EN,CLK_EN});              	
 				end                                                     
-				else if(BAUDRATE == "4800bps") begin                    
-					write_register(`UART_CSR_ADDR,32'h752_0000,1);  		
+				else if(BAUDRATE == "4800bps") begin             
+					write_register(`UART_CTRL_ADDR,{16'h752,13'b0,PARITY_EVEN,PARITY_EN,CLK_EN});                     
 				end
 			end			
-			//UART_CTRL	
-			write_register(`UART_CTRL_ADDR,{PARITY_EVEN,PARITY_EN,UART_EN,RX_EN,TX_EN,BAUD_EN},1);
 			#10000;
 		end 
 	endtask
@@ -274,20 +333,14 @@ module uart_tb();
 	task data_tx;
 		begin 
 			for(i = 0;i < 256;i = i +1) begin 
-				write_register(`DATA_REG_ADDR,data_in[i],1);
-				
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[0] == 1'b0) begin
-					read_register(`UART_CSR_ADDR,1);
+				write_register(`UART_DATA_ADDR,data_in[i]);
+				repeat(10)  @(posedge clk);
+				//wait the tx_busy is low
+				read_register(`UART_STAT_ADDR);
+				while(rdata[0] == 1'b1) begin
+					read_register(`UART_STAT_ADDR);
 				end
-
-				//ensure the tx_ok is low
-				read_register(`UART_CSR_ADDR,1);
-				while(rsp_rdata[0] == 1'b1) begin
-					read_register(`UART_CSR_ADDR,1);
-				end	
-				read_register(`DATA_REG_ADDR,1);
-				data_out[i] = rsp_rdata;
+				data_out[i] = rdata;
 			end		
 			monitor;
 			#10000;		
@@ -307,7 +360,7 @@ module uart_tb();
 						for(j = 0;j < 8;j = j + 1)begin 
 							#8681	port_rxd = data_tmp[j];		//data
 						end 
-						if(PARITY_EN != 1) begin
+						if(PARITY_EN == 1) begin
 							#8681 	port_rxd <= even_parity;			//parity_bit
 						end 
 						#8681 	port_rxd <= 1'b1;				//stop_bit
@@ -316,17 +369,17 @@ module uart_tb();
 				end 
 				begin 
 					for(t = 0;t < 256;t = t + 1)begin
-						read_register(`UART_CSR_ADDR,1);
-						while(rsp_rdata[4] == 1'b0) begin
-							read_register(`UART_CSR_ADDR,1);
+						read_register(`UART_STAT_ADDR);
+						while(rdata[1] == 1'b0) begin
+							read_register(`UART_STAT_ADDR);
 						end
-						//ensure the tx_ok is low
-						read_register(`UART_CSR_ADDR,1);
-						while(rsp_rdata[4] == 1'b1) begin
-							read_register(`UART_CSR_ADDR,1);
+						//ensure the rx_ok is low
+						read_register(`UART_STAT_ADDR);
+						while(rdata[1] == 1'b1) begin
+							read_register(`UART_STAT_ADDR);
 						end	
-						read_register(`DATA_REG_ADDR,1);
-						data_out[t] = rsp_rdata;
+						read_register(`UART_DATA_ADDR);
+						data_out[t] = rdata;
 					end 
 				end 
 			join
