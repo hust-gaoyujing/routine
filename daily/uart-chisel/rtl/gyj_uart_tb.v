@@ -340,6 +340,7 @@ module uart_tb();
 				while(rdata[0] == 1'b1) begin
 					read_register(`UART_STAT_ADDR);
 				end
+				read_register(`UART_DATA_ADDR);
 				data_out[i] = rdata;
 			end		
 			monitor;
