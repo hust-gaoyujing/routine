@@ -11,163 +11,172 @@ Z0 dD:/prj/routine/works/uart
 T_opt
 !s110 1634474217
 V:gYRFZHz<jnm>5:<fLgIi2
-04 7 4 work uart_tb fast 0
+Z1 04 7 4 work uart_tb fast 0
 =1-84fdd1753feb-616c18e5-125-2828
-o-quiet -auto_acc_if_foreign -work work +acc=bcglnprst+uartTx +acc=bcglnprst+uart_tb +acc=bcglnprst+uartRx +acc=bcglnprst+baudGen +acc=bcglnprst+axi4Lite2Uart +acc=bcglnprst+Axi4LiteUartTop
-Z1 tCvgOpt 0
+Z2 o-quiet -auto_acc_if_foreign -work work +acc=bcglnprst+uartTx +acc=bcglnprst+uart_tb +acc=bcglnprst+uartRx +acc=bcglnprst+baudGen +acc=bcglnprst+axi4Lite2Uart +acc=bcglnprst+Axi4LiteUartTop
+Z3 tCvgOpt 0
 n@_opt
-OL;O;10.7;67
+Z4 OL;O;10.7;67
 R0
+T_opt1
+!s110 1634520412
+VVd_GI5QAIPEoPT23G1Z2?1
+R1
+=1-9c7bef330309-616ccd5c-2ea-451c
+R2
+R3
+n@_opt1
+R4
 vaxi4Lite2Uart
-Z2 !s110 1634520292
+Z5 !s110 1634520292
 !i10b 1
 !s100 ]@PN]MaY2Hj8VzS5zOX@@0
 I:igATJQP5ImC6Li@fM4mG3
-Z3 VDg1SIo80bB@j0V0VzS_@n1
-Z4 dD:/prj/routine/daily/uart-chisel
-Z5 w1634519902
-Z6 8D:/prj/routine/daily/uart-chisel/rtl/Axi4LiteUartTop.v
-Z7 FD:/prj/routine/daily/uart-chisel/rtl/Axi4LiteUartTop.v
+Z6 VDg1SIo80bB@j0V0VzS_@n1
+Z7 dD:/prj/routine/daily/uart-chisel
+Z8 w1634519902
+Z9 8D:/prj/routine/daily/uart-chisel/rtl/Axi4LiteUartTop.v
+Z10 FD:/prj/routine/daily/uart-chisel/rtl/Axi4LiteUartTop.v
 L0 453
-Z8 OL;L;10.7;67
+Z11 OL;L;10.7;67
 r1
 !s85 0
 31
-Z9 !s108 1634520292.000000
-Z10 !s107 D:/prj/routine/daily/uart-chisel/rtl/Axi4LiteUartTop.v|
-Z11 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/uart-chisel/rtl/Axi4LiteUartTop.v|
+Z12 !s108 1634520292.000000
+Z13 !s107 D:/prj/routine/daily/uart-chisel/rtl/Axi4LiteUartTop.v|
+Z14 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/uart-chisel/rtl/Axi4LiteUartTop.v|
 !i113 0
-Z12 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-R1
+Z15 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R3
 naxi4@lite2@uart
+vaxi4LiteUartTop
+R5
+!i10b 1
+!s100 LCRbSK]>g@KWhQkS=W7ea3
+IFkH=z_BV]ReZ82hQSeO[W2
+R6
+R7
+R8
+R9
+R10
+L0 741
+R11
+r1
+!s85 0
+31
+R12
+R13
+R14
+!i113 0
+R15
+R3
+naxi4@lite@uart@top
 vAxi4LiteUartTop
 !s110 1634200109
 !i10b 1
 !s100 5`>CO?9bX=XdVDP<P0VFa1
 IdhD29jT>C=b``DLoG3mI:2
-R3
-R4
-w1634096949
 R6
 R7
+w1634096949
+R9
+R10
 L0 743
-R8
+R11
 r1
 !s85 0
 31
 !s108 1634200108.000000
-R10
-R11
+R13
+R14
 !i113 0
-R12
-R1
-n@axi4@lite@uart@top
-vaxi4LiteUartTop
-R2
-!i10b 1
-!s100 LCRbSK]>g@KWhQkS=W7ea3
-IFkH=z_BV]ReZ82hQSeO[W2
+R15
 R3
-R4
-R5
-R6
-R7
-L0 741
-R8
-r1
-!s85 0
-31
-R9
-R10
-R11
-!i113 0
-R12
-R1
-naxi4@lite@uart@top
+n@axi4@lite@uart@top
 vbaudGen
-R2
+R5
 !i10b 1
 !s100 EZEKPJKX0m7cgB:IdSXWh1
 IA<EXIe=S>0boV8k@FfS5I1
-R3
-R4
-R5
 R6
 R7
-L0 1
 R8
+R9
+R10
+L0 1
+R11
 r1
 !s85 0
 31
-R9
-R10
-R11
-!i113 0
 R12
-R1
+R13
+R14
+!i113 0
+R15
+R3
 nbaud@gen
 vuart_tb
-R2
+R5
 !i10b 1
 !s100 1:Zm]o3GzSClc32W;Z2L42
 IB[Z0eFkl`aIgEGczoA5;C3
-R3
-R4
-R5
+R6
+R7
+R8
 8D:/prj/routine/daily/uart-chisel/rtl/gyj_uart_tb.v
 FD:/prj/routine/daily/uart-chisel/rtl/gyj_uart_tb.v
 L0 5
-R8
+R11
 r1
 !s85 0
 31
-R9
+R12
 !s107 D:/prj/routine/daily/uart-chisel/rtl/gyj_uart_tb.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/daily/uart-chisel/rtl/gyj_uart_tb.v|
 !i113 0
-R12
-R1
+R15
+R3
 vuartRx
-R2
+R5
 !i10b 1
 !s100 HUL@P0CSWJ]S_JRdFa:[J3
 IFdINlLI9DhD;WRTn`VzW>0
-R3
-R4
-R5
 R6
 R7
-L0 269
 R8
+R9
+R10
+L0 269
+R11
 r1
 !s85 0
 31
-R9
-R10
-R11
-!i113 0
 R12
-R1
+R13
+R14
+!i113 0
+R15
+R3
 nuart@rx
 vuartTx
-R2
+R5
 !i10b 1
 !s100 4EhmZ6=P0C99TgHiaazCh2
 I0foz2^eNVQi>d9KFQ1n5j1
-R3
-R4
-R5
 R6
 R7
-L0 112
 R8
+R9
+R10
+L0 112
+R11
 r1
 !s85 0
 31
-R9
-R10
-R11
-!i113 0
 R12
-R1
+R13
+R14
+!i113 0
+R15
+R3
 nuart@tx
