@@ -52,13 +52,11 @@ abstract class Axi4LiteSlaveModule(val addrWidth: Int, val dataWidth: Int)
   //enum 分别代表RRESP,BRESP的类型，其中exokay在AXI-LITE不支持
   val okay :: exokay :: slverr :: decerr :: Nil = Enum(4)
   //Axi-lite总线信号
-  //val addr = RegInit(VecInit(Fill(5,0.U(32.W))))
-  //val data = RegInit(VecInit(Fill(5,0.U(32.W))))
-  val addr = RegInit(VecInit(0.U(32.W), 0.U(32.W), 0.U(32.W), 0.U(32.W), 0.U(32.W)))
-  val data = RegInit(VecInit(0.U(32.W), 0.U(32.W), 0.U(32.W), 0.U(32.W), 0.U(32.W)))
-  val valid = RegInit(VecInit(false.B,false.B,false.B,false.B,false.B))
-  val ready = RegInit(VecInit(false.B,false.B,false.B,false.B,false.B))
-  val resp = RegInit(VecInit(false.B,false.B,false.B,false.B,false.B))
+  val addr = RegInit(VecInit(Seq.fill(5)(0.U(32.W))))
+  val data = RegInit(VecInit(Seq.fill(5)(0.U(32.W))))
+  val valid = RegInit(VecInit(Seq.fill(5)(false.B)))
+  val ready = RegInit(VecInit(Seq.fill(5)(false.B)))
+  val resp = RegInit(VecInit(Seq.fill(5)(false.B)))
 
   // I/O Connections assignments
   axi.writeAddr.ready      :=   ready(aw)
@@ -72,8 +70,8 @@ abstract class Axi4LiteSlaveModule(val addrWidth: Int, val dataWidth: Int)
 
   //握手信号
   //五个通道的握手信号，分别代表AW W B AR R通道的握手信号
-  val handshake = RegInit(VecInit(false.B,false.B,false.B,false.B,false.B))
-
+  //val handshake = RegInit(VecInit(false.B,false.B,false.B,false.B,false.B))
+  val handshake = RegInit(VecInit(Seq.fill(5)(false.B)))
   //寄存器读写标志
   //两个标志信号在子类中作为寄存器读写的使能信号，需要重点关注
   //当writeAddr和writeData通道的握手信号都产生后可以写寄存器
@@ -99,14 +97,11 @@ abstract class Axi4LiteSlaveModule(val addrWidth: Int, val dataWidth: Int)
   }
 
   // W通道
-  val mask = Cat( Fill(7,axi.writeData.bits.strb(3)),
-                  Fill(7,axi.writeData.bits.strb(2)),
-                  Fill(7,axi.writeData.bits.strb(1)),
-                  Fill(7,axi.writeData.bits.strb(0)))
+  //val mask = axi.writeData.bits.strb.asBools().map(Fill(8,_)).reduce(Cat(_,_))
 
   when(axi.writeData.valid && !handshake(w)) {
     ready(w) := true.B
-    data(w) := axi.writeData.bits.data & mask // Implement io_wdata latching
+    data(w) := axi.writeData.bits.data  // Implement io_wdata latching
   } .otherwise {
     ready(w) := false.B
   }

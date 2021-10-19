@@ -3,7 +3,7 @@ package uart
 import chisel3._
 import chisel3.util._
 import bus.axi4_lite._
-
+import utils._
 
 class axi4Lite2Uart extends Axi4LiteSlaveModule(addrWidth = 32, dataWidth = 32) {
   val io = IO(new Bundle {
@@ -25,41 +25,53 @@ class axi4Lite2Uart extends Axi4LiteSlaveModule(addrWidth = 32, dataWidth = 32) 
   })
   
   //enum 分别表示寄存器的字偏移地址
-  val stat_offset :: ctrl_offset :: data_offset :: Nil = Enum(3)
+  //val stat_offset :: ctrl_offset :: data_offset :: Nil = Enum(3)
   //寄存器声明
   val stat_reg = RegInit(0.U(32.W))
   val ctrl_reg = RegInit("h7".U(32.W))
-  val data_reg = RegInit("hff".U(32.W))
+  val txdata_reg = RegInit("hff".U(32.W))
+  val rxdata_reg = RegInit("hff".U(32.W))
 
-  stat_reg := Cat(0.U(29.W),io.parity_error,io.rx_busy,io.tx_busy)
-  //Cat(io.div,0.U(13.W),io.parity_even,io.parity_en,io.clk_en) := ctrl_reg
+  val mapping = Map(
+    RegMap(0x0, Cat(0.U(29.W),io.parity_error,io.rx_busy,io.tx_busy), RegMap.Unwritable),
+    RegMap(0x4, ctrl_reg),
+    RegMap(0x8, txdata_reg),
+    RegMap(0xc, io.data_reg_rx, RegMap.Unwritable)
+  )
+
+  RegMap.generate(mapping, addr(ar)(3,0), slv_reg_rden, data(r),
+    addr(aw), slv_reg_wren, data(w), MaskExpand(axi.writeData.bits.strb)
+  )
+
+  //stat_reg := Cat(0.U(29.W),io.parity_error,io.rx_busy,io.tx_busy)
+  ////Cat(io.div,0.U(13.W),io.parity_even,io.parity_en,io.clk_en) := ctrl_reg
   io.clk_en := ctrl_reg(0)
   io.parity_en := ctrl_reg(1)
   io.parity_even := ctrl_reg(2)
   io.div := ctrl_reg(31,16)
-
-  //写寄存器
-  when(slv_reg_wren) {
-    switch(addr(aw)(3,2)) {
-      is(ctrl_offset) { ctrl_reg := data(w) }
-      is(data_offset) { data_reg := data(w) }
-    }
-  }
-
-  //读寄存器
-  when(slv_reg_rden) {
-    switch(addr(ar)(3,2)) {
-      is(stat_offset) { data(r) := stat_reg }
-      is(ctrl_offset) { data(r) := ctrl_reg }
-      is(data_offset) { data(r) := io.data_reg_rx }
-    }
-  }
+//
+  ////写寄存器
+  //when(slv_reg_wren) {
+  //  switch(addr(aw)(3,2)) {
+  //    is(ctrl_offset) { ctrl_reg := data(w) }
+  //    is(data_offset) { data_reg := data(w) }
+  //  }
+  //}
+//
+  ////读寄存器
+  //when(slv_reg_rden) {
+  //  switch(addr(ar)(3,2)) {
+  //    is(stat_offset) { data(r) := stat_reg }
+  //    is(ctrl_offset) { data(r) := ctrl_reg }
+  //    is(data_offset) { data(r) := io.data_reg_rx }
+  //  }
+  //}
 
   //wr_data_flag 当writeResp通道握手成功且data_reg被写入，则告知tx模块有新数据进入，可以开始发送
   io.tx_start := Mux( axi.writeResp.valid && axi.writeResp.ready &&
-    (addr(aw)(3,2) === data_offset) , 1.U, 0.U)
+    (addr(aw)(3,0) === 0x8.U) , 1.U, 0.U)
   //data_reg_tx  将总线写入的数据送往tx模块
-  io.data_reg_tx := data_reg
+  io.data_reg_tx := txdata_reg
 
 }
 

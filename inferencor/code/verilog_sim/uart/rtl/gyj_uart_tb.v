@@ -7,9 +7,10 @@ module uart_tb();
 	`define UART_BASE_ADDR	32'h1000_6000
 	`define UART_STAT_ADDR	`UART_BASE_ADDR+32'h0
 	`define UART_CTRL_ADDR	`UART_BASE_ADDR+32'h4
-	`define UART_DATA_ADDR	`UART_BASE_ADDR+32'h8
-
-  	reg         clk;
+	`define UART_TXDATA_ADDR	`UART_BASE_ADDR+32'h8
+	`define UART_RXDATA_ADDR	`UART_BASE_ADDR+32'hc
+  	
+	reg         clk;
   	reg         rst;
   	wire        arready;
   	reg         arvalid;
@@ -55,7 +56,7 @@ module uart_tb();
 	reg [0:0] 		PARITY_EVEN;
 	reg [8*300:1] 	BAUDRATE;
 
-	Axi4LiteUartTop uart_1(
+	axi4LiteUartTop uart_1(
 	  	.clock							(clk				),
 	  	.reset							(rst				),
 	  	.io_axi_readAddr_ready			(arready			),
@@ -333,14 +334,14 @@ module uart_tb();
 	task data_tx;
 		begin 
 			for(i = 0;i < 256;i = i +1) begin 
-				write_register(`UART_DATA_ADDR,data_in[i]);
+				write_register(`UART_TXDATA_ADDR,data_in[i]);
 				repeat(10)  @(posedge clk);
 				//wait the tx_busy is low
 				read_register(`UART_STAT_ADDR);
 				while(rdata[0] == 1'b1) begin
 					read_register(`UART_STAT_ADDR);
 				end
-				read_register(`UART_DATA_ADDR);
+				read_register(`UART_RXDATA_ADDR);
 				data_out[i] = rdata;
 			end		
 			monitor;
@@ -379,7 +380,7 @@ module uart_tb();
 						while(rdata[1] == 1'b1) begin
 							read_register(`UART_STAT_ADDR);
 						end	
-						read_register(`UART_DATA_ADDR);
+						read_register(`UART_RXDATA_ADDR);
 						data_out[t] = rdata;
 					end 
 				end 

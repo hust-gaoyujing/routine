@@ -80,10 +80,7 @@ add wave -noupdate -group bus /uart_tb/uart_1/bus/handshake_0
 add wave -noupdate -group bus /uart_tb/uart_1/bus/handshake_1
 add wave -noupdate -group bus /uart_tb/uart_1/bus/handshake_3
 add wave -noupdate -group bus /uart_tb/uart_1/bus/slv_reg_wren
-add wave -noupdate -group bus /uart_tb/uart_1/bus/mask_lo_hi
-add wave -noupdate -group bus /uart_tb/uart_1/bus/stat_reg
 add wave -noupdate -group bus /uart_tb/uart_1/bus/ctrl_reg
-add wave -noupdate -group bus /uart_tb/uart_1/bus/data_reg
 add wave -noupdate -group bus /uart_tb/uart_1/bus/io_tx_busy
 add wave -noupdate -group bus /uart_tb/uart_1/bus/io_rx_busy
 add wave -noupdate -group bus /uart_tb/uart_1/bus/io_parity_error
@@ -107,11 +104,6 @@ add wave -noupdate -group bus /uart_tb/uart_1/bus/resp_2
 add wave -noupdate -group bus /uart_tb/uart_1/bus/resp_4
 add wave -noupdate -group bus /uart_tb/uart_1/bus/_GEN_2
 add wave -noupdate -group bus /uart_tb/uart_1/bus/_GEN_3
-add wave -noupdate -group bus /uart_tb/uart_1/bus/mask_hi_hi
-add wave -noupdate -group bus /uart_tb/uart_1/bus/mask_hi_lo
-add wave -noupdate -group bus /uart_tb/uart_1/bus/mask_lo_lo
-add wave -noupdate -group bus /uart_tb/uart_1/bus/mask
-add wave -noupdate -group bus /uart_tb/uart_1/bus/_data_1_T
 add wave -noupdate -group bus /uart_tb/uart_1/bus/_GEN_6
 add wave -noupdate -group bus /uart_tb/uart_1/bus/_GEN_7
 add wave -noupdate -group bus /uart_tb/uart_1/bus/_GEN_8
@@ -119,10 +111,7 @@ add wave -noupdate -group bus /uart_tb/uart_1/bus/_GEN_10
 add wave -noupdate -group bus /uart_tb/uart_1/bus/_GEN_14
 add wave -noupdate -group bus /uart_tb/uart_1/bus/_GEN_15
 add wave -noupdate -group bus /uart_tb/uart_1/bus/_GEN_16
-add wave -noupdate -group bus /uart_tb/uart_1/bus/_stat_reg_T
 add wave -noupdate -group bus /uart_tb/uart_1/bus/_T_12
-add wave -noupdate -group bus /uart_tb/uart_1/bus/_T_17
-add wave -noupdate -group bus /uart_tb/uart_1/bus/_GEN_26
 add wave -noupdate -expand -group tx /uart_tb/uart_1/tx/clock
 add wave -noupdate -expand -group tx /uart_tb/uart_1/tx/reset
 add wave -noupdate -expand -group tx /uart_tb/uart_1/tx/io_tx_data_sample
@@ -198,7 +187,7 @@ add wave -noupdate -expand -group rx /uart_tb/uart_1/rx/rxd_out_reg
 add wave -noupdate -expand -group rx /uart_tb/uart_1/rx/rxd_out_reg_lo
 add wave -noupdate -expand -group rx /uart_tb/uart_1/rx/_rxd_out_reg_T
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {44653027 ps} 0}
+WaveRestoreCursors {{Cursor 1} {25973143 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 264
 configure wave -valuecolwidth 100
