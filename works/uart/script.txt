@@ -1,12 +1,11 @@
 VSIM:
-<<<<<<< HEAD
-vsim "+FREQUENCE=144M" "+BAUDRATE=115200bps" "+TEST_TYPE=TX" "+BAUD_EN=1" "+TX_EN=1" "+RX_EN=1" "+UART_EN=1" "+NO_PARITY=0" "+EV_PARITY=1" work.uart_tb -voptargs="+acc=bcglnprst+uart_ctrl +acc=bcglnprst+uart_tb +acc=bcglnprst+uart_rx +acc=bcglnprst+baudrate_generator +acc=bcglnprst+uart_tx +acc=bcglnprst+gjy_uart_top"
-=======
+vsim "+FREQUENCE=144M" "+BAUDRATE=115200bps" "+TEST_TYPE=TX" "+CLK_EN=1" "+PARITY_EN=1" "+PARITY_EVEN=1" work.uart_tb -voptargs="+acc=bcglnprst+uartTx +acc=bcglnprst+uart_tb +acc=bcglnprst+uartRx +acc=bcglnprst+baudGen +acc=bcglnprst+axi4Lite2Uart +acc=bcglnprst+Axi4LiteUartTop" 
+
 vsim "+FREQUENCE=16M" "+BAUDRATE=115200bps" "+TEST_TYPE=TX" "+BAUD_EN=1" "+TX_EN=1" "+RX_EN=1" "+UART_EN=1" "+NO_PARITY=0" "+EV_PARITY=1" work.uart_tb -voptargs="+acc=bcglnprst+uart_ctrl +acc=bcglnprst+uart_tb +acc=bcglnprst+uart_rx +acc=bcglnprst+baudrate_generator +acc=bcglnprst+uart_tx +acc=bcglnprst+gjy_uart_top"
->>>>>>> d2a0c2a44229f6d7246e19f97e44ae1eef357122
+
 
 WAVE:
-do D:/prj/routine/works/uart/wave.do
+do D:/prj/routine/daily/uart-chisel/wave.do
 
 RUN:
 run -all
