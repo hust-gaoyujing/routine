@@ -40,7 +40,7 @@ class axi4Lite2Uart extends Axi4LiteSlaveModule(addrWidth = 32, dataWidth = 32) 
   )
 
   RegMap.generate(mapping, addr(ar)(3,0), slv_reg_rden, data(r),
-    addr(aw), slv_reg_wren, data(w), MaskExpand(axi.writeData.bits.strb)
+    addr(aw)(3,0), slv_reg_wren, data(w), MaskExpand(axi.writeData.bits.strb)
   )
 
   //stat_reg := Cat(0.U(29.W),io.parity_error,io.rx_busy,io.tx_busy)
