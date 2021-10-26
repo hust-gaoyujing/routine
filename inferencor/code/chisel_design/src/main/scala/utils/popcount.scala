@@ -2,7 +2,6 @@ package utils
 
 import chisel3._
 import chisel3.util._
-import math.log
 
 //popcount_4：计算一个4-bit数据中有多少个“1”
 object contain {
@@ -28,20 +27,23 @@ class popcount_4 extends Module {
   } .elsewhen( contain(three, io.in)) { io.out := 3.U
   } .elsewhen( contain(four, io.in)) { io.out := 4.U
   } .otherwise(io.out := 0.U)
-
+  //val seq = VecInit(Seq.fill(4)(false.B))
+  //io.out := seq.zipWithIndex.map{
+  //  case (n, index) => io.in(index.U).asUInt()
+  //}.reduce(_ +& _)
 }
 
 class popcount(width: Int) extends Module{
   val io = IO(new Bundle() {
     val in = Input(UInt(width.W))
-    val out = Output(UInt(math.log(width).toInt.W))
+    val out = Output(UInt(log2Ceil(width+1).W))
   })
   //例化多个popcount_4模块
   val pop_cnt_4 = VecInit(Seq.fill(width/4)(Module(new popcount_4).io))
-  for(i <- 0 until width/4) {
-    pop_cnt_4(i).in := io.in(4*i+3, 4*i)
+  pop_cnt_4.map(_.in).zipWithIndex.foreach{ case (in, index) =>
+    in := io.in(index*4+3, index*4)
   }
 
-  io.out := 0.U
+  io.out := pop_cnt_4.map(_.out).reduce(_ +& _)
 
 }
