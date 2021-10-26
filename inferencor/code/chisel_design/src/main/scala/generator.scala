@@ -20,7 +20,7 @@ object busctrl extends App {
 }
 
 object popcount extends App {
-  (new chisel3.stage.ChiselStage).emitVerilog(new popcount(width = 128),Array("--target-dir", "generated/utils/"))
+  (new chisel3.stage.ChiselStage).emitVerilog(new popcount(width = 8),Array("--target-dir", "generated/utils/popcount/"))
 }
 
 object popcount_4 extends App {
