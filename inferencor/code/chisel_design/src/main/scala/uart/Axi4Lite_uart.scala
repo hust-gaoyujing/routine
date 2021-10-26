@@ -23,9 +23,7 @@ class axi4Lite2Uart extends Axi4LiteSlaveModule(addrWidth = 32, dataWidth = 32) 
     //val rd_data_flag = Output(Bool())
     val tx_start = Output(Bool())
   })
-  
-  //enum 分别表示寄存器的字偏移地址
-  //val stat_offset :: ctrl_offset :: data_offset :: Nil = Enum(3)
+
   //寄存器声明
   val stat_reg = RegInit(0.U(32.W))
   val ctrl_reg = RegInit("h7".U(32.W))
@@ -49,23 +47,6 @@ class axi4Lite2Uart extends Axi4LiteSlaveModule(addrWidth = 32, dataWidth = 32) 
   io.parity_en := ctrl_reg(1)
   io.parity_even := ctrl_reg(2)
   io.div := ctrl_reg(31,16)
-//
-  ////写寄存器
-  //when(slv_reg_wren) {
-  //  switch(addr(aw)(3,2)) {
-  //    is(ctrl_offset) { ctrl_reg := data(w) }
-  //    is(data_offset) { data_reg := data(w) }
-  //  }
-  //}
-//
-  ////读寄存器
-  //when(slv_reg_rden) {
-  //  switch(addr(ar)(3,2)) {
-  //    is(stat_offset) { data(r) := stat_reg }
-  //    is(ctrl_offset) { data(r) := ctrl_reg }
-  //    is(data_offset) { data(r) := io.data_reg_rx }
-  //  }
-  //}
 
   //wr_data_flag 当writeResp通道握手成功且data_reg被写入，则告知tx模块有新数据进入，可以开始发送
   io.tx_start := Mux( axi.writeResp.valid && axi.writeResp.ready &&
@@ -138,7 +119,7 @@ class uartTx extends Module {
   //状态机声明
   val idle :: start :: data :: stop :: Nil = Enum(4)
   val tx_state = RegInit(idle)
-  val tx_next_state = RegInit(idle)
+  //val tx_next_state = RegInit(idle)
   def txStateIs(n: UInt): Bool = tx_state === n
   val tx_busy_reg = RegInit(false.B)
 
@@ -337,5 +318,5 @@ class axi4LiteUartTop(addrWidth: Int, dataWidth: Int) extends Module {
   rx.io.rx_busy       <>    bus.io.rx_busy
   rx.io.parity_error  <>    bus.io.parity_error
   rx.io.data_reg_rx   <>    bus.io.data_reg_rx
-
+ 
 }

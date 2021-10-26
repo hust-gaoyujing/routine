@@ -57,7 +57,7 @@ abstract class Axi4LiteSlaveModule(val addrWidth: Int, val dataWidth: Int)
   val valid = RegInit(VecInit(Seq.fill(5)(false.B)))
   val ready = RegInit(VecInit(Seq.fill(5)(false.B)))
   val resp = RegInit(VecInit(Seq.fill(5)(false.B)))
-
+ Vec
   // I/O Connections assignments
   axi.writeAddr.ready      :=   ready(aw)
   axi.writeData.ready      :=   ready(w)
@@ -95,9 +95,6 @@ abstract class Axi4LiteSlaveModule(val addrWidth: Int, val dataWidth: Int)
   } .elsewhen(handshake(aw) && handshake(w)) {
     handshake(aw) := false.B
   }
-
-  // W通道
-  //val mask = axi.writeData.bits.strb.asBools().map(Fill(8,_)).reduce(Cat(_,_))
 
   when(axi.writeData.valid && !handshake(w)) {
     ready(w) := true.B
