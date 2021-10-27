@@ -1,0 +1,9 @@
+D:/prj/routine/inferencor/code/verilog_sim/utils/popcount/rtl/popcount.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/inferencor/code/verilog_sim/utils/popcount/rtl/popcount.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module popcount_4
+-- Compiling module popcount
+
+Top level modules:
+	popcount
+
+} {} {}}

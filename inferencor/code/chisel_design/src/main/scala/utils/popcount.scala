@@ -45,5 +45,4 @@ class popcount(width: Int) extends Module{
   }
 
   io.out := pop_cnt_4.map(_.out).reduce(_ +& _)
-
 }

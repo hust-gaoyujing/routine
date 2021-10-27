@@ -6,4 +6,15 @@ Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
 Top level modules:
 	uart_tb
 
+} {} {}} D:/prj/routine/inferencor/code/verilog_sim/uart/rtl/Axi4LiteUartTop.v {1 {vlog -work work -vopt -stats=none D:/prj/routine/inferencor/code/verilog_sim/uart/rtl/Axi4LiteUartTop.v
+Model Technology ModelSim SE-64 vlog 10.7 Compiler 2017.12 Dec  7 2017
+-- Compiling module baudGen
+-- Compiling module uartTx
+-- Compiling module uartRx
+-- Compiling module axi4Lite2Uart
+-- Compiling module axi4LiteUartTop
+
+Top level modules:
+	axi4LiteUartTop
+
 } {} {}}

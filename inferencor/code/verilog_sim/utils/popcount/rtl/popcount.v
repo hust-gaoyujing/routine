@@ -14,17 +14,28 @@ module popcount_4(
   assign io_out = _T ? 3'h0 : _GEN_3; // @[popcount.scala 24:31 popcount.scala 24:42]
 endmodule
 module popcount(
-  input        clock,
-  input        reset,
-  input  [7:0] io_in,
-  output [3:0] io_out
+  input         clock,
+  input         reset,
+  input  [15:0] io_in,
+  output [4:0]  io_out
 );
   wire [3:0] popcount_4_io_in; // @[popcount.scala 42:51]
   wire [2:0] popcount_4_io_out; // @[popcount.scala 42:51]
   wire [3:0] popcount_4_1_io_in; // @[popcount.scala 42:51]
   wire [2:0] popcount_4_1_io_out; // @[popcount.scala 42:51]
+  wire [3:0] popcount_4_2_io_in; // @[popcount.scala 42:51]
+  wire [2:0] popcount_4_2_io_out; // @[popcount.scala 42:51]
+  wire [3:0] popcount_4_3_io_in; // @[popcount.scala 42:51]
+  wire [2:0] popcount_4_3_io_out; // @[popcount.scala 42:51]
   wire [2:0] pop_cnt_4_0_out = popcount_4_io_out; // @[popcount.scala 42:26 popcount.scala 42:26]
   wire [2:0] pop_cnt_4_1_out = popcount_4_1_io_out; // @[popcount.scala 42:26 popcount.scala 42:26]
+  wire [3:0] _io_out_T = pop_cnt_4_0_out + pop_cnt_4_1_out; // @[popcount.scala 47:43]
+  wire [2:0] pop_cnt_4_2_out = popcount_4_2_io_out; // @[popcount.scala 42:26 popcount.scala 42:26]
+  wire [3:0] _GEN_0 = {{1'd0}, pop_cnt_4_2_out}; // @[popcount.scala 47:43]
+  wire [4:0] _io_out_T_1 = _io_out_T + _GEN_0; // @[popcount.scala 47:43]
+  wire [2:0] pop_cnt_4_3_out = popcount_4_3_io_out; // @[popcount.scala 42:26 popcount.scala 42:26]
+  wire [4:0] _GEN_1 = {{2'd0}, pop_cnt_4_3_out}; // @[popcount.scala 47:43]
+  wire [5:0] _io_out_T_2 = _io_out_T_1 + _GEN_1; // @[popcount.scala 47:43]
   popcount_4 popcount_4 ( // @[popcount.scala 42:51]
     .io_in(popcount_4_io_in),
     .io_out(popcount_4_io_out)
@@ -33,7 +44,17 @@ module popcount(
     .io_in(popcount_4_1_io_in),
     .io_out(popcount_4_1_io_out)
   );
-  assign io_out = pop_cnt_4_0_out + pop_cnt_4_1_out; // @[popcount.scala 47:43]
+  popcount_4 popcount_4_2 ( // @[popcount.scala 42:51]
+    .io_in(popcount_4_2_io_in),
+    .io_out(popcount_4_2_io_out)
+  );
+  popcount_4 popcount_4_3 ( // @[popcount.scala 42:51]
+    .io_in(popcount_4_3_io_in),
+    .io_out(popcount_4_3_io_out)
+  );
+  assign io_out = _io_out_T_2[4:0]; // @[popcount.scala 47:10]
   assign popcount_4_io_in = io_in[3:0]; // @[popcount.scala 44:16]
   assign popcount_4_1_io_in = io_in[7:4]; // @[popcount.scala 44:16]
+  assign popcount_4_2_io_in = io_in[11:8]; // @[popcount.scala 44:16]
+  assign popcount_4_3_io_in = io_in[15:12]; // @[popcount.scala 44:16]
 endmodule

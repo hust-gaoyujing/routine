@@ -1,0 +1,82 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/prj/routine/inferencor/code/verilog_sim/uart
+T_opt
+!s110 1635316888
+VP;eo69gJg7lTe;]hdb7P]1
+04 11 4 work popcount_tb fast 0
+=1-9c7bef330309-6178f498-c8-75a0
+o-quiet -auto_acc_if_foreign -work work +acc=bcglnprst+popcount +acc=bcglnprst+popcount_tb +acc=bcglnprst+popcount_4
+Z0 tCvgOpt 0
+n@_opt
+OL;O;10.7;67
+vpopcount
+Z1 !s110 1635316873
+!i10b 1
+!s100 JFdZa_B1`YX;4dAMnb?[?3
+IG<b?HXY2LZzRal[2QH4cX0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dD:/prj/routine/inferencor/code/verilog_sim/utils/popcount
+Z4 w1635316781
+Z5 8D:/prj/routine/inferencor/code/verilog_sim/utils/popcount/rtl/popcount.v
+Z6 FD:/prj/routine/inferencor/code/verilog_sim/utils/popcount/rtl/popcount.v
+L0 16
+Z7 OL;L;10.7;67
+r1
+!s85 0
+31
+Z8 !s108 1635316873.000000
+Z9 !s107 D:/prj/routine/inferencor/code/verilog_sim/utils/popcount/rtl/popcount.v|
+Z10 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/prj/routine/inferencor/code/verilog_sim/utils/popcount/rtl/popcount.v|
+!i113 0
+Z11 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R0
+vpopcount_4
+R1
+!i10b 1
+!s100 ^aiDWJJ=h^>bmYa<DV@IA2
+IBlj^;3zGZ6z<_ob6BX5OO3
+R2
+R3
+R4
+R5
+R6
+L0 1
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R0
+vpopcount_tb
+R1
+!i10b 1
+!s100 :4jVnXY?E]J^M1EOdmKE33
+IaHVZ2@U7]Xlzm4GTK0N[N2
+R2
+R3
+w1635316862
+8D:\prj\routine\inferencor\code\verilog_sim\utils\popcount\rtl\popcount_tb.v
+FD:\prj\routine\inferencor\code\verilog_sim\utils\popcount\rtl\popcount_tb.v
+L0 3
+R7
+r1
+!s85 0
+31
+R8
+!s107 D:\prj\routine\inferencor\code\verilog_sim\utils\popcount\rtl\popcount_tb.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:\prj\routine\inferencor\code\verilog_sim\utils\popcount\rtl\popcount_tb.v|
+!i113 0
+R11
+R0
