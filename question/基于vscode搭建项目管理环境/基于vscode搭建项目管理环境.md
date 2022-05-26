@@ -106,7 +106,7 @@ windows10自带OpenSSH,不需要再使用Git的SSH,如图：
 
 code命令使用说明可通过 `code -h`详见；
 
-常用的有 `code -a folder_name  `可在当前的vscode界面下，添加一个新的目录结构，如：
+常用的有 `code -a folder_name  `可在当前的vscode界面下，添加一个新的目录结构;`code file_name`可打开文件；
 
 
 
