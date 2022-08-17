@@ -194,6 +194,12 @@
 
 #### 5.4 Memory Addressing Scheme 
 
+Gemmini的内部memory按照“row-addressed"方式存储数据，即每行的位宽为`DIM`个元素宽度，其中`DIM`为脉动阵列每行或者每列PE的个数。在scratchpad中元素类型为`inputType`，而在accumulator中类型为`accType`。
+
+Gemmini 内部memory的地址宽度为32bits；其中高三位是默认的，且具有特殊意义：
+
+- Bit 31(the MSB) is 
+
 #### 5.5 ISA
 
 ​		这一节主要描述了Gemmini 由自定义RISC-V指令组成的汇编级别的ISA。ISA中主要包括configuration指令，data movement指令，和matirx multiplication excute指令。因为Gemmini的指令不是通过GNU binutil汇编的，所以C语言库添加了几个宏来构造这些指令编码来调用这些指令。例如Gemmini generator的C语言库中将Gemmini自定义指令的调用函数包装成常用的DNN操作（如matmuls,convolutions,matrix-addition等）。
