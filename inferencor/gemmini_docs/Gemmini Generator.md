@@ -198,7 +198,16 @@ Gemmini的内部memory按照“row-addressed"方式存储数据，即每行的�
 
 Gemmini 内部memory的地址宽度为32bits；其中高三位是默认的，且具有特殊意义：
 
-- Bit 31(the MSB) is 
+- Bit 31(the MSB）：当寻址scratchpad时为0，当寻址accumulator时为1；
+- Bit 30在寻址scratchpad或者读accumulator时忽略。取而代之，当我们向accumulator写数据时，bit 30作用很关键；如果需要覆盖该地址之前的数据则需要将bit30置0，如果想要与该地址之前的数据累加，则需要置1。
+- Bit 29在寻址scratchpad或者写accumulator时忽略。与bit 30类似，bit 29在读accumulator时起作用，bit 29置0时会将从accumulator读的数据scale down到`inputType`格式，如果置1则依旧是`accType`格式。
+  如果accumulator的读地址的bit 29为1，则不需要对acculator的输出数据使用激活函数或者scaling。
+
+2x2脉动阵列的memory addressing scheme示意图如下：
+
+![](D:\prj\routine\inferencor\gemmini_docs\Gemmini Generator.assets\image-1660801114487.png)
+
+Gemmini通过软件可视化的虚拟地址来访问main memory address，其中转译为物理地址的过程由Gemmini完成，这些对于编程人员来说都是透明的。
 
 #### 5.5 ISA
 
@@ -208,9 +217,215 @@ Gemmini 内部memory的地址宽度为32bits；其中高三位是默认的，且
 
 ##### 5.5.1 Data Movement 
 
+**`mvin` Move Data From Main Memory to Scratchpad**
+
+**Format:** `mvin rs1, rs2`
+
+- `rs1` =  DRAM虚拟地址（byte addressed)
+- `rs2[31:0]` = scratchpad 或者 accumulator地址
+- `rs2[47:32]` = load多少column的数据
+- `rs2[63:48]` = load多少row的数据,必须要小于或者等于`DIM`
+- `funct` = 2
+
+**Action:** Scratchpad[rs2] <= DRAM[Translate[rs1]]
+
+- 从main memory中load一个2D矩阵进入Gemmini的private memory.
+- load是连续有序的，且以rs1/rs2为基地址。
+- main memory的stride必须要通过`config_mvin`命令来设置。
+- 如果我们load的数据的column数大于`DIM`,则多个子矩阵将被move in。private memory中子矩阵的stride可以通过`config_mvin`命令来设置。
+
+`mvin`的工作示意图如下：
+
+![](D:\prj\routine\inferencor\gemmini_docs\Gemmini Generator.assets\mvin-1660802387160.png)
+
+除此之外，当column数大于`DIM`时，工作示意图如下：
+
+![](D:\prj\routine\inferencor\gemmini_docs\Gemmini Generator.assets\mvin_gt_dim-1660802579773.png)
+
+**Notes:**
+
+- 实际上gemmini有三种`mvin`指令：`mvin`,`mvin2`和`mvin3`。
+
+  `mvin2`和`mvin3`除了拥有自己独立的配置寄存器之外，和`mvin`指令并无不同。
+  当调用`config_mvin`指令时，编程人员可以选择去配置哪一个`mvin`指令。
+
+- 之所以我们拥有三个`mvin`指令，是因为编程人员可能需要去load A,B和D三种矩阵（这三个矩阵在main memroy中存储的stride可能不同）。
+
+
+
+**`mvout` Move Data from Scratchpad to L2/DRAM**
+
+**Format:** `mvin rs1, rs2`
+
+- `rs1` =  DRAM虚拟地址（byte addressed)
+- `rs2[31:0]` = scratchpad 地址
+- `rs2[47:32]` = load多少column的数据
+- `rs2[63:48]` = load多少row的数据
+- `funct` = 3
+
+**Action:**  DRAM[Translate[rs1]] <= Scratchpad[rs2] 
+
+- 将scratchpad中的2D矩阵 store到main memory中
+- Store是连续有序的，且以rs1/rs2为基地址。stride必须要通过`config_mout`来设置。
+
+
+
 ##### 5.5.2 Configuration 
 
+**`config_ex` configures the Execute pipeline**
+
+**Format:** `config_ex rs1 rs2`
+
+- `rs1[1:0]` must be 00
+- `rs1[2]`决定了是OS还是WS模式
+- `rs1[4:3]` = 激活函数 要么是relu (1) ,relu6(2)或者没有激活函数（0）
+- `rs1[8]` = 矩阵A是否转置
+- `rs1[9]` = 矩阵B是否转置
+- `rs1[31:16]` = 进入脉动阵列的矩阵A的步长。
+  在矩阵乘法表达式`A*B=C`中，“A”代表了表达式左侧的矩阵A。如果这个步长为1，只需要将scratchpad中的连续行送入脉动阵列。如果步长为2，则需隔一行将“A"送入脉动阵列。
+- `rs1[63:32]` = scalar value,通过这个值，当我们读accumulator时可以将accumulator  `accType`类型的输出转为`inputType`类型的值。
+  默认配置下，`rs1[63:32]`类型为`float32`
+- `rs2[31:0]` =  the number of bits by which 6 should be left-shifted before applying relu6
+  如果没有使用relu6函数，这个参数将被忽略。
+- `funct` = 0
+
+**Action:** mode <= rs1(2);shife <= rs2; A_stride <= rs1[31:16]
+
+**Notes:**
+
+目前某些transpose的连接选项可能不被支持，如下表所示：
+
+| Dataflow | Transpose A | Transpose B | Permitted? |
+| :------: | :---------: | :---------: | :--------: |
+|    OS    |     No      |     No      |    Yes     |
+|    OS    |     No      |     Yes     |     No     |
+|    OS    |     Yes     |     No      |    Yes     |
+|    OS    |     Yes     |     Yes     |    Yes     |
+|    WS    |     No      |     No      |    Yes     |
+|    WS    |     No      |     Yes     |    Yes     |
+|    WS    |     Yes     |     No      |    Yes     |
+|    WS    |     Yes     |     Yes     |     No     |
+
+
+
+**`config_mvin` configures the Load pipeline**
+
+**Format:** `config_mvin rs1 rs2`
+
+- `rs1[1:0]`必须为`01`
+- `rs1[2]`:当`mvin`到accumulator的数据是`accType`类型的则为0，如果是`inputType`类型的则为1
+- `rs1[4:3]`:当要配置`mvin`的stride参数时为0，当配置`mvin2`时为1，当配置`mvin3`时为2
+- `rs1[63:32]`： is the "scale" by which to multiply data as it's being moved in to the scratchpad.This is ignored if Gemmini isn't configured to have the ability to scale values during `mvin` s.
+- `rs2` = the stride in bytes
+- `funct` = 0
+
+**Action:** stride <= rs2; scale <= rs1[63:32]
+
+
+
+**`config_mvout` configures the Store pipeline**
+
+**Format:** `config_mvout rs1 rs2`
+
+- `rs1[1:0]` 必须为 `10`
+
+- `rs2` = the stride in bytes
+
+- `funct` = 0
+
+在 `mvout`操作中，Gemmini也可以执行max-pooling.
+
+
+
+`flush` **flushes the TLB**
+
+**Format:** `flush rs1`
+
+- `rs1` = 如果rs1[0] 为1，则当前的TLB请求将被跳过（如果有page-fault或者等待中断时）。
+
+  否则，当下的TLB请求将被重复。
+
+**Note:**
+
+- 这个的优先级很高，一旦被收到就立刻被执行而不需要等待那些已经在队列中的指令。
+
+
+
 ##### 5.5.3 Core Matmul Sequences
+
+每个单个的矩阵乘法操作是由`matmul.preload`和`mutmul.compute`(因为如果合并为单个指令，那指令的长度就太长了)。`matmul.preload`指令需要在`matmul.compute`.
+
+Example:
+
+```
+//// OS matmul example ////
+// rs1 = InputD
+// rs2 = OutputC
+// rs3 = InputA
+// rs4 = InputB
+// matmul InputA InputB OutputC InputD
+1. matmul.preload $rs1 $rs2
+2. matmul.compute $rs3 $rs4
+```
+
+**Action:** Scratchpad[rs2] <= Scratchpad[rs3] * Scratchpad[rs4] + Scratchpad[rs1]
+
+**Notes on addressing:**
+
+- 对于B或者D，如果想要输入全0矩阵，可以将地址用全1来表示。
+- 对于A，如果地址用全1表示，则将输入一个未被定义的垃圾数据矩阵。
+
+
+
+##### 5.5.4 Preloading
+
+**Format:** `matmul.preload rs1, rs2`
+
+- `rs1[31:0]` = D矩阵（OS）或者B矩阵（WS)在scratchpad中的地址
+
+- `rs1[47:32]` = D/B矩阵的列数
+
+- `rs1[63:48]` = D/B矩阵的行数
+
+- `rs2[31:0]` = C矩阵在scratchpad中的地址
+
+  如果这个地址被置全1，则C将不会被写入scratchpad或者accumulator
+
+- `rs2[47:32]` = 矩阵C的column数
+- `rs2[63:48]` = 矩阵C的row数
+- `funct` = 6
+
+**Commit Behavior:**
+
+This instruction commits on the cycle after the systolic array receives it. The systolic array remains idle until the subsequent OS/WS specific instructions are seen.
+
+
+
+##### 5.5.4 Preloading
+
+**Explicitly Preloaded**
+
+**Format:** `matmul.compute.preloaded rs1, rs2`
+
+- rs1[31:0] = A矩阵在scratchpad 中的地址（systolic array single-axis addressed）
+- rs1[47:32] = 矩阵A的column数
+- rs1[63:48] = 矩阵A的row数
+- rs2[31:0] = 矩阵B（OS）或 矩阵D（WS）在scratchpad中的地址
+- rs2[47:32] = B/D矩阵的column数
+- rs2[63:48] =  B/D矩阵的row数
+- funct = 4
+- 这个指令将和之前preloaded的数据（D矩阵（OS）或者B矩阵（WS））进行计算。
+
+
+
+**Re-use Previous Preloads**
+
+**Format:**  `matmul.compute.accumulated rs1, rs2`
+
+- `funct` = 5
+- `rs1`和`rs2`和`matmul.compute.preloaded`中的编码相同
+- 如果是 output-stationary模式，这个指令将会在之前的计算结果C（已经preload进入脉动阵列）上继续累加
+- 如果是weight-stationary模式，这个指令将会和之前preloaded进入脉动阵列的权重B进行计算。
 
 ##### 5.5.4 Loop Instructions
 
