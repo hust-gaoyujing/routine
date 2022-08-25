@@ -42,7 +42,7 @@
 
 直接上图：
 
-<img src="D:\prj\routine\inferencor\gemmini_docs\BCNN硬件实现平台.assets\memory.jpg" alt="memory" style="zoom: 50%;" />
+![](BCNN硬件实现平台.assets/memory.png)
 
 
 
@@ -83,7 +83,7 @@ private memory与原存储方式类似，也是采用了”row_addressed"方式�
 
 直接上图：
 
-![data_flow](D:\prj\routine\inferencor\gemmini_docs\BCNN硬件实现平台.assets\data_flow.jpg)
+![](BCNN硬件实现平台.assets/data_flow.png)
 
 
 
