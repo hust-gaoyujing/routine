@@ -155,7 +155,10 @@ elsewhen ((df == Dataflow.WS).B || ((df == Dataflow.BOTH).B && dataflow === WEIG
 
 #### 4. PE for BCNN  in weight stationary 
 
-针对BCNN算法，我们可以选择ws模式的脉动阵列,优势如下：
+针对BCNN算法，我们可以选择ws模式的脉动阵列,理由如下：
+
+- OS更适合NCHW存储方式的卷积运算，即每个通道分别卷积，并将同一感受野对应的各通道卷积结果累加，使用output stationay dataflow可以依次完成各个通道的卷积，在最后一次卷积完成后将卷积和输出，中间各个阶段不需要输出中间结果；
+- 本次设计的BCNN硬件实现平台，采用的是类似NHWC存储方式，将一个像素点的16个通道的单比特数据合并成一个16bits的多比特数据，我们可以认为每次的卷积运算只有一个通道，在`3x3`的卷积核完成某个感受野的卷积运算后，即可立即进行下一个感受野的卷积运算，直至完成该卷积核对应的计算后，才需要读取下一个卷积核的权重数据并计算；
 
 - `C=A*B+D`中D矩阵作为zero矩阵，不需要向C矩阵对应的accumulator中`mvin`数据；
 - 将B矩阵preload到脉动阵列后，在完成一个卷积核的运算后，可以重复使用已经loaded的权重，减少了memory的访问；
@@ -177,6 +180,36 @@ elsewhen ((df == Dataflow.WS).B || ((df == Dataflow.BOTH).B && dataflow === WEIG
 
 
 
+给出以下解决方案：
 
+**code(TODO):**
+
+```scala
+elsewhen ((df == Dataflow.WS).B || ((df == Dataflow.BOTH).B && dataflow === WEIGHT_STATIONARY)) {
+    when(prop === PROPAGATE) {
+      io.out_c := c1
+      io.out_b := b+2*PopCount(a^c2.asTypeOf(inputType))-8*sizeof(a)
+      c1 := d
+    }.otherwise {
+      io.out_c := c2
+      io.out_b := b+2*PopCount(a^c1.asTypeOf(inputType))-8*sizeof(a)
+      c2 := d
+    }
+```
+
+**question:**
+
+PopCount作为chisel自带的函数，直接去popcount一个16bits的数，生成的硬件电路会不会太大，需不需要改为popcount(a[15:12])+popcount(a[11:8])+popcount(a[7:4])+popcount(a[3:0])???
+
+
+
+**chisel操作符：**
+
+[Chisel/FIRRTL: Introduction (chisel-lang.org)](https://www.chisel-lang.org/chisel3/docs/introduction.html)
+
+
+
+**WS脉动阵列数据流（含动态图）：**
 
 [Understanding Matrix Multiplication on a Weight-Stationary Systolic Architecture | Telesens](https://www.telesens.co/2018/07/30/systolic-architectures/)
+
