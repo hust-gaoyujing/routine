@@ -21,7 +21,7 @@ class LocalAddr(sp_banks: Int, sp_bank_entries: Int, acc_banks: Int, acc_bank_en
   val is_acc_addr = Bool()
   val accumulate = Bool()
   val read_full_acc_row = Bool()
-  val garbage = UInt(((localAddrBits - maxAddrBits - 4) max 0).W)
+  val garbage = UInt(((localAddrBits - maxAddrBits - 4) max 0).W)                         //为什么要减4？？
   val garbage_bit = if (localAddrBits - maxAddrBits >= 4) UInt(1.W) else UInt(0.W)
   val data = UInt(maxAddrBits.W)
 
