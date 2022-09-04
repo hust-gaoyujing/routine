@@ -179,7 +179,16 @@ IM SON!
 
 
 
+l_comp6  + 		m8-
+
+d19 d24 + 		m9-
+
+r8-			m8-
+
+l_fillet_cnt?
+
+l_t
 
 
 
-
+d24 0,6->0.7
