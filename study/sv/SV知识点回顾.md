@@ -2,7 +2,7 @@
 
 
 
-### SV知识点回顾
+### SV及UVM知识点回顾
 
 
 
@@ -177,17 +177,12 @@ IM SON!
 
 
 
+#### 4.Config_db机制
+
+[SystemVerilog | UVM | Config_db机制基础 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/424887852)
 
 
-l_comp6  + 		m8-
 
-d19 d24 + 		m9-
-
-r8-			m8-
-
-l_fillet_cnt?
-
-l_t
 
 
 
@@ -205,4 +200,3 @@ test
 
 youhua: w4 5->4.9
 
-copy: w5 4.8 -> 4.7
