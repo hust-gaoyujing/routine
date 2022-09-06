@@ -20,8 +20,8 @@ class Pipeline[T <: Data] (gen: T, latency: Int)(comb: Seq[T => T] = Seq.fill(la
   } else {
     val stages = Reg(Vec(latency, gen))
     val valids = RegInit(VecInit(Seq.fill(latency)(false.B)))
-    val stalling = VecInit(Seq.fill(latency)(false.B))              //wire型
-    io.busy := io.in.valid || valids.reduce(_||_)                   //当输入的valid或者valids队列中有一个有效，则为BUSY状态
+    val stalling = VecInit(Seq.fill(latency)(false.B))
+    io.busy := io.in.valid || valids.reduce(_||_)
 
     // Stall signals
     io.in.ready := !stalling.head

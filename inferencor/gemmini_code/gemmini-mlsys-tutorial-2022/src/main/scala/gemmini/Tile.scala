@@ -123,7 +123,7 @@ class Tile[T <: Data](inputType: T, outputType: T, accType: T, df: Dataflow.Valu
       }
     }
   }
-  io.bad_dataflow := tile.map(_.map(_.io.bad_dataflow).reduce(_||_)).reduce(_||_)     //各rows 和 columns的bad_dataflow信号聚合，若有true，则为true
+  io.bad_dataflow := tile.map(_.map(_.io.bad_dataflow).reduce(_||_)).reduce(_||_)
 
   // Drive the Tile's right IO
   for (r <- 0 until rows) {
