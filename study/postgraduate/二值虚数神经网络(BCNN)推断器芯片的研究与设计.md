@@ -24,6 +24,20 @@
 
 ​			介绍一下人工智能的发展情景，边缘推断设备的重要性，BCNN算法的优势，RISC-V的兴起与优势，两个结合一下阐述一下当下工作的意义。（COPY一下开题报告的东西，再加一点BCNN的东西，就OK了）
 
+
+
+BNN:
+
+![image-20220908105158600](D:\prj\routine\study\postgraduate\二值虚数神经网络(BCNN)推断器芯片的研究与设计.assets\image-20220908105158600.png)
+
+
+
+DCN:
+
+![image-20220908105751001](D:\prj\routine\study\postgraduate\二值虚数神经网络(BCNN)推断器芯片的研究与设计.assets\image-20220908105751001.png)
+
+
+
 ##### 	1.2	研究现状
 
 ###### 			1.2.1	BCNN算法的研究现状
