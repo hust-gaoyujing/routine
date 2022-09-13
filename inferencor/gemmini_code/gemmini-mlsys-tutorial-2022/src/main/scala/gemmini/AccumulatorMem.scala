@@ -110,10 +110,11 @@ class AccumulatorMem[T <: Data, U <: Data](
 
   require (acc_latency >= 2)
 
+  //io.write的控制信号和数据信号通过pipeline后进入AccumulatorMem
   val pipelined_writes = Reg(Vec(acc_latency, Valid(new AccumulatorWriteReq(n, t))))
   val oldest_pipelined_write = pipelined_writes(acc_latency-1)
-  pipelined_writes(0).valid := io.write.fire
-  pipelined_writes(0).bits  := io.write.bits
+  pipelined_writes(0).valid := io.write.fire    
+  pipelined_writes(0).bits  := io.write.bits    
   for (i <- 1 until acc_latency) {
     pipelined_writes(i) := pipelined_writes(i-1)
   }
@@ -299,6 +300,7 @@ class AccumulatorMem[T <: Data, U <: Data](
     rdata_for_adder := DontCare
   }
 
+  //队列的输入，就是AccumulatorReadReq端口的数据直接赋值为resp的端口，那数据data呢？
   q.io.enq.bits.scale := RegNext(io.read.req.bits.scale)
   q.io.enq.bits.igelu_qb := RegNext(io.read.req.bits.igelu_qb)
   q.io.enq.bits.igelu_qc := RegNext(io.read.req.bits.igelu_qc)
@@ -309,8 +311,9 @@ class AccumulatorMem[T <: Data, U <: Data](
   q.io.enq.bits.acc_bank_id := DontCare
   q.io.enq.valid := RegNext(io.read.req.fire)
 
-  val p = q.io.deq
+  val p = q.io.deq        //val deq = Flipped(DeqIO(gen))    将队列的一组输出端口deq声明为q
 
+  //将队列的输出送到io的read.resp端口
   io.read.resp.bits.data := p.bits.data
   io.read.resp.bits.fromDMA := p.bits.fromDMA
   io.read.resp.bits.igelu_qb := p.bits.igelu_qb

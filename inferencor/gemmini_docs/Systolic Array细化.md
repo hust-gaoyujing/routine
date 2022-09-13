@@ -165,6 +165,10 @@ elsewhen ((df == Dataflow.WS).B || ((df == Dataflow.BOTH).B && dataflow === WEIG
 
 ![ws_sa](Systolic Array细化.assets/ws_sa.png)
 
+
+
+![](D:\prj\routine\inferencor\gemmini_docs\Systolic Array细化.assets\bcnn_mac.png)
+
 与原始的gemmini的PE（WS）相比，我们的设计的PE，只是将`inputType`类型的乘法器改为了`pop(xor)`运算，即每个周期完成16bit数据的异或并popcount，数据处理能力不仅大幅度提升，所需要的门数也大幅下降。
 
 完成一次MAC(`C=A*B+D`)计算的过程：
