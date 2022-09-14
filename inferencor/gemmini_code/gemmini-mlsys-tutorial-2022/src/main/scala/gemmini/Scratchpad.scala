@@ -218,14 +218,14 @@ class Scratchpad[T <: Data, U <: Data, V <: Data](config: GemminiArrayConfig[T, 
 
       // Accumulator ports
       val acc = new Bundle {
-        val read_req = Flipped(Vec(acc_banks, Decoupled(new AccumulatorReadReq(
+        val read_req = Flipped(Vec(acc_banks, Decoupled(new AccumulatorReadReq(                           //包含了数据端口、active请求、igelu、iexp相关参数
           acc_bank_entries, accType, acc_scale_t.asInstanceOf[V]
         ))))
-        val read_resp = Vec(acc_banks, Decoupled(new AccumulatorScaleResp(
-          Vec(meshColumns, Vec(tileColumns, inputType)),
-          Vec(meshColumns, Vec(tileColumns, accType))
+        val read_resp = Vec(acc_banks, Decoupled(new AccumulatorScaleResp(                                //返回full_data、data
+          Vec(meshColumns, Vec(tileColumns, inputType)),                                                  //full_data从accumulator直接读取的数据   InputType
+          Vec(meshColumns, Vec(tileColumns, accType))                                                     //data 激活函数后的数据
         )))
-        val write = Flipped(Vec(acc_banks, Decoupled(new AccumulatorWriteReq(
+        val write = Flipped(Vec(acc_banks, Decoupled(new AccumulatorWriteReq(                             //addr data mask acc（bool）
           acc_bank_entries, Vec(meshColumns, Vec(tileColumns, accType))
         ))))
       }

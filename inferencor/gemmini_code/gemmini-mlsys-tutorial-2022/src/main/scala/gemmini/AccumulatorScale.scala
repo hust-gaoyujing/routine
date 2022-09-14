@@ -22,7 +22,7 @@ class AccumulatorScaleIO[T <: Data: Arithmetic, U <: Data](
   fullDataType: Vec[Vec[T]], scale_t: U,
   rDataType: Vec[Vec[T]]
 ) extends Bundle {
-  val in = Flipped(Decoupled(new NormalizedOutput[T,U](fullDataType, scale_t)))
+  val in = Flipped(Decoupled(new NormalizedOutput[T,U](fullDataType, scale_t)))         //NormalizedOutput中包含了AccumulatorReadResp，将Normalizer的输出送入AccumulatorScale??
   val out = Decoupled(new AccumulatorScaleResp[T](fullDataType, rDataType))
 }
 
@@ -79,9 +79,9 @@ class AccScalePipe[T <: Data, U <: Data](t: T, rDataType: Vec[Vec[T]], scale_fun
 class AccumulatorScale[T <: Data, U <: Data](
   fullDataType: Vec[Vec[T]], rDataType: Vec[Vec[T]],
   scale_t: U,
-  read_small_data: Boolean, read_full_data: Boolean,
-  scale_func: (T, U) => T,
-  num_scale_units: Int,
+  read_small_data: Boolean, read_full_data: Boolean,                                              //都是true
+  scale_func: (T, U) => T,                                                                        //(t: T, _: V) => t 
+  num_scale_units: Int,                                                                           //-1
   latency: Int,
   has_nonlinear_activations: Boolean, has_normalizations: Boolean)(implicit ev: Arithmetic[T]) extends Module {
 
