@@ -114,7 +114,7 @@ class VectorScalarMultiplier[T <: Data, U <: Data, Tag <: Data](
           regs(i).valid := false.B
         }
       }
-      head_oh := (head_oh << 1) | head_oh(nEntries-1)
+      head_oh := (head_oh << 1) | head_oh(nEntries-1)                       //轮询
     }
     in_fire := (in.valid &&
       (!Mux1H(tail_oh.asBools, regs.map(_.valid)))

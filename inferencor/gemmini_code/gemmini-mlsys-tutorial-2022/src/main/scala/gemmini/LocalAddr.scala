@@ -23,7 +23,7 @@ class LocalAddr(sp_banks: Int, sp_bank_entries: Int, acc_banks: Int, acc_bank_en
   val read_full_acc_row = Bool()
   val norm_cmd = NormCmd()
 
-  private val metadata_w = is_acc_addr.getWidth + accumulate.getWidth + read_full_acc_row.getWidth + norm_cmd.getWidth
+  private val metadata_w = is_acc_addr.getWidth + accumulate.getWidth + read_full_acc_row.getWidth + norm_cmd.getWidth        //地址控制信号，所以需要确保和实际地址位宽相加后小于32
   assert(maxAddrBits + metadata_w < 32)
 
   val garbage = UInt(((localAddrBits - maxAddrBits - metadata_w - 1) max 0).W)

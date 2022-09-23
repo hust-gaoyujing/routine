@@ -47,7 +47,7 @@ class LoadController[T <: Data, U <: Data, V <: Data](config: GemminiArrayConfig
   val cols = mvin_rs2.num_cols
   val rows = mvin_rs2.num_rows
 
-  val config_stride = cmd.bits.cmd.rs2
+  val config_stride = cmd.bits.cmd.rs2                                    //config_mvin rs2:the stride in bytes?是不是in bytes？需要往后面看
 
   val config_mvin_rs1 = cmd.bits.cmd.rs1.asTypeOf(new ConfigMvinRs1(mvin_scale_t_bits, block_stride_bits, pixel_repeats_bits))
 
