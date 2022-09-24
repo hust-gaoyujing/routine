@@ -261,7 +261,7 @@ class Scratchpad[T <: Data, U <: Data, V <: Data](config: GemminiArrayConfig[T, 
     write_norm_q.io.deq.ready := false.B
 
     write_scale_q.io.enq.valid := false.B
-    write_scale_q.io.enq.bits  := write_norm_q.io.deq.bits
+    write_scale_q.io.enq.bits  := write_norm_q.io.deq.bits                         //dispatch -> norm -> scale -> issue
     write_scale_q.io.deq.ready := false.B
 
     write_issue_q.io.enq.valid := false.B
