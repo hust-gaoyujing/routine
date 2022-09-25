@@ -32,7 +32,7 @@ class IExpConst[T <: Data](acc_t: T) extends Bundle {
 
 class AccumulationLanes[T <: Data](num_stats: Int, acc_t: T, n_lanes: Int, latency: Int)(implicit ev: Arithmetic[T])
   extends Module {
-  // Each lane computes a sum, or an error-squared sum
+  // Each lane computes a sum, or an error-squared sum（误差平方和）
 
   import ev._
 
@@ -178,7 +178,7 @@ class Normalizer[T <: Data, U <: Data](max_len: Int, num_reduce_lanes: Int, num_
     val inv_sum_exp = acc_t.cloneType
 
     val elems_left = req.len.cloneType
-
+    //数据重新分组
     def vec_grouped = VecInit(req.acc_read_resp.data.flatten.grouped(n_lanes).map(v => VecInit(v)).toSeq)
     def vec_groups_left = elems_left / n_lanes.U + (elems_left % n_lanes.U =/= 0.U)
 
@@ -506,6 +506,14 @@ class Normalizer[T <: Data, U <: Data](max_len: Int, num_reduce_lanes: Int, num_
 //          Mux(cmd === NormCmd.MEAN, get_mean, get_variance),
 //          state)
 //      )
+
+
+// val idle, output = Value
+// val get_sum = Value
+// val get_mean, waiting_for_mean = Value
+// val get_variance, waiting_for_variance, get_stddev, waiting_for_stddev, get_inv_stddev, waiting_for_inv_stddev = Value
+// val get_max = Value
+// val get_inv_sum_exp, waiting_for_inv_sum_exp = Value
 
       done := is_last_lane_input && cmd =/= NormCmd.MEAN && cmd =/= NormCmd.INV_STDDEV && cmd =/= NormCmd.INV_SUM_EXP
     }.elsewhen(state === get_mean || state === get_variance) {
