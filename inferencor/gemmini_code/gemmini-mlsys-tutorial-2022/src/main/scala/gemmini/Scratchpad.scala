@@ -223,7 +223,7 @@ class Scratchpad[T <: Data, U <: Data, V <: Data](config: GemminiArrayConfig[T, 
         ))))
         val read_resp = Vec(acc_banks, Decoupled(new AccumulatorScaleResp(                                //返回full_data、data
           Vec(meshColumns, Vec(tileColumns, inputType)),                                                  //full_data从accumulator直接读取的数据   InputType
-          Vec(meshColumns, Vec(tileColumns, accType))                                                     //data 激活函数后的数据
+          Vec(meshColumns, Vec(tileColumns, accType))                                                     //data
         )))
         val write = Flipped(Vec(acc_banks, Decoupled(new AccumulatorWriteReq(                             //addr data mask acc（bool）
           acc_bank_entries, Vec(meshColumns, Vec(tileColumns, accType))
@@ -456,7 +456,7 @@ class Scratchpad[T <: Data, U <: Data, V <: Data](config: GemminiArrayConfig[T, 
           io.ext_mem.get.spad(i) <> bio.ext_mem.get
         }
 
-        val ex_read_req = io.srams.read(i).req
+        val ex_read_req = io.srams.read(i).req            //选择是哪一个sp_bank
         val exread = ex_read_req.valid
 
         // TODO we tie the write dispatch queue's, and write issue queue's, ready and valid signals together here
