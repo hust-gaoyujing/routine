@@ -184,7 +184,7 @@
 
 ### 5. 软件部分
 
-​		Gemmini generator不仅可以生成一个硬件栈，还包括一个软件栈，当开发者去例化不同的硬件模板时，软件栈自动调整，极大的提高了开发者的开发效率，且Gemmini的多层级软件栈可以支持不同开发场景。在高层级，Gemmini支持直接读取ONNX文件格式的DNN算法并将其转换软件的二进制文件来执行。而在底层级，加速器还可以通过C/C++ APIs来编程，不过基于不同的scratchpad size和其他的参数，每次例化不同的硬件后，这些APIs的函数也需要进行微调。因此每次一个新的加速器生成后，Gemmini也会相应生成一个伴随的头文件，其中包含了各种参数，例如spatial array的维度，支持的dataflows，含有哪些计算blocks（如pooling,im2cool,或transposition blocks）。
+​		Gemmini generator不仅可以生成一个硬件栈，还包括一个软件栈，当开发者去例化不同的硬件模板时，软件栈自动调整，极大的提高了开发者的开发效率，且Gemmini的多层级软件栈可以支持不同开发场景。在高层级，Gemmini支持直接读取ONNX文件格式的DNN算法并将其转换软件的二进制文件来执行。而在底层级，加速器还可以通过C/C++ APIs来编程，不过基于不同的scratchpad size和其他的参数，每次例化不同的硬件后，这些APIs的函数也需要进行微调。因此每次一个新的加速器生成后，Gemmini也会相应生成一个伴随的头文件，其中包含了各种参数，例如spatial array的维度，支持的dataflows，含有哪些计算blocks（如pooling,im2col,或transposition blocks）。
 
 #### 5.1 Data Staging and Mapping
 

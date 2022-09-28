@@ -56,7 +56,7 @@ Gemmini的地址的低`maxAddrBits`位是寻址的有效地址位，当地址进
 
 ​		下面讨论一下scratchpad和accumulator的电路实现。scratchpad banks结构十分简单，仅由一块**单端口**SRAM和一个queue构成。相比之下，accumulator的结构稍显复杂：除了一块**双端口**SRAM，还包含了一系列的加法器去支持内部累加操作，除此之外还有一系列的“压缩”和激活函数单元。这些“压缩”和激活函数可以被编程人员调用，用于从accumulator中读数据时将**accType**类型的值转化为**inputType**类型的值。例如DNN算法中将某一层的partial-sum从accumulator输出作为下一层的输入（inputType)。
 
-​		之所以scratchpad使用单端口sram，而accumulator使用双端口sram，是因为scratchpd在算法运行过程的load、prelaod和excute阶段的每个周期只需要完成写数据或者读数据任务，而不存在同时进行读写两个任务的可能。例如load阶段我们将数据从main memory加载进入scratchpad，此阶段的每个周期内只需要完成写数据任务；perload阶段我们将数据从scratchapd预加载进入脉动阵列，此阶段的每个周期只需要完成读数据任务；与preload阶段相同，excute阶段将矩阵乘加计算所需的输入数据依次从scratchpad按行读取进入脉动阵列，也不存在读数据任务，所以为了节约资源，scratchpad只需要使用单端口SRAM即可实现。Accumulator的工作机制与Scratchpad则有些许不同，accumulator用于保存计算的中间值和最终结果，每完成一次矩阵乘加计算的结果都将进入accumulator并与目标地址保存的初始值进行累加，这就需要在excute阶段的每个周期accumulator需要同时完成一次读数据任务、累加计算任务、写数据任务，虽然这三个任务可以通过寄存器缓存并使用状态机依次完成，但是在边缘智能设备这类实时性要求较高的应用场景中，这种方式显然是不满足要求的，所以我们采用了流水线形式将三个任务并行执行，极大的缩短了算法的运行时间，因此accumulator也必须要使用双端SRAM实现。
+​		之所以scratchpad使用单端口sram，而accumulator使用双端口sram，是因为scratchpd在算法运行过程的load、prelaod和excute阶段的每个周期只需要完成写数据或者读数据任务，而不存在同时进行读写两个任务的可能。例如load阶段我们将数据从main memory加载进入scratchpad，此阶段的每个周期内只需要完成写数据任务；perload阶段我们将数据从scratchapd预加载进入脉动阵列，此阶段的每个周期只需要完成读数据任务；与preload阶段相同，excute阶段将矩阵乘加计算所需的输入数据依次从scratchpad按行读取进入脉动阵列，也不存在读数据任务，所以为了节约资源，scratchpad只需要使用单端口SRAM即可实现。Accumulator的工作机制与Scratchpad则有些许不同，accumulator用于保存计算的中间值和最终结果，每完成一次矩阵乘加计算的结果都将进入accumulator并与目标地址保存的初始值进行累加，这就需要在excute阶段的每个周期accumulator需要同时完成一次读数据任务、累加计算任务、写数据任务，虽然这三个任务可以通过寄存器缓存并使用状态机依次完成，但是在边缘智能设备这类实时性要求较高的应用场景中，这种方式显然是不满足要求的，所以我们采用了流水线形式将 三个任务并行执行，极大的缩短了算法的运行时间，因此accumulator也必须要使用双端SRAM实现。
 
 ​	下图为
 
@@ -73,3 +73,13 @@ Gemmini的地址的低`maxAddrBits`位是寻址的有效地址位，当地址进
 ​		DMA通常会尽量减少TileLink的访问请求次数，即使这样会需要从main memory中读取更大的数据总量。因为根据以往的经验，我们发现过量的TileLink访问请求比额外读少量的数据更影响性能。
 
 ​		负责将private SRAMs中数据写入main memory的DMAWriter，除了与DMAReader相同的功能外，还包含了一些**>**比较器，这些比较器可以在memory-write操作期间完成max-pooling的功能。
+
+
+
+
+
+**代办**
+
+- aligned_to改为4？现在为1，mask1比特只能mask一个byte
+-  dma_maxbytes: Int = 64,    最大一次读取64bytes（满足现有构思的16*（32/8））
+   dma_buswidth: Int = 128,   这里本来是16x8=128,现在需要修改为16x32=64x8=512
