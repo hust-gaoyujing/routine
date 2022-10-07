@@ -209,6 +209,14 @@ PopCount作为chisel自带的函数，直接去popcount一个16bits的数，生�
 
 
 
+#### 5. Meshwithdelays
+
+
+
+
+
+
+
 **chisel操作符：**
 
 [Chisel/FIRRTL: Introduction (chisel-lang.org)](https://www.chisel-lang.org/chisel3/docs/introduction.html)
@@ -219,3 +227,14 @@ PopCount作为chisel自带的函数，直接去popcount一个16bits的数，生�
 
 [Understanding Matrix Multiplication on a Weight-Stationary Systolic Architecture | Telesens](https://www.telesens.co/2018/07/30/systolic-architectures/)
 
+
+
+**代办：**
+
+- tree_reduction = 1；
+
+  ```scala
+  pe.io.in_b := (if (tree_reduction) in_b.zero else in_b)
+  ```
+
+  
