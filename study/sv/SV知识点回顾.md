@@ -200,3 +200,84 @@ test
 
 youhua: w4 5->4.9
 
+
+
+move:
+
+-(w_all+l_air)/2 ,-(l-l_cnt2/2) ,(l_t)/2-t-s
+
+
+
+m10:
+
+w_all/2+l_air-l_cnt ,l1+l2+l3+l4+l5-d24/2 ,t+s
+
+w5+d20
+
+-(l_cnt2-d25/2-d24/2)
+
+
+
+m11:
+
+w_all/2+l_air-l_cnt+w5+d20 ,l1+l2+l3+l4+l5-l_cnt2+d25/2 ,t+s
+
+-(l_air-2*l_cnt+w5+d20+l_coin)
+
+-w5-d25
+
+
+
+Cylinder11:
+
+move: -(w_all+l_air)/2 ,-(l-l_cnt2/2) ,(l_t)/2
+
+
+
+l_cor_l-1.414*(w5+d24)
+
+l_cor_w-0.414*(w5+d24)
+
+w5+d24
+
+1.414*(w5+d24)
+
+
+
+(l_cor_w+2*da-2mm-(l_cor_l+da-l7))/2
+
+
+
+modify:
+
+d18 0,4->0.2->0.001
+
+lcomp3 1.8->1 l_comp4 1.3->1.5
+
+copy4:
+
+d18 0.001 其余和copy2一样
+
+copy3:
+
+l_cnt 8->9  box7缩短1mm
+
+l_move 9
+
+copy2:
+
+b6 -> b5 6
+
+d24 0.4->0.6
+
+
+
+-(w_all+l_air)/2 ,-(l-l_cnt2/2) ,(l_t)/2-t-s
+
+
+
+-(w_all+l_air)/2 ,-(l-l_cnt2/2) ,(l_t)/2
+
+
+
+copy  d16->l_cnt2/2
