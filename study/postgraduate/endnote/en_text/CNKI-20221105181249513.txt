@@ -1,0 +1,14 @@
+%0 Journal Article
+%A Hao Li
+%A Asim Kadav
+%A Igor Durdanovic
+%A Hanan Samet
+%A Hans Peter Graf
+%T Pruning Filters for Efficient ConvNets.
+%J CoRR
+%D 2016
+%V abs/1608.08710
+%W CNKI
+
+
+

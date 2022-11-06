@@ -1,0 +1,17 @@
+TY  - JOUR
+AU  - Hur, Cheonghwan
+AU  - Kang, Sanggil
+PY  - 2019
+DA  - 2019/06/01
+TI  - Entropy-based pruning method for convolutional neural networks
+JO  - The Journal of Supercomputing
+SP  - 2950
+EP  - 2963
+VL  - 75
+IS  - 6
+AB  - Various compression approaches including pruning techniques have been developed to lighten the computational complexity of neural networks. Most pruning techniques determine the threshold of pruning weights or input features based on statistical analysis of the value of weights after completing their training. Their compression performance is limited because they do not take into account the contribution of weights to output during training. To solve this problem, we propose an entropy-based pruning technique that determines the threshold by considering the average amount of information from the weights to output while training. In the experiment section, we demonstrate and analyze our method for a convolutional neural network image classifier modeled by using Mixed National Institute of Standards and Technology image data. From the experimental results, our technique shows that compression performance has improved by more than 28% overall, compared to the well-known pruning technique. Also, the pruning speed has improved by 14%.
+SN  - 1573-0484
+UR  - https://doi.org/10.1007/s11227-018-2684-z
+DO  - 10.1007/s11227-018-2684-z
+ID  - Hur2019
+ER  - 

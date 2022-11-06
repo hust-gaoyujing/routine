@@ -1,0 +1,14 @@
+%0 Journal Article
+%A Wei Wen
+%A Chunpeng Wu
+%A Yandan Wang
+%A Yiran Chen
+%A Hai Li 0001
+%T Learning Structured Sparsity in Deep Neural Networks.
+%J CoRR
+%D 2016
+%V abs/1608.03665
+%W CNKI
+
+
+

@@ -1,0 +1,16 @@
+%0 Journal Article
+%A Juan Miguel Rodriguez Lopez
+%A Katharina Heider
+%A Jürgen Scheffran
+%+ Center for Sustainable University (KNU) and CliSAP, University of Hamburg, Grindelberg 5, 20144 Hamburg, Germany;;Research Group Climate Change and Security (CLISEC), Institute of Geography and CliSAP/ CEN, University of Hamburg, Grindelberg 5, 20144 Hamburg, Germany
+%T Frontiers of urbanization: Identifying and explaining urbanization hot spots in the south of Mexico City using human and remote sensing
+%J Applied Geography
+%D 2017
+%V 79
+%K Human sensing;Remote sensing;Urbanization;Mexico City;Hot spots;GIS
+%X AbstractThis article applies a multi-method approach to develop a better measurement of urbanization dynamics using remote and human sensing based on a GIS platform. The results demonstrate the benefits of bringing human and remote sensing sources together in a framework of hot spot analysis for a megacity such as Mexico City. Furthermore, our analysis suggests that human and remote sensing work well together in detecting the expansion of illegal urban settlements. Looking at the driving factors of illegal settlements, the existence of strong association between the expansion of illegal urban settlements and socioeconomic factors such as unemployment, provides some answers and reveals new questions. Illegal urban growth often leads to the loss of ecological areas in the urban frontiers, especially in areas where the urbanization potential is high. As a consequence, there are conflicts with legal settlers who dislike the illegal expansion. This approach can be extended to and replicated in new urbanizing areas, in particular in Africa and Asia.;Graphical abstractSeeking to better understand urbanization dynamics of illegal settlements in the frontiers of Mexico City, this study utilizes remote and human sensing, bringing both sources together (steps 1 and 2) in a framework of hot spots analysis. [Display omitted] ;Highlights•A combination of human and remote sensing is relevant for urban hot spot analysis.•Association exists between unemployment and illegal settlements.•The frontiers of urbanization are spaces of high conflict potential.
+%@ 0143-6228
+%W CNKI
+
+
+

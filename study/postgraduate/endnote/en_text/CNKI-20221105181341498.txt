@@ -1,0 +1,16 @@
+%0 Journal Article
+%A Jian-Hao Luo
+%A Jianxin Wu
+%+ National Key Laboratory for Novel Software Technology, Nanjing University, China
+%T AutoPruner: An end-to-end trainable filter pruning method for efficient deep model inference
+%J Pattern Recognition
+%D 2020
+%N prepublish
+%V 107
+%K Neural network pruning;Model compression;CNN acceleration
+%X Abstract(#br)Channel pruning is an important method to speed up CNN model’s inference. Previous filter pruning algorithms regard importance evaluation and model fine-tuning as two independent steps. This paper argues that combining them into a single end-to-end trainable system will lead to better results. We propose an efficient channel selection layer, namely AutoPruner, to find less important filters automatically in a joint training manner. Our AutoPruner takes previous activation responses as an input and generates a true binary index code for pruning. Hence, all the filters corresponding to zero index values can be removed safely after training. By gradually erasing several unimportant filters, we can prevent an excessive drop in model accuracy. Compared with previous state-of-the-art pruning algorithms (including training from scratch), AutoPruner achieves significantly better performance. Furthermore, ablation experiments show that the proposed novel mini-batch pooling and binarization operations are vital for the success of model pruning.
+%@ 0031-3203
+%W CNKI
+
+
+
