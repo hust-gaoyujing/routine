@@ -1,0 +1,16 @@
+%0 Journal Article
+%A Liu C.
+%A Botimer J.
+%A Zhang Z.
+%+ University of Michigan, Ann Arbor, MI, United States
+%T A 256Gb/s/mm-shoreline AIB-Compatible 16nm FinFET CMOS Chiplet for 2.5D Integration with Stratix 10 FPGA on EMIB and Tiling on Silicon Interposer
+%J Proceedings of the Custom Integrated Circuits Conference
+%D 2021
+%V 2021-April
+%K CMOS integrated circuits; FinFET; Microcontrollers; Silicon; 2.5-D integration; Interface bus; Micro-bumps; Microcontroller unit; Silicon interposers; Field programmable gate arrays (FPGA)
+%X This work presents an Advanced Interface Bus (AIB)-compatible microcontroller unit (MCU) chiplet in 16nm FinFET CMOS. The MCU chiplet consists of three AIB channels, each providing 20 Tx and Rx pairs to support 80Gb/s/channel over 55μ m-pitch microbumps. Two multi-chip modules (MCM) were constructed, one made of two MCU chiplets integrated on a 180nm passive silicon interposer, and the other made by pairing an MCU chiplet with a Stratix 10 FPGA over an Embedded Multi-die Interconnect Bridge (EMIB). The AIB interface provides 256Gb/s/mm-shoreline, consuming 0.83pJ/b at 0.9V and 1GHz. The two MCMs demonstrate the ease and versatility of modular 2.5D integration. © 2021 IEEE.
+%@ 0886-5930
+%W CNKI
+
+
+
