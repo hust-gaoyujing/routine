@@ -51,11 +51,76 @@
 
 #### 2022-10-12
 
-- [ ] 搞清楚mvout指令、scale功能
-- [ ] Cat操作符
-- [ ] BCNN硬件平台数据通路图（算法中的拼接具体是怎么实现）
+- [x] 搞清楚mvout指令、scale功能
+- [x] Cat操作符
+- [x] BCNN硬件平台数据通路图（算法中的拼接具体是怎么实现）
 - [ ] 算清楚zero_dec++具体需要多少内存
-- [ ] 搞定第四章RSICV相关的废话
-- [ ] 从胡涛那边找到modelsim、vivado安装资源
-- [ ] 搞清楚PE os模式的计算方式
+- [x] 搞定第四章RSICV相关的废话
+- [x] 从胡涛那边找到modelsim、vivado安装资源
+- [x] 搞清楚PE os模式的计算方式
 
+
+
+#### 2022-10-16
+
+- [ ] OS模式下compare是否也可以在PE的PL电路中完成
+
+
+
+#### 2022-10-17
+
+- [ ] 弄清楚tiled_matmul_auto、tiled_conv_auto函数
+- [x] 弄清楚matmul_os、matmul_ws函数
+- [x] C语言指针 * &
+
+
+
+#### 2022-10-18
+
+- [ ] 第三章和第四章的本章小结
+- [ ] conv相关的case
+- [x] 查看波形 弄清楚脉动阵列的内部信号
+- [x] 修改了gemmini_testutils.h中的`printMatrix`函数
+
+
+
+#### 2022-10-19
+
+- [ ] 找到波形文件太大的可能解决方法：
+
+![image-20221019154935781](BCNN工作日志.assets/image-20221019154935781.png)
+
+
+
+#### 2022-10-20
+
+- [ ] 开始修改代码：
+  - [ ] 备份原始gemmini src中的代码于`/mnt/d/prj/routine/inferencor/gemmini_code/`
+  - [ ] 将`tutorial`中的`Arithmetic.scala`拷贝并替换原始的文件，修改其中关于Complex的代码为Bcomplex
+  - [ ] 修改`config.scala`中配置
+
+
+
+#### 2022-10-23
+
+- [ ] `VectorScalarMultiplier.scala` line41将ScalePipe中的函数
+- [ ] Acc: line134 8 -> 32,其余搜aligned_to
+- [ ] 
+
+
+
+#### 2022-10-29
+
+- [ ] 定义新方法 d_default 并在ex_controller中：
+
+```
+  val dataD = VecInit(dataD_unpadded.asTypeOf(Vec(block_size, inputType)).zipWithIndex.map { case (d, i) => Mux(i.U < cntl.d_unpadded_cols, d, inputType.zero)})
+ 修改：
+    val dataD = VecInit(dataD_unpadded.asTypeOf(Vec(block_size, inputType)).zipWithIndex.map { case (d, i) => Mux(i.U < cntl.d_unpadded_cols, d, inputType.d_default)})
+```
+
+
+
+#### 2022-10-31
+
+- [ ] 论文中2.3.3节 CGBN是不是不太需要？
